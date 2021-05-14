@@ -1,1 +1,1 @@
-console.log("test")
+console.log("이거 마스터에서 수정한거.")
