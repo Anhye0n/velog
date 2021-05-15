@@ -4,7 +4,7 @@ const port = 80
 const db_info = require('../conf/db_info')
 const conn = db_info.init()
 
-var router = require('./router/main')(app);
+var router = require('./routes/main')(app);
 
 
 app.set('views', __dirname + '/views')
