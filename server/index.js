@@ -4,9 +4,14 @@ const port = 80
 const db_info = require('../conf/db_info')
 const conn = db_info.init()
 
-app.get('/', function (req, res){
-    res.sendFile(__dirname + '../index.html')
-})
+var router = require('./router/main')(app);
+
+
+app.set('views', __dirname + '/views')
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+
+
 
 
 app.get('/list', function (req, res) {
@@ -17,6 +22,8 @@ app.get('/list', function (req, res) {
         console.log('Success Insert!'+ result)
     });
 });
+
+app.use(express.static('src/css'))
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
