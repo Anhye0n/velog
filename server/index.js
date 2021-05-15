@@ -5,9 +5,7 @@ const db_info = require('../conf/db_info')
 const conn = db_info.init()
 
 app.get('/', function (req, res){
-    res.redirect('../public/index.html')
-
-    res.end()
+    res.sendFile(__dirname + '../index.html')
 })
 
 
