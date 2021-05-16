@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({extend:false}))
 
 app.use(bodyParser.json())
 
-app.set('views', serveStatic(path.join(__dirname, '../views'))) //메인 주소
+app.use('/views', serveStatic(path.join(__dirname, '../views'))) //메인 주소
 //
 // app.use('/', express.static(__dirname + '../views'))
 // app.use('/user/register', regitser)
