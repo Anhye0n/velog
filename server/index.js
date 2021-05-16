@@ -11,20 +11,18 @@ const bodyParser = require('body-parser'), serveStatic = require('serve-static')
 const passport = require('passport')
 
 //라우터
-const user_info = require('./routes/main')
+const user_info = require('./routes/user')
 
 app.use(bodyParser.urlencoded({extend:false}))
 
 app.use(bodyParser.json())
 
-views_url = serveStatic(path.join(__dirname, '../views'))
+app.use('/', serveStatic(path.join(__dirname, '../views'))) //메인
 
-app.use('/', views_url)
+app.use('/user/regitser', serveStatic(path.join(__dirname, '../views/register.html'))) //회원가입
 
+app.use('/user/login', serveStatic(path.join(__dirname, '../views/login.html'))) //로그인
 
-app.get('/list', function (req, res) {
-
-});
 
 app.use(express.static('src/css'))
 
