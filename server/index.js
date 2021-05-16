@@ -1,18 +1,17 @@
 const express = require('express')
 const app = express()
-const port = 80
+
 const db_info = require('../conf/db_info')
 const conn = db_info.init()
+
 const fs = require('fs')
+const bodyParser = require('body-parser'), serveStatic = require('serve-static'), path = require('path')
 
-app.get('/', function (req, res){
-    fs.readFile('../views/index.html', function (err, data){
-        res.writeHead(200, {'Content-Type': 'text/html'})
-        res.end(data)
-    })
-})
+app.use(bodyParser.urlencoded({extend:false}))
 
+app.use(bodyParser.json())
 
+app.use('/', serveStatic(path.join(__dirname, 'views')))
 
 
 app.get('/list', function (req, res) {
@@ -26,6 +25,6 @@ app.get('/list', function (req, res) {
 
 app.use(express.static('src/css'))
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+app.listen(80, () => {
+    console.log(`Example app listening at http://anhye0n.me`)
 })
