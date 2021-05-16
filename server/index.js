@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({extend:false}))
 
 app.use(bodyParser.json())
 
-app.use('/', serveStatic(path.join(__dirname, '../views'))) //메인
+app.use('/', serveStatic(path.join(__dirname, '../views/index.html'))) //메인
 
 app.use('/user/regitser', serveStatic(path.join(__dirname, '../views/register.html'))) //회원가입
 
