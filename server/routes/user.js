@@ -11,12 +11,8 @@ router.post('/api/user/register', function (req, res, next) {
     var sql = 'INSERT INTO user_info (name, email, id, password) VALUES (name, email, id, password)';
 
     conn.query(sql, function (err, result) {
-        if (err) {
-            console.log('query is not excuted. select fail...\n' + err);
-        } else {
-            console.log('Success Insert!')
-            location.href="http://anhye0n.me"
-        }
+        if (err) console.log('query is not excuted. select fail...\n' + err);
+        console.log('Success Insert!')
     });
 });
 //
