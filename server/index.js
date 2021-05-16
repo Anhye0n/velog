@@ -19,9 +19,7 @@ app.use(bodyParser.json())
 
 app.set('views', serveStatic(path.join(__dirname, '../views'))) //메인 주소
 
-app.use(serveStatic(path.join(__dirname, '../views'))) //메인
-
-app.use('/', 'views')
+app.use('/', serveStatic(path.join(__dirname, '../views')))
 // app.use('/user/register', regitser)
 // app.use('/user/login', express.static('../views'))
 
