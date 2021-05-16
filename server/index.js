@@ -17,11 +17,13 @@ app.use(bodyParser.urlencoded({extend:false}))
 
 app.use(bodyParser.json())
 
-app.use('/', serveStatic(path.join(__dirname, '../views/index.html'))) //메인
+app.set('views', serveStatic(path.join(__dirname, '../views'))) //메인 주소
 
-app.use('/user/regitser', serveStatic(path.join(__dirname, '../views/register.html'))) //회원가입
+app.use(serveStatic(path.join(__dirname, '../views'))) //메인
 
-app.use('/user/login', serveStatic(path.join(__dirname, '../views/login.html'))) //로그인
+app.use('/', index)
+// app.use('/user/register', regitser)
+// app.use('/user/login', express.static('../views'))
 
 
 app.use(express.static('src/css'))
