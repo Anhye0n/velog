@@ -11,23 +11,8 @@ const bodyParser = require('body-parser'), serveStatic = require('serve-static')
 const passport = require('passport')
 
 //라우터
-// const user_info = require('./routes/user')
-var router = express.Router();
+const user_info = require('./routes/user')
 
-router.post('/api/user/register', function (req, res, next) {
-
-    var name = req.body.name // 포스트 방식은 body, get 방식은 query
-    var id = req.body.id
-    var email = req.body.email
-    var password = req.body.password
-
-    var sql = 'INSERT INTO user_info (name, email, id, password) VALUES (name, email, id, password)';
-
-    conn.query(sql, function (err, result) {
-        if (err) console.log('query is not excuted. select fail...\n' + err);
-        console.log('Success Insert!')
-    });
-});
 app.use(bodyParser.urlencoded({extend:false}))
 
 app.use(bodyParser.json())

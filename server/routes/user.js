@@ -4,8 +4,8 @@ var router = express.Router();
 router.post('/api/user/register', function (req, res, next) {
 
     var name = req.body.name // 포스트 방식은 body, get 방식은 query
-    var id = req.body.id
     var email = req.body.email
+    var id = req.body.id
     var password = req.body.password
 
     var sql = 'INSERT INTO user_info (name, email, id, password) VALUES (name, email, id, password)';
