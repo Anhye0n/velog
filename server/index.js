@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extend:false}))
 
 app.use(bodyParser.json())
 
-app.use('/', serveStatic(path.join(__dirname, 'views')))
+app.use('/', serveStatic(path.join(__dirname, '../views')))
 
 
 app.get('/list', function (req, res) {
