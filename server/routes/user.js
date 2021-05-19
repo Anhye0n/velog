@@ -12,13 +12,16 @@ router.post('/user/register', function (req, res, next) {
     var id = req.body.id
     var password = req.body.password
 
+    var user_regi = [name, email, id, password]
+
     var sql = "INSERT INTO user_info (name, email, id, password) VALUES (?, ?, ?, ?)";
 
-    conn.query(sql, [name, email, id, password],function (err, result) {
+    conn.query(sql, user_regi,function (err, result) {
         if (err) {
             console.log('query is not excuted. insert fail...\n' + err);
         }else{
             console.log('Success Insert!')
+            console.log(result)
             res.redirect('http://anhye0n.me/user/regi_success.html')
         }
     });
