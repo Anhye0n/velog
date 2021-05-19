@@ -12,6 +12,7 @@ const passport = require('passport')
 
 //라우터
 const user_info = require('./routes/user')
+app.use('/api', user_info)
 
 app.use(bodyParser.urlencoded({extend:false}))
 
@@ -19,7 +20,6 @@ app.use(bodyParser.json())
 
 app.use('/user', serveStatic(path.join(__dirname, '../views'))) //메인 주소
 
-app.use('/api', user_info)
 //
 // app.use('/', express.static(__dirname + '../views'))
 // app.use('/user/register', regitser)
