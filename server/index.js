@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+var router = express.Router();
 
 //DB
 const db_info = require('../conf/db_info')
