@@ -8,15 +8,20 @@ const conn = db_info.init()
 router.post('/user/register', function (req, res, next) {
 
     var name = req.body.user_name // 포스트 방식은 body, get 방식은 query
-    var email = req.body.email
+    var e_mail = req.body.email
     var id = req.body.id
     var password = req.body.password
 
-    var sql = "INSERT INTO user_info (name, email, id, password) VALUES (\'name\', email, id, password)";
+    var sql = "INSERT INTO user_info (name, email, id, password) VALUES (?, ?, ?, ?)";
 
-    conn.query(sql, function (err, result) {
-        if (err) console.log('query is not excuted. select fail...\n' + err);
-        console.log('Success Insert!')
+    conn.query(sql, [name, email, id, password],function (err, result) {
+        if (err) {
+            console.log('query is not excuted. select fail...\n' + err);
+        }else{
+            console.log('Success Insert!')
+            alert('회원가입에 성공하셨습니다!')
+            res.redirect('http://anhye0n.me/user/')
+        }
     });
 });
 //
