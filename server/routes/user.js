@@ -8,7 +8,7 @@ const conn = db_info.init()
 router.post('/user/register', function (req, res, next) {
 
     var name = req.body.user_name // 포스트 방식은 body, get 방식은 query
-    var e_mail = req.body.email
+    var email = req.body.email
     var id = req.body.id
     var password = req.body.password
 
