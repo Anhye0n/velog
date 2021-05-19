@@ -3,12 +3,12 @@ var router = express.Router();
 // /api/user/register가 아닌 /user/register로 하기.
 router.post('/user/register', function (req, res, next) {
 
-    var name = req.body.name // 포스트 방식은 body, get 방식은 query
+    var name = req.body.user_name // 포스트 방식은 body, get 방식은 query
     var email = req.body.email
     var id = req.body.id
     var password = req.body.password
 
-    var sql = 'INSERT INTO user_info (name, email, id, password) VALUES (\'name\', email, id, password)';
+    var sql = "INSERT INTO user_info (name, email, id, password) VALUES (\'name\', email, id, password)";
 
     conn.query(sql, function (err, result) {
         if (err) console.log('query is not excuted. select fail...\n' + err);
