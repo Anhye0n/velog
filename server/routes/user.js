@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-router.post('/api/user/register', function (req, res, next) {
+router.post('/user/register', function (req, res, next) {
 
     var name = req.body.name // 포스트 방식은 body, get 방식은 query
     var email = req.body.email

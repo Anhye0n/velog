@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-var router = express.Router();
 
 //DB
 const db_info = require('../conf/db_info')
@@ -19,25 +18,14 @@ app.use(bodyParser.urlencoded({extend:false}))
 app.use(bodyParser.json())
 
 app.use('/user', serveStatic(path.join(__dirname, '../views'))) //메인 주소
+
+app.use('/api', api)
 //
 // app.use('/', express.static(__dirname + '../views'))
 // app.use('/user/register', regitser)
 // app.use('/user/login', express.static('../views'))
 
-router.post('/api/user/register', function (req, res, next) {
 
-    var name = req.body.name // 포스트 방식은 body, get 방식은 query
-    var email = req.body.email
-    var id = req.body.id
-    var password = req.body.password
-
-    var sql = 'INSERT INTO user_info (name, email, id, password) VALUES (name, email, id, password)';
-
-    conn.query(sql, function (err, result) {
-        if (err) console.log('query is not excuted. select fail...\n' + err);
-        console.log('Success Insert!')
-    });
-});
 app.use(express.static('src/css'))
 
 app.listen(80, () => {
