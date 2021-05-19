@@ -16,7 +16,7 @@ router.post('/user/register', function (req, res, next) {
 
     conn.query(sql, [name, email, id, password],function (err, result) {
         if (err) {
-            console.log('query is not excuted. select fail...\n' + err);
+            console.log('query is not excuted. insert fail...\n' + err);
         }else{
             console.log('Success Insert!')
             res.redirect('http://anhye0n.me/user/regi_success.html')
