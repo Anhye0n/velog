@@ -19,8 +19,7 @@ router.post('/user/register', function (req, res, next) {
             console.log('query is not excuted. select fail...\n' + err);
         }else{
             console.log('Success Insert!')
-            alert('회원가입에 성공하셨습니다!')
-            res.redirect('http://anhye0n.me/user/')
+            res.redirect('http://anhye0n.me/user/regi_success.html')
         }
     });
 });
