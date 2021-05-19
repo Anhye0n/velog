@@ -15,6 +15,8 @@ app.use(bodyParser.urlencoded({extend:false}))
 
 app.use(bodyParser.json())
 
+app.use('/', serveStatic(path.join(__dirname, '../views'))) //메인 주소
+
 app.use('/user', serveStatic(path.join(__dirname, '../views'))) //메인 주소
 
 //라우터
