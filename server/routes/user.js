@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 //DB
-const db_info = require('../conf/db_info')
+const db_info = require('../../conf/db_info')
 const conn = db_info.init()
 
 // /api/user/register가 아닌 /user/register로 하기.
