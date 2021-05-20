@@ -18,7 +18,7 @@ router.post('/decrypto', function (req, res, next) {
             // console.log(key.toString("base64"))
             res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
             res.write('<script>alert(\'복호화 값 가져옴\')</script>')
-            res.end('복호화된 password <br><br>' + key.toString('base64'))
+            res.end('<h1>복호화된 password</h1> <br><br>' + key.toString('base64'))
         });
     })
 })
@@ -35,7 +35,10 @@ router.post('/auto_increment_reset', function (req, res, next) {
             console.log('query is not excuted. rest fail...\n' + err);
         } else {
             console.log('초기화 성공!')
+            res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
+            res.write('<script>alert(\'복호화 값 가져옴\')</script>')
             res.redirect('http://anhye0n.me/')
+            res.end()
         }
     });
 })
