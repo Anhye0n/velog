@@ -27,10 +27,7 @@ router.post('/auto_increment_reset', function (req, res, next) {
     var last_num = req.body.last_num
     var user_regi = [last_num]
 
-    var sql = "ALTER TABLE user_info AUTO_INCREMENT=1;\n" +
-        "SET @COUNT = 0;\n" +
-        "UPDATE user_info SET user_info.num = @COUNT:=@COUNT+1;+" +
-        "ALTER TABLE user_info AUTO_INCREMENT= ? ;"
+    var sql = "ALTER TABLE user_info AUTO_INCREMENT=1; SET @COUNT = 0; UPDATE user_info SET num = @COUNT:=@COUNT+1; ALTER TABLE user_info AUTO_INCREMENT= ? ;"
 
     conn.query(sql, user_regi, function (err, result) {
         if (err) {
