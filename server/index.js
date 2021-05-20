@@ -6,7 +6,6 @@ const app = express()
 // const conn = db_info.init()
 
 //모듈
-const fs = require('fs')
 const bodyParser = require('body-parser'), serveStatic = require('serve-static'), path = require('path')
 const passport = require('passport')
 
@@ -17,7 +16,7 @@ app.use(bodyParser.json())
 
 app.use('/', serveStatic(path.join(__dirname, '../views'))) //메인 주소
 
-app.use('/user', serveStatic(path.join(__dirname, '../views'))) //메인 주소
+app.use('/user', serveStatic(path.join(__dirname, '../views/user'))) //로그인 주소
 
 //라우터
 const user_info = require('./routes/user')
