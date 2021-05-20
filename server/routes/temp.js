@@ -16,7 +16,7 @@ router.post('/decrypto', function (req, res, next) {
     crypto.randomBytes(64, (err, buf) => {
         crypto.pbkdf2(password, encrypto, 100, 64, 'sha512', (err, key) => {
             // console.log(key.toString("base64"))
-            res.writeHead(200, {'Content-Type': 'text/html'})
+            res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
             res.end('복호화된 password \n\n' + key.toString('base64'))
         });
     })
