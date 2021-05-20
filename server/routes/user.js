@@ -17,29 +17,28 @@ router.post('/user/register', function (req, res, next) {
     var id = req.body.id
     var password = req.body.password
 
-    var de_password = ''
-    var user_salt = ''
-
     // 암호화
     crypto.randomBytes(64, (err, buf) => {
         crypto.pbkdf2(password, buf.toString("base64"), 100, 64, 'sha512', (err, key) => {
-            de_password = key.toString("base64")
-            user_salt = buf.toString("base64")
+            var de_password = key.toString("base64")
+            var user_salt = buf.toString("base64")
+
+            var user_regi = [name, email, id, de_password, user_salt]
+
+            var sql = "INSERT INTO user_info (name, email, id, password, user_salt) VALUES (?, ?, ?, ?, ?)";
+
+            conn.query(sql, user_regi, function (err, result) {
+                if (err) {
+                    console.log('query is not excuted. insert fail...\n' + err);
+                } else {
+                    console.log('Success Insert!')
+                    res.redirect('http://anhye0n.me/user/regi_success.html')
+                }
+            });
         })
     })
 
-    var user_regi = [name, email, id, de_password, user_salt]
 
-    var sql = "INSERT INTO user_info (name, email, id, password, user_salt) VALUES (?, ?, ?, ?, ?)";
-
-    conn.query(sql, user_regi, function (err, result) {
-        if (err) {
-            console.log('query is not excuted. insert fail...\n' + err);
-        } else {
-            console.log('Success Insert!')
-            res.redirect('http://anhye0n.me/user/regi_success.html')
-        }
-    });
 });
 //
 // router.get('/api/user/login', function (req, res, next) {
