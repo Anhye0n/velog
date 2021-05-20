@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
-//
-// //DB
+
+// DB
 // const db_info = require('../conf/db_info')
 // const conn = db_info.init()
 
