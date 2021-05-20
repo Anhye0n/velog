@@ -37,6 +37,7 @@ router.post('/auto_increment_reset', function (req, res, next) {
             console.log('초기화 성공!')
             res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
             res.write('<script>alert(\'복호화 값 가져옴\')</script>')
+            res.end()
             res.redirect('http://anhye0n.me/')
         }
     });
