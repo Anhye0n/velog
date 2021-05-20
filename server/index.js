@@ -22,7 +22,7 @@ app.use('/user', serveStatic(path.join(__dirname, '../views/user'))) //유저 �
 const user_info = require('./routes/user')
 app.use('/api', user_info)
 
-const db_test = require('./routes/temp')
+const db_test = require('./routes/admin')
 app.use('/admin', db_test)
 
 
