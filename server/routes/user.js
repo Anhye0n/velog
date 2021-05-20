@@ -39,19 +39,7 @@ router.post('/user/register', function (req, res, next) {
     })
 });
 
-router.post('/user/test', function (req, res, next) {
 
-    var password = req.body.password
-    var encrypto = req.body.encrypto
-    // 암호화
-    crypto.randomBytes(64, (err, buf) => {
-        crypto.pbkdf2(password, encrypto, 100, 64, 'sha512', (err, key) => {
-            // console.log(key.toString("base64"))
-            res.writeHead(200, {'Content-Type':'text/html'})
-            res.end('id : ' + key.toString('base64'))
-        });
-    })
-})
 //
 // router.get('/api/user/login', function (req, res, next) {
 //     var sql = 'INSERT INTO user_info (name, email, id, password) VALUES (\'Company Inc\', \'Highway 37\', \'asdf\')';
