@@ -5,15 +5,7 @@
     <title>회원가입</title>
 
     <link rel="stylesheet" href="../../src/css/main.css">
-</head>
-<body>
-<form id="register_form" action="/api/user/register" method="post">
-    <p>이름 : <input type="text" name="user_name" autocomplete="on" placeholder="이름" autofocus></p>
-    <p>이메일 : <input type="email" name="email" autocomplete="on" placeholder="이메일"></p>
-    <p>아이디 : <input type="text" name="id" autocomplete="on" placeholder="아이디"></p>
-    <p>비밀번호 : <input type="password" id="pass_check_1" name="password" autocomplete="on" placeholder="비밀번호"></p>
-    <p>비밀번호 확인: <input type="password" id="pass_check_2" name="password" autocomplete="on" placeholder="비밀번호"></p>
-    <button type="button" onclick="pass_check()">회원가입</button>
+
     <script type="text/javascript">
         function pass_check(){
             var register_form = document.getElementById('register_form');
@@ -28,6 +20,16 @@
             }
         }
     </script>
+</head>
+<body>
+<form id="register_form" action="/api/user/register" method="post">
+    <p>이름 : <input type="text" name="user_name" autocomplete="on" placeholder="이름" autofocus></p>
+    <p>이메일 : <input type="email" name="email" autocomplete="on" placeholder="이메일"></p>
+    <p>아이디 : <input type="text" name="id" autocomplete="on" placeholder="아이디"></p>
+    <p>비밀번호 : <input type="password" id="pass_check_1" name="password" autocomplete="on" placeholder="비밀번호"></p>
+    <p>비밀번호 확인: <input type="password" id="pass_check_2" autocomplete="on" placeholder="비밀번호"></p>
+    <button type="button" onclick="pass_check()">회원가입</button>
+
 </form>
 </body>
 </html>
