@@ -14,8 +14,12 @@ app.use(bodyParser.urlencoded({extend:false}))
 
 app.use(bodyParser.json())
 
-app.set('/views', path.join(__dirname, '../views/'))
 app.set('view engine', ejs) //ejs 사용
+app.set('views', path.join(__dirname, '../views/'))
+
+app.get('/', (req, res) => {
+    res.render('index');
+})
 
 //
 // app.use('/', serveStatic(path.join(__dirname, '../views'))) //메인 주소
