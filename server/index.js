@@ -14,9 +14,11 @@ app.use(bodyParser.urlencoded({extend:false}))
 
 app.use(bodyParser.json())
 
-app.use('/', serveStatic(path.join(__dirname, '../views'))) //메인 주소
+app.set('view engine', ejs) //ejs 사용
 
-app.use('/user', serveStatic(path.join(__dirname, '../views/user'))) //유저 관리 주소
+app.set('/', serveStatic(path.join(__dirname, '../views'))) //메인 주소
+
+app.set('/user', serveStatic(path.join(__dirname, '../views/user'))) //유저 관리 주소
 
 //라우터
 const user_info = require('./routes/user')
