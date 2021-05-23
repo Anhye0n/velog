@@ -8,13 +8,12 @@ const app = express()
 //모듈
 const bodyParser = require('body-parser'), serveStatic = require('serve-static'), path = require('path')
 const passport = require('passport')
-var ejs = require('ejs')
 
 app.use(bodyParser.urlencoded({extend:false}))
 
 app.use(bodyParser.json())
 
-app.set('view engine', ejs) //ejs 사용
+app.set('view engine', 'ejs') //ejs 사용
 app.set('views', serveStatic(path.join(__dirname, '../views/')))
 
 app.get('/', (req, res) => {
