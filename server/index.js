@@ -8,7 +8,6 @@ const app = express()
 //모듈
 const bodyParser = require('body-parser'), serveStatic = require('serve-static'), path = require('path')
 const passport = require('passport')
-const ejs = require('ejs')
 
 app.use(bodyParser.urlencoded({extend:false}))
 
