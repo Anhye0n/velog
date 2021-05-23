@@ -5,12 +5,14 @@
     <title>회원가입</title>
     <script type="text/javascript">
         function pass_check(){
+            var register_form = document.register_form;
             var p1 = document.getElementById('pass_check_1').value
             var p2 = document.getElementById('pass_check_2').value
             var btn = document.getElementById('btn')
             if( p1 === p2){
                 alert('비밀번호가 일치합니다.')
                 btn.setAttribute('type', 'submit')
+                register_form.submit()
             }else if(p1 !== p2){
                 alert('비밀번호가 일치하지 않습니다.')
             }
@@ -19,7 +21,7 @@
     <link rel="stylesheet" href="../../src/css/main.css">
 </head>
 <body>
-<form action="/api/user/register" method="post">
+<form name="register_form" action="/api/user/register" method="post">
     <p>이름 : <input type="text" name="user_name" autocomplete="on" placeholder="이름" autofocus></p>
     <p>이메일 : <input type="email" name="email" autocomplete="on" placeholder="이메일"></p>
     <p>아이디 : <input type="text" name="id" autocomplete="on" placeholder="아이디"></p>
