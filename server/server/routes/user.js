@@ -49,12 +49,12 @@ router.post('/user/login', function (req, res, next) {
     conn.query(id_sql, id, function (err, result){
         console.log('id : '+ result)
     })
-
-    if (db_id === 0){
-        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-        res.write('<script>alert(\'가입되지 않은 아이디 입니다.\')</script>')
-        res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
-    }
+    //
+    // if (db_id === 0){
+    //     res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
+    //     res.write('<script>alert(\'가입되지 않은 아이디 입니다.\')</script>')
+    //     res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
+    // }
 
     var salt_sql = "SELECT user_salt FROM user_info WHERE id=?"
     conn.query(salt_sql, id, function (err, result){
