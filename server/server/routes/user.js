@@ -41,7 +41,7 @@ router.post('/user/register', function (req, res, next) {
 
 
 
-router.get('/api/user/login', function (req, res, next) {
+router.get('/user/login', function (req, res, next) {
     var id = req.body.id
     var password = req.body.password
 
