@@ -46,10 +46,9 @@ router.post('/user/login', function (req, res, next) {
     var password = req.body.password
 
     var id_sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as successs"
-    var db_id = conn.query(id_sql, id, function (err, result){
-        console.log('id : '+ db_id)
+    conn.query(id_sql, id, function (err, result){
+        console.log('id : '+ result)
     })
-    console.log(db_id)
 
     if (db_id === 0){
         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
@@ -58,17 +57,15 @@ router.post('/user/login', function (req, res, next) {
     }
 
     var salt_sql = "SELECT user_salt FROM user_info WHERE id=?"
-    var salt = conn.query(salt_sql, id, function (err, result){
+    conn.query(salt_sql, id, function (err, result){
         console.log('salt : '+ result)
     }).toString()
-    console.log(salt)
 
     var db_password_sql = "SELECT password FROM user_info WHERE id=?"
     // password를 salt로 암호화한 값이 db_password랑 같은가?로 구현
-    var db_password = conn.query(db_password_sql, id, function (err, result){
+    conn.query(db_password_sql, id, function (err, result){
         console.log('result : '+ result)
     })
-    console.log(db_password)
 
     // 암호화
     crypto.randomBytes(64, (err, buf) => {
