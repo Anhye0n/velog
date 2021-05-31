@@ -49,8 +49,9 @@ router.post('/user/login', function (req, res, next) {
     conn.query(id_sql, id, function (err, result){
         console.log('id : '+ result)
     })
-    var isql = "SELECT * FROM user_info"
-    conn.query(id_sql, function (err, result){
+
+    var sql = "SELECT * FROM user_info"
+    conn.query(sql, function (err, result){
         console.log('asdf : '+ result)
     })
     //
