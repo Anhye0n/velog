@@ -51,7 +51,8 @@ router.post('/user/login', function (req, res, next) {
     conn.query(id_sql, id, function (err, result){
         if (err) throw err;
         console.log('id : '+ JSON.stringify(result))
-        db_id = result[0].success
+        // db_id = result[0].success
+        console.log(result[0].success)
     })
 
     // if (db_id === 0){
@@ -64,7 +65,8 @@ router.post('/user/login', function (req, res, next) {
     conn.query(salt_sql, id.toString(), function (err, result){
         if (err) throw err;
         console.log('salt : '+ JSON.stringify(result))
-        salt = result[0].user_salt
+        // salt = result[0].user_salt
+        console.log(result[0].user_salt)
     })
 
     var db_password_sql = "SELECT password FROM user_info WHERE id=?;"
@@ -72,7 +74,8 @@ router.post('/user/login', function (req, res, next) {
     conn.query(db_password_sql, id, function (err, result){
         if (err) throw err;
         console.log('result : '+ JSON.stringify(result))
-        db_password = result[0].password
+        // db_password = result[0].password
+        console.log(result[0].password)
     })
 
     console.log(db_id)
