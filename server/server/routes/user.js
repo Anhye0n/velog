@@ -58,7 +58,7 @@ router.post('/user/login', function (req, res, next) {
     // }
 
     var salt_sql = "SELECT user_salt FROM user_info WHERE id=?"
-    conn.query(salt_sql, id, function (err, result){
+    conn.query(salt_sql, id.toString(), function (err, result){
         console.log('salt : '+ result)
     })
 
