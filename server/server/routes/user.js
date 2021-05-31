@@ -47,7 +47,7 @@ router.post('/user/login', function (req, res, next) {
 
     var id_sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as successs;"
     conn.query(id_sql, id, function (err, result){
-        console.log(id_sql)
+        if (err) throw err;
         console.log('id : '+ result)
     })
 
@@ -59,12 +59,14 @@ router.post('/user/login', function (req, res, next) {
 
     var salt_sql = "SELECT user_salt FROM user_info WHERE id=?;"
     conn.query(salt_sql, id.toString(), function (err, result){
+        console.log(id_sql)
         console.log('salt : '+ result)
     })
 
     var db_password_sql = "SELECT password FROM user_info WHERE id=?;"
     // password를 salt로 암호화한 값이 db_password랑 같은가?로 구현
     conn.query(db_password_sql, id, function (err, result){
+        console.log(id_sql)
         console.log('result : '+ result)
     })
 
