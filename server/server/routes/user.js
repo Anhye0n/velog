@@ -47,6 +47,7 @@ router.post('/user/login', function (req, res, next) {
 
     var id_sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as successs"
     conn.query(id_sql, id, function (err, result){
+        console.log(id_sql)
         console.log('id : '+ result)
     })
 
