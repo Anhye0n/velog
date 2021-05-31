@@ -45,11 +45,13 @@ router.post('/user/login', function (req, res, next) {
     var id = req.body.id
     var password = req.body.password
 
+    var db_id, salt, db_password
+
     var id_sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as successs;"
-    var db_id = conn.query(id_sql, id, function (err, result){
+    conn.query(id_sql, id, function (err, result){
         if (err) throw err;
         console.log('id : '+ JSON.stringify(result))
-        return result.success
+        db_id = result.success
     })
 
     // if (db_id === 0){
@@ -59,18 +61,18 @@ router.post('/user/login', function (req, res, next) {
     // }
 
     var salt_sql = "SELECT user_salt FROM user_info WHERE id=?;"
-    var salt = conn.query(salt_sql, id.toString(), function (err, result){
+    conn.query(salt_sql, id.toString(), function (err, result){
         if (err) throw err;
         console.log('salt : '+ JSON.stringify(result))
-        return  result.user_salt
+        salt = result.user_salt
     })
 
-    // password를 salt로 암호화한 값이 db_password랑 같은가?로 구현
     var db_password_sql = "SELECT password FROM user_info WHERE id=?;"
-    var db_password = conn.query(db_password_sql, id, function (err, result){
+    // password를 salt로 암호화한 값이 db_password랑 같은가?로 구현
+    conn.query(db_password_sql, id, function (err, result){
         if (err) throw err;
         console.log('result : '+ JSON.stringify(result))
-        return result.password
+        db_password = result.password
     })
 
     console.log(db_id)
