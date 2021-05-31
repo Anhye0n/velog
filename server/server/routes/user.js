@@ -47,14 +47,9 @@ router.post('/user/login', function (req, res, next) {
 
     var id_sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as successs"
     conn.query(id_sql, id, function (err, result){
-        console.log('id : '+ result.toString())
+        console.log('id : '+ result)
     })
 
-    var sql = "SELECT * FROM user_info"
-    conn.query(sql, function (err, result){
-        console.log('asdf : '+ result.toString())
-    })
-    //
     // if (db_id === 0){
     //     res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
     //     res.write('<script>alert(\'가입되지 않은 아이디 입니다.\')</script>')
