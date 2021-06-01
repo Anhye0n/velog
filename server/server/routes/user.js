@@ -46,37 +46,44 @@ router.post('/user/login', function (req, res, next) {
 
     var db_array = [];
 
-    var id_sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;"
-    conn.query(id_sql, id, function (err, result) {
+    var sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;" + "SELECT user_salt FROM user_info WHERE id=?;" + "SELECT password FROM user_info WHERE id=?;";
+    conn.query(sql, id, function (err, result){
         if (err) throw err;
-        db_array.push(result[0].success)
         console.log(result[0].success)
+        console.log(result[1].user_salt)
+        console.log(result[2].password)
     })
-    // if (db_id === 0) {
-    //     res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-    //     res.write('<script>alert(\'가입되지 않은 아이디 입니다.\')</script>')
-    //     res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
-    // }
-
-    var salt_sql = "SELECT user_salt FROM user_info WHERE id=?;"
-    conn.query(salt_sql, id, function (err, result) {
-        if (err) throw err;
-        db_array.push(result[0].user_salt)
-        console.log(result[0].user_salt)
-    })
-
-    var db_password_sql = "SELECT password FROM user_info WHERE id=?;"
-    // password를 salt로 암호화한 값이 db_password랑 같은가?로 구현
-    var asdf = conn.query(db_password_sql, id, function (err, result) {
-        if (err) throw err;
-        db_array.push(result[0].password)
-        console.log(result[0].password)
-        return result[0].password
-    })
-    console.log('asdf : ', asdf)
-    console.log(db_array[0])
-    console.log(db_array[1])
-    console.log(db_array[2])
+    //
+    // var id_sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;"
+    // conn.query(id_sql, id, function (err, result) {
+    //     if (err) throw err;
+    //     db_array.push(result[0].success)
+    //     console.log(result[0].success)
+    // })
+    // // if (db_id === 0) {
+    // //     res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
+    // //     res.write('<script>alert(\'가입되지 않은 아이디 입니다.\')</script>')
+    // //     res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
+    // // }
+    //
+    // var salt_sql = "SELECT user_salt FROM user_info WHERE id=?;"
+    // conn.query(salt_sql, id, function (err, result) {
+    //     if (err) throw err;
+    //     db_array.push(result[0].user_salt)
+    //     console.log(result[0].user_salt)
+    // })
+    //
+    // var db_password_sql = "SELECT password FROM user_info WHERE id=?;"
+    // // password를 salt로 암호화한 값이 db_password랑 같은가?로 구현
+    // conn.query(db_password_sql, id, function (err, result) {
+    //     if (err) throw err;
+    //     db_array.push(result[0].password)
+    //     console.log(result[0].password)
+    //     return result[0].password
+    // })
+    // console.log(db_array[0])
+    // console.log(db_array[1])
+    // console.log(db_array[2])
 
     // crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
     //     var de_password = key.toString("base64")
