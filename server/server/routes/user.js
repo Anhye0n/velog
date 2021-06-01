@@ -40,7 +40,6 @@ router.post('/user/register', function (req, res, next) {
 });
 
 
-
 router.post('/user/login', function (req, res, next) {
     var id = req.body.id
     var password = req.body.password
@@ -49,26 +48,27 @@ router.post('/user/login', function (req, res, next) {
     var db_id, salt, db_password;
 
     var id_sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;"
-    conn.query(id_sql, id, function (err, result){
+    conn.query(id_sql, id, function (err, result) {
         if (err) throw err;
         db_id = result[0].success
     })
 
-    if (db_id === 0){
+    if (db_id === 0) {
         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
         res.write('<script>alert(\'가입되지 않은 아이디 입니다.\')</script>')
         res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
     }
 
     var salt_sql = "SELECT user_salt FROM user_info WHERE id=?;"
-    conn.query(salt_sql, id, function (err, result){
+    conn.query(salt_sql, id, function (err, result) {
         if (err) throw err;
-        salt = result[0].user_salt
+        salt = result[0].user_salt.toString('base64')
+        console.log('salt : ' + salt)
     })
 
     var db_password_sql = "SELECT password FROM user_info WHERE id=?;"
     // password를 salt로 암호화한 값이 db_password랑 같은가?로 구현
-    conn.query(db_password_sql, id, function (err, result){
+    conn.query(db_password_sql, id, function (err, result) {
         if (err) throw err;
         db_password = result[0].password
     })
@@ -77,9 +77,9 @@ router.post('/user/login', function (req, res, next) {
         crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
             var de_password = key.toString("base64")
 
-            if (de_password === db_password){
+            if (de_password === db_password) {
                 res.redirect('http://anhye0n.me/user/login_success.html')
-            }else{
+            } else {
                 res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
                 res.write('<script>alert(\'비밀번호가 옳지 않습니다.\')</script>')
                 res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
