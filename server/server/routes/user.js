@@ -49,38 +49,36 @@ router.post('/user/login', function (req, res) {
     var sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;"
 
     conn.query(sql, id, function (err, result) {
-            if (err) throw err;
-            var db_id = result[0].success
+        if (err) throw err;
+        var db_id = result[0].success
 
-            if (db_id === 0) {
-                res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-                res.write('<script>alert(\'가입되지 않은 아이디 입니다.\')</script>')
-                res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
-            } else if (db_id === 1) {
+        if (db_id === 0) {
+            res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
+            res.write('<script>alert(\'가입되지 않은 아이디 입니다.\')</script>')
+            res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
+        } else if (db_id === 1) {
 
-                var in_sql = "SELECT user_salt FROM user_info WHERE id=?;" +
-                    "SELECT password FROM user_info WHERE id=?;"
+            var in_sql = "SELECT user_salt FROM user_info WHERE id=?;" +
+                "SELECT password FROM user_info WHERE id=?;"
 
-                conn.query(in_sql, [id, id], function (err, result) {
-                    var salt = result[0][0].user_salt
-                    var db_password = result[1][0].password
+            conn.query(in_sql, [id, id], function (err, result) {
+                var salt = result[0][0].user_salt
+                var db_password = result[1][0].password
 
-                    crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
-                        var de_password = key.toString("base64")
+                crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
+                    var de_password = key.toString("base64")
 
-                        if (de_password === db_password) {
-                            res.redirect('http://anhye0n.me/user/login_success.html')
-                        } else {
-                            res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-                            res.write('<script>alert(\'비밀번호가 옳지 않습니다.\')</script>')
-                            res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
-                        }
-                    });
-
-                })
-            }
+                    if (de_password === db_password) {
+                        res.redirect('http://anhye0n.me/user/login_success.html')
+                    } else {
+                        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
+                        res.write('<script>alert(\'비밀번호가 옳지 않습니다.\')</script>')
+                        res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
+                    }
+                });
+            })
         }
-    )
+    })
 });
 
 module.exports = router;
