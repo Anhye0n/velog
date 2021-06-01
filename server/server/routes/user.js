@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 //DB
 const db_info = require('../../conf/db_info')
@@ -8,6 +8,18 @@ const conn = db_info.init()
 //crypto
 const crypto = require('crypto')
 
+//session
+const session = require('express-session')
+const mysqlStore = require('express-mysql-session')(session)
+
+app.use(session({
+    secret : 'session key',
+    resave : false,
+    saveUninitialized : true,
+    store : new mysqlStore(db_info.db_info)
+}))
+
+console.log(db_info.db_info)
 
 // /api/user/register가 아닌 /user/register로 하기.
 router.post('/user/register', function (req, res, next) {
@@ -52,11 +64,12 @@ router.post('/user/login', function (req, res) {
         if (err) throw err;
         var db_id = result[0].success
 
+        //id 안맞을 때
         if (db_id === 0) {
             res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
             res.write('<script>alert(\'가입되지 않은 아이디 입니다.\')</script>')
             res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
-        } else if (db_id === 1) {
+        } else if (db_id === 1) { //id가 있을 때
 
             var in_sql = "SELECT user_salt FROM user_info WHERE id=?;" +
                 "SELECT password FROM user_info WHERE id=?;"
@@ -67,10 +80,15 @@ router.post('/user/login', function (req, res) {
 
                 crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
                     var de_password = key.toString("base64")
-
+                    // 비밀번호 맞을 때
                     if (de_password === db_password) {
+                        req.session.user_id = db_id
+                        req.session.password = db_password
+                        req.session.save()
+                        console.log('session : ', req.session)
+
                         res.redirect('http://anhye0n.me/user/login_success.html')
-                    } else {
+                    } else { // 비밀번호 안 맞을 때
                         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
                         res.write('<script>alert(\'비밀번호가 옳지 않습니다.\')</script>')
                         res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')

@@ -7,13 +7,6 @@ var db_info = {
     multipleStatements: true
 }
 
-//createConnection({
-// host: 'localhost',
-// user: 'root',
-// password: 'xhdka2256',
-// database: 'db_test'
-// })
-
 module.exports = {
     init: function () {
         return mysql.createConnection(db_info);
@@ -24,5 +17,6 @@ module.exports = {
             if (err) console.error('mysql connection error : ' + err);
             else console.log('mysql is connected successfully!');
         });
-    }
+    },
+    db_info
 }
