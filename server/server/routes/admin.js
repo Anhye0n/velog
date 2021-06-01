@@ -13,14 +13,12 @@ router.post('/decrypto', function (req, res, next) {
     var password = req.body.password
     var encrypto = req.body.encrypto
     // 암호화
-    crypto.randomBytes(64, (err, buf) => {
-        crypto.pbkdf2(password, encrypto, 100, 64, 'sha512', (err, key) => {
-            // console.log(key.toString("base64"))
-            res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-            res.write('<script>alert(\'auto increment 수정됨\')</script>')
-            res.end('<h1>복호화된 password</h1> <br><br>' + key.toString('base64'))
-        });
-    })
+    crypto.pbkdf2(password, encrypto, 100, 64, 'sha512', (err, key) => {
+        // console.log(key.toString("base64"))
+        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
+        res.write('<script>alert(\'복호화 값 가져옴\')</script>')
+        res.end('<h1>복호화된 password</h1> <br><br>' + key.toString('base64'))
+    });
 })
 
 router.post('/auto_increment_reset', function (req, res, next) {
@@ -36,7 +34,7 @@ router.post('/auto_increment_reset', function (req, res, next) {
         } else {
             console.log('초기화 성공!')
             res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-            res.write("<script type='text/javascript'>alert(\'복호화 값 가져옴\'); location.href='http://anhye0n.me/user'</script>")
+            res.write("<script type='text/javascript'>alert(\'auto increment 수정됨\'); location.href='http://anhye0n.me/user'</script>")
             res.end()
             // res.redirect('http://anhye0n.me/')
         }
