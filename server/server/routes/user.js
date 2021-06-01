@@ -67,12 +67,13 @@ router.post('/user/login', function (req, res, next) {
 
     var db_password_sql = "SELECT password FROM user_info WHERE id=?;"
     // password를 salt로 암호화한 값이 db_password랑 같은가?로 구현
-    conn.query(db_password_sql, id, function (err, result) {
+    var asdf = conn.query(db_password_sql, id, function (err, result) {
         if (err) throw err;
         db_array.push(result[0].password)
         console.log(result[0].password)
+        return result[0].password
     })
-
+    console.log('asdf : ', asdf)
     console.log(db_array[0])
     console.log(db_array[1])
     console.log(db_array[2])
