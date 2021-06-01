@@ -73,7 +73,6 @@ router.post('/user/login', function (req, res, next) {
         db_password = result[0].password
     })
 
-    암호화
     crypto.randomBytes(64, (err, buf) => {
         crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
             var de_password = key.toString()
