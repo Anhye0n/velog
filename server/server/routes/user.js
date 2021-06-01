@@ -74,10 +74,10 @@ router.post('/user/login', function (req, res, next) {
     })
 
     crypto.randomBytes(64, (err, buf) => {
-        crypto.pbkdf2(password, salt.toString(), 100, 64, 'sha512', (err, key) => {
-            var de_password = key.toString()
+        crypto.pbkdf2(password, salt.toString("base64"), 100, 64, 'sha512', (err, key) => {
+            var de_password = key.toString("base64")
 
-            if (de_password === db_password.toString()){
+            if (de_password === db_password){
                 res.redirect('http://anhye0n.me/user/login_success.html')
             }else{
                 res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
