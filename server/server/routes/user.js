@@ -72,22 +72,24 @@ router.post('/user/login', function (req, res) {
         } else if (db_id === 1) { //id가 있을 때
 
             var in_sql = "SELECT user_salt FROM user_info WHERE id=?;" +
-                "SELECT password FROM user_info WHERE id=?;"
+                "SELECT password FROM user_info WHERE id=?;" +
+                "SELECT id FROM user_info WHERE id=?;"
 
-            conn.query(in_sql, [id, id], function (err, result) {
+            conn.query(in_sql, [id, id, id], function (err, result) {
                 var salt = result[0][0].user_salt
                 var db_password = result[1][0].password
+                var db_id_value = result[2][0].id
 
                 crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
                     var de_password = key.toString("base64")
                     // 비밀번호 맞을 때
                     if (de_password === db_password) {
-                        req.session.user_id = db_id
-                        req.session.password = db_password
-                        req.session.save()
+                        req.session.user_id = db_id_value
+                        req.session.save(function (){
+                            res.redirect('http://anhye0n.me/user/login_success.html')
+                        })
                         console.log('session : ', req.session)
 
-                        res.redirect('http://anhye0n.me/user/login_success.html')
                     } else { // 비밀번호 안 맞을 때
                         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
                         res.write('<script>alert(\'비밀번호가 옳지 않습니다.\')</script>')
@@ -98,5 +100,10 @@ router.post('/user/login', function (req, res) {
         }
     })
 });
-
+router.post('/user/logout', function (req, res) {
+    delete req.session.user_id
+    req.session.save(function (){
+        res.redirect('http://anhye0n.me/user')
+    })
+})
 module.exports = router;
