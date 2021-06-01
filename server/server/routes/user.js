@@ -47,6 +47,9 @@ router.post('/user/login', function (req, res, next) {
 
     var db_id, salt, db_password;
 
+    global.db_id = db_id
+    global.salt = salt
+    global.db_password = db_password
     var id_sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;"
     conn.query(id_sql, id, function (err, result) {
         if (err) throw err;
