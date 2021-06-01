@@ -41,21 +41,16 @@ router.post('/user/register', function (req, res, next) {
 
 
 router.post('/user/login', function (req, res, next) {
-    var id = req.body.id
-    var password = req.body.password
+    var id = req.body.id;
+    var password = req.body.password;
 
+    var db_array = [];
 
-    var db_id, salt, db_password;
-
-    global.db_id = db_id
-    global.salt = salt
-    global.db_password = db_password
     var id_sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;"
     conn.query(id_sql, id, function (err, result) {
         if (err) throw err;
-        db_id = result[0].success
+        db_array.push(result[0].success)
     })
-    console.log(db_id)
     if (db_id === 0) {
         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
         res.write('<script>alert(\'가입되지 않은 아이디 입니다.\')</script>')
@@ -65,17 +60,19 @@ router.post('/user/login', function (req, res, next) {
     var salt_sql = "SELECT user_salt FROM user_info WHERE id=?;"
     conn.query(salt_sql, id, function (err, result) {
         if (err) throw err;
-        salt = result[0].user_salt
+        db_array.push(result[0].user_salt)
     })
-    console.log(salt)
 
     var db_password_sql = "SELECT password FROM user_info WHERE id=?;"
     // password를 salt로 암호화한 값이 db_password랑 같은가?로 구현
     conn.query(db_password_sql, id, function (err, result) {
         if (err) throw err;
-        db_password = result[0].password
+        db_array.push(result[0].password)
     })
-    console.log(db_password)
+
+    console.log(db_array[0])
+    console.log(db_array[1])
+    console.log(db_array[2])
 
     crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
         var de_password = key.toString("base64")
