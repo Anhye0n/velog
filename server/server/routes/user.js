@@ -44,10 +44,12 @@ router.post('/user/login', function (req, res, next) {
     var id = req.body.id;
     var password = req.body.password;
 
-    var db_array = [];
 
-    var sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;" + "SELECT user_salt FROM user_info WHERE id=?;" + "SELECT password FROM user_info WHERE id=?;";
-    conn.query(sql, id, function (err, result){
+    var sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;" +
+        "SELECT user_salt FROM user_info WHERE id=?;" +
+        "SELECT password FROM user_info WHERE id=?;"
+
+    conn.query(sql, [id, id, id], function (err, result) {
         if (err) throw err;
         console.log(result[0].success)
         console.log(result[1].user_salt)
