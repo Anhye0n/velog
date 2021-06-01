@@ -63,7 +63,7 @@ router.post('/user/login', function (req, res, next) {
     var salt_sql = "SELECT user_salt FROM user_info WHERE id=?;"
     conn.query(salt_sql, id, function (err, result){
         if (err) throw err;
-        salt = result[0].user_salt.toString()
+        salt = result[0].user_salt
     })
 
     var db_password_sql = "SELECT password FROM user_info WHERE id=?;"
@@ -74,7 +74,7 @@ router.post('/user/login', function (req, res, next) {
     })
 
     crypto.randomBytes(64, (err, buf) => {
-        crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
+        crypto.pbkdf2(password, salt.toString(), 100, 64, 'sha512', (err, key) => {
             var de_password = key.toString()
 
             if (de_password === db_password.toString()){
