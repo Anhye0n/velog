@@ -55,6 +55,28 @@ router.post('/user/login', function (req, res, next) {
         console.log(result[0][0].success)
         console.log(result[1][0].user_salt)
         console.log(result[2][0].password)
+
+        var db_id = result[0][0].success
+        var salt = result[1][0].user_salt
+        var db_password = result[2][0].password
+
+        if (db_id === 0) {
+            res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
+            res.write('<script>alert(\'가입되지 않은 아이디 입니다.\')</script>')
+            res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
+        }
+
+        crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
+            var de_password = key.toString("base64")
+
+            if (de_password === db_password) {
+                res.redirect('http://anhye0n.me/user/login_success.html')
+            } else {
+                res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
+                res.write('<script>alert(\'비밀번호가 옳지 않습니다.\')</script>')
+                res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
+            }
+        });
     })
     //
     // var id_sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;"
