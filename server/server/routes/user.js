@@ -46,7 +46,7 @@ router.post('/user/login', function (req, res, next) {
     var password = req.body.password
 
 
-    var db_id, salt, db_password
+    var db_id, salt, db_password;
 
     var id_sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;"
     conn.query(id_sql, id, function (err, result){
@@ -74,7 +74,7 @@ router.post('/user/login', function (req, res, next) {
     })
 
     crypto.randomBytes(64, (err, buf) => {
-        crypto.pbkdf2(password, salt.toString("base64"), 100, 64, 'sha512', (err, key) => {
+        crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
             var de_password = key.toString("base64")
 
             if (de_password === db_password){
