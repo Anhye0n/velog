@@ -49,7 +49,7 @@ router.post('/user/login', function (req, res, next) {
     conn.query(sql, id, function (err, result) {
             if (err) throw err;
 
-            var db_id = result[0][0].success
+            var db_id = result[0].success
 
             if (db_id === 0) {
                 res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
