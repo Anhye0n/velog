@@ -61,7 +61,7 @@ router.post('/user/login', function (req, res, next) {
     conn.query(salt_sql, id.toString(), function (err, result){
         if (err) throw err;
         var salt = JSON.parse(result)
-        console.log(salt[0].salt)
+        console.log(salt[0].user_salt)
     })
 
     var db_password_sql = "SELECT password FROM user_info WHERE id=?;"
