@@ -45,14 +45,10 @@ router.post('/user/login', function (req, res, next) {
     var id = req.body.id
     var password = req.body.password
 
-    var db_id, salt, db_password
-
     var id_sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as successs;"
     conn.query(id_sql, id, function (err, result){
         if (err) throw err;
         console.log('id : '+ JSON.stringify(result))
-        // db_id = result[0].success
-        console.log(result[0].success)
     })
 
     // if (db_id === 0){
@@ -64,9 +60,8 @@ router.post('/user/login', function (req, res, next) {
     var salt_sql = "SELECT user_salt FROM user_info WHERE id=?;"
     conn.query(salt_sql, id.toString(), function (err, result){
         if (err) throw err;
-        console.log('salt : '+ JSON.stringify(result))
-        // salt = result[0].user_salt
-        console.log(result[0].user_salt)
+        var salt = JSON.parse(result)
+        console.log(salt[0].salt)
     })
 
     var db_password_sql = "SELECT password FROM user_info WHERE id=?;"
@@ -74,13 +69,8 @@ router.post('/user/login', function (req, res, next) {
     conn.query(db_password_sql, id, function (err, result){
         if (err) throw err;
         console.log('result : '+ JSON.stringify(result))
-        // db_password = result[0].password
-        console.log(result[0].password)
     })
 
-    console.log(db_id)
-    console.log(salt)
-    console.log(db_password)
     // 암호화
     // crypto.randomBytes(64, (err, buf) => {
     //     crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
