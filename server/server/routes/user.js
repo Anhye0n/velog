@@ -73,19 +73,17 @@ router.post('/user/login', function (req, res, next) {
         db_password = result[0].password
     })
 
-    crypto.randomBytes(64, (err, buf) => {
-        crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
-            var de_password = key.toString("base64")
-
-            if (de_password === db_password) {
-                res.redirect('http://anhye0n.me/user/login_success.html')
-            } else {
-                res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-                res.write('<script>alert(\'비밀번호가 옳지 않습니다.\')</script>')
-                res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
-            }
-        });
-    })
+    // crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
+    //     var de_password = key.toString("base64")
+    //
+    //     if (de_password === db_password) {
+    //         res.redirect('http://anhye0n.me/user/login_success.html')
+    //     } else {
+    //         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
+    //         res.write('<script>alert(\'비밀번호가 옳지 않습니다.\')</script>')
+    //         res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
+    //     }
+    // });
 });
 
 module.exports = router;
