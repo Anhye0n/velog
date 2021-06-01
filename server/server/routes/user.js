@@ -12,7 +12,7 @@ const crypto = require('crypto')
 const session = require('express-session')
 const mysqlStore = require('express-mysql-session')(session)
 
-app.use(session({
+router.use(session({
     secret : 'session key',
     resave : false,
     saveUninitialized : true,
