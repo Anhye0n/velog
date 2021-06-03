@@ -17,11 +17,6 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const flash = require('connect-flash')
 
-
-router.use(passport.initialize()) //passport를 사용하도록 설정
-router.use(passport.session()) // passport 사용 시 session을 활용
-router.use(flash())
-
 router.use(session({
     secret: 'session key',
     resave: false,
@@ -30,6 +25,9 @@ router.use(session({
     cookie: {secure: false}
 }))
 
+router.use(passport.initialize()) //passport를 사용하도록 설정
+router.use(passport.session()) // passport 사용 시 session을 활용
+router.use(flash())
 
 // /api/user/register가 아닌 /user/register로 하기.
 router.post('/user/register', function (req, res, next) {
