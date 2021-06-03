@@ -66,7 +66,8 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (id, done) {
     console.log('id_Test', id)
     let sql = "SELECT * FROM user_info WHERE id=?"
-    conn.query(sql, id.id, function (err, result) {
+    conn.query(sql, id, function (err, result) {
+        console.log('result : ', JSON.stringify(result))
         let name = result[0].name
         let email = result[0].email
         let id = result[0].id
