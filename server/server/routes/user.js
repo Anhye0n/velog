@@ -17,6 +17,13 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const flash = require('connect-flash')
 
+router.use(
+    cors({
+        origin: "http://anhye0n.me/", // server의 url이 아닌, 요청하는 client의 url
+        credentials: true
+    })
+);
+
 router.use(session({
     secret: 'session key',
     resave: false,
