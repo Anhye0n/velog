@@ -65,56 +65,77 @@ router.post('/user/login', passport.authenticate('local-login', {
     failureFlash: true
 }))
 
-passport.use('local-login',new LocalStrategy({
-    // Form에서 post로 받아온 값임.
-    // 기본값은 username, password이지만 이름이 다르게 설정되있으면 여기서 설정
-    usernameField: 'id',
-    passwordField: 'password'
-}, function (username, password, done) {
-    console.log('LocalStrategy', username, password)
-    // User.findOne({username: username}, function (err, user) {
-    //     if (err) {
-    //         return done(err);
-    //     }
-    //     if (!user) {
-    //         return done(null, false, {message: 'Incorrect username.'});
-    //     }
-    //     if (!user.validPassword(password)) {
-    //         return done(null, false, {message: 'Incorrect password.'});
-    //     }
-    //     return done(null, user);
-    // });
-}));
+passport.use('local-login', new LocalStrategy({
+        // Form에서 post로 받아온 값임.
+        // 기본값은 username, password이지만 이름이 다르게 설정되있으면 여기서 설정
+        usernameField: 'id',
+        passwordField: 'password'
+    }, function (username, password, done) {
+        console.log('LocalStrategy', username, password)
+
+        let sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;"
+
+        conn.query(sql, username, function (err, result) {
+                let id = result[0].success;
+                if (err) {
+                    return done(err);
+                }
+                if (id === 0) {
+                    return done(null, false, {message: 'Incorrect ID.'});
+                } else if (id === 1) {
+                    let in_sql = "SELECT user_salt FROM user_info WHERE id=?;" +
+                        "SELECT password FROM user_info WHERE id=?;" +
+                        "SELECT name FROM user_info WHERE id=?;" +
+                        "SELECT email FROM user_info WHERE id=?;" +
+
+                        conn.query(in_sql, [username, username, username, username], function (err, result) {
+                                let salt = result[0][0].user_salt
+                                let db_password = result[1][0].password
+                                let db_name = result[2][0].name
+                                let db_email = result[3][0].email
+
+                                crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
+                                    let de_password = key.toString("base64")
+                                    // 비밀번호 맞을 때
+                                    if (de_password === db_password) {
+                                        req.session.user_id = username
+                                        req.session.save()
+                                        const user = {
+                                            id: username,
+                                            password: de_password,
+                                            name: db_name,
+                                            email: db_email
+                                        }
+                                        return done(null, user);
+                                    } else { // 비밀번호 안 맞을 때
+                                        return done(null, false, {message: 'Incorrect Password.'});
+                                    }
+                                });
+
+                            }
+                        )
+                }
+            }
+        )
+        // User.findOne({username: username}, function (err, user) {
+        //     if (err) {
+        //         return done(err);
+        //     }
+        //     if (!user) {
+        //         return done(null, false, {message: 'Incorrect username.'});
+        //     }
+        //     if (!user.validPassword(password)) {
+        //         return done(null, false, {message: 'Incorrect password.'});
+        //     }
+        //     return done(null, user);
+        // });
+    }
+));
 
 
 // router.post('/user/login', function (req, res) {
 //     let id = req.body.id;
 //     let password = req.body.password;
-//
-//     passport.authenticate('local', {
-//         successRedirect: '/user/login_success.html',
-//         failureRedirect: '/user/login.html',
-//         failureFlash: true
-//     })
-//
-//     passport.serializeUser(function (user, done) {
-//         console.log('[serializeUser] : ', user)
-//         done(null, user.auth_id)
-//     })
-//
-//     passport.deserializeUser(function (auth_id, done) { // 로그인 성공한 사용자가 웹 페이지 이동할 때 마다 콜백 함수 호출
-//         console.log('[DeserializeUser] : ', auth_id); // authId 인자에는 serializeUser 메소드에서 보낸 user.authId 값이 담김
-//         db.query(
-//             'SELECT * FROM users WHERE auth_id=?',
-//             [auth_id],
-//             function (err, results) {
-//                 if (err) done(err);
-//                 if (!results[0]) done(err);
-//                 var user = results[0];
-//                 done(null, user);
-//             });
-//     });
-//
 //
 //     //id 유무 확인
 //     //id가 있으면 success의 이름으로 1이 반환되고, 없으면 0이 반환됨.
