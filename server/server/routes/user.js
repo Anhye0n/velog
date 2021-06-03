@@ -58,6 +58,17 @@ router.post('/user/register', function (req, res, next) {
     })
 });
 
+//session
+passport.serializeUser(function(user, done) {
+    console.log(user)
+    // done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
+});
 
 router.post('/user/login', passport.authenticate('local-login', {
     successRedirect: 'user/login_success.html',
@@ -72,10 +83,6 @@ passport.use('local-login', new LocalStrategy({
         passwordField: 'password'
     }, function (username, password, done) {
         console.log('LocalStrategy', username, password)
-
-    function success(data, user){
-        return done(data, user);
-    }
 
         let sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;"
 
@@ -111,7 +118,7 @@ passport.use('local-login', new LocalStrategy({
                                 name: db_name,
                                 email: db_email
                             }
-                            return success(null, user);
+                            return done(null, user);
                         } else { // 비밀번호 안 맞을 때
                             return done(null, false, {message: 'Incorrect Password.'});
                         }
@@ -135,53 +142,6 @@ passport.use('local-login', new LocalStrategy({
 ));
 
 
-// router.post('/user/login', function (req, res) {
-//     let id = req.body.id;
-//     let password = req.body.password;
-//
-//     //id 유무 확인
-//     //id가 있으면 success의 이름으로 1이 반환되고, 없으면 0이 반환됨.
-//     var sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;"
-//
-//     conn.query(sql, id, function (err, result) {
-//         if (err) throw err;
-//         var db_id = result[0].success
-//
-//         //id 안맞을 때
-//         if (db_id === 0) {
-//             res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-//             res.write('<script>alert(\'가입되지 않은 아이디 입니다.\')</script>')
-//             res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
-//         } else if (db_id === 1) { //id가 있을 때
-//
-//             var in_sql = "SELECT user_salt FROM user_info WHERE id=?;" +
-//                 "SELECT password FROM user_info WHERE id=?;" +
-//                 "SELECT id FROM user_info WHERE id=?;"
-//
-//             conn.query(in_sql, [id, id, id], function (err, result) {
-//                 var salt = result[0][0].user_salt
-//                 var db_password = result[1][0].password
-//                 var db_id_value = result[2][0].id
-//
-//                 crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
-//                     var de_password = key.toString("base64")
-//                     // 비밀번호 맞을 때
-//                     if (de_password === db_password) {
-//                         req.session.user_id = db_id_value
-//                         req.session.save(function () {
-//                             res.redirect('http://anhye0n.me/user/login_success.html')
-//                         })
-//
-//                     } else { // 비밀번호 안 맞을 때
-//                         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-//                         res.write('<script>alert(\'비밀번호가 옳지 않습니다.\')</script>')
-//                         res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
-//                     }
-//                 });
-//             })
-//         }
-//     })
-// });
 
 router.get('/user/logout', function (req, res) {
     req.logout();
