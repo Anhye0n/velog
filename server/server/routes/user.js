@@ -28,8 +28,6 @@ router.use(passport.initialize()) //passport를 사용하도록 설정
 router.use(passport.session()) // passport 사용 시 session을 활용
 router.use(flash())
 
-console.log(db_info.db_info)
-
 // /api/user/register가 아닌 /user/register로 하기.
 router.post('/user/register', function (req, res, next) {
 
