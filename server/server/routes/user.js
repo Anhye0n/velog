@@ -60,8 +60,7 @@ router.post('/user/register', function (req, res, next) {
 
 //session
 passport.serializeUser(function(user, done) {
-    console.log(user)
-    // done(null, user.id);
+    done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
