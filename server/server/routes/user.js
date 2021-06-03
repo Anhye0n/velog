@@ -59,11 +59,30 @@ router.post('/user/register', function (req, res, next) {
 });
 
 //session
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
     done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser(function (id, done) {
+    console.log('id_Test', id)
+    let sql = "SELECT * FROM user_info WHERE id=?"
+    conn.query(sql, id.id, function (err, result) {
+        let name = result[0].name
+        let email = result[0].email
+        let id = result[0].id
+        let password = result[0].password
+
+        let user = {
+            id: username,
+            password: de_password,
+            name: db_name,
+            email: db_email
+        }
+        console.log('user_Test', user)
+        done(null, user)
+
+    })
+
     // User.findById(id, function(err, user) {
     //     done(err, user);
     // });
@@ -81,8 +100,6 @@ passport.use('local-login', new LocalStrategy({
         usernameField: 'id',
         passwordField: 'password'
     }, function (username, password, done) {
-        console.log('LocalStrategy', username, password)
-
         let sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;"
 
 
@@ -139,7 +156,6 @@ passport.use('local-login', new LocalStrategy({
         // });
     }
 ));
-
 
 
 router.get('/user/logout', function (req, res) {
