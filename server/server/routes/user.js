@@ -65,7 +65,7 @@ router.post('/user/login', passport.authenticate('local-login', {
     failureFlash: true
 }))
 
-passport.use(new LocalStrategy({
+passport.use('local-login',new LocalStrategy({
     // Form에서 post로 받아온 값임.
     // 기본값은 username, password이지만 이름이 다르게 설정되있으면 여기서 설정
     usernameField: 'id',
