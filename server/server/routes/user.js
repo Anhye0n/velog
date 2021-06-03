@@ -66,26 +66,25 @@ router.post('/user/login', passport.authenticate('local-login', {
 }))
 
 passport.use(new LocalStrategy({
-        // Form에서 post로 받아온 값임.
-        // 기본값은 username, password이지만 이름이 다르게 설정되있으면 여기서 설정
-        usernameField: 'id',
-        passwordField: 'password'
-    },
-    function (username, password, done) {
-        // User.findOne({username: username}, function (err, user) {
-        //     if (err) {
-        //         return done(err);
-        //     }
-        //     if (!user) {
-        //         return done(null, false, {message: 'Incorrect username.'});
-        //     }
-        //     if (!user.validPassword(password)) {
-        //         return done(null, false, {message: 'Incorrect password.'});
-        //     }
-        //     return done(null, user);
-        // });
-    }
-));
+    // Form에서 post로 받아온 값임.
+    // 기본값은 username, password이지만 이름이 다르게 설정되있으면 여기서 설정
+    usernameField: 'id',
+    passwordField: 'password'
+}, function (username, password, done) {
+    console.log('LocalStrategy', username, password)
+    // User.findOne({username: username}, function (err, user) {
+    //     if (err) {
+    //         return done(err);
+    //     }
+    //     if (!user) {
+    //         return done(null, false, {message: 'Incorrect username.'});
+    //     }
+    //     if (!user.validPassword(password)) {
+    //         return done(null, false, {message: 'Incorrect password.'});
+    //     }
+    //     return done(null, user);
+    // });
+}));
 
 
 // router.post('/user/login', function (req, res) {
