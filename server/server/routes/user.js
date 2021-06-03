@@ -82,16 +82,7 @@ passport.deserializeUser(function (id, done) {
         done(null, user)
     })
 
-    // User.findById(id, function(err, user) {
-    //     done(err, user);
-    // });
 });
-
-router.post('/user/login', passport.authenticate('local-login', {
-    successRedirect: '/user/login_success.html',
-    failureRedirect: '/user/login.html',
-    failureFlash: true
-}))
 
 passport.use('local-login', new LocalStrategy({
         // Form에서 post로 받아온 값임.
@@ -141,21 +132,14 @@ passport.use('local-login', new LocalStrategy({
                 })
             }
         })
-        // User.findOne({username: username}, function (err, user) {
-        //     if (err) {
-        //         return done(err);
-        //     }
-        //     if (!user) {
-        //         return done(null, false, {message: 'Incorrect username.'});
-        //     }
-        //     if (!user.validPassword(password)) {
-        //         return done(null, false, {message: 'Incorrect password.'});
-        //     }
-        //     return done(null, user);
-        // });
     }
 ));
 
+router.post('/user/login', passport.authenticate('local-login', {
+    successRedirect: '/user/login_success.html',
+    failureRedirect: '/user/login.html',
+    failureFlash: true
+}))
 
 router.get('/user/logout', function (req, res) {
     req.logout();
