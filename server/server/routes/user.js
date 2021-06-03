@@ -90,8 +90,8 @@ passport.deserializeUser(function (id, done) {
 });
 
 router.post('/user/login', passport.authenticate('local-login', {
-    successRedirect: 'user/login_success.html',
-    failureRedirect: 'user/login.html',
+    successRedirect: '/user/login_success.html',
+    failureRedirect: '/user/login.html',
     failureFlash: true
 }))
 
