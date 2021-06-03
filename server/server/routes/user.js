@@ -73,10 +73,10 @@ passport.deserializeUser(function (id, done) {
         let password = result[0].password
 
         let user = {
-            id: username,
-            password: de_password,
-            name: db_name,
-            email: db_email
+            name: name,
+            email: email,
+            id: id,
+            password: password
         }
         console.log('user_Test', user)
         done(null, user)
