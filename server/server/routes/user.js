@@ -64,10 +64,8 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (id, done) {
-    console.log('id_Test', id)
     let sql = "SELECT * FROM user_info WHERE id=?"
     conn.query(sql, id, function (err, result) {
-        console.log('result : ', JSON.stringify(result))
         let name = result[0].name
         let email = result[0].email
         let id = result[0].id
@@ -79,9 +77,8 @@ passport.deserializeUser(function (id, done) {
             id: id,
             password: password
         }
-        console.log('user_Test', user)
+        console.log('deserializeUser', user)
         done(null, user)
-
     })
 
     // User.findById(id, function(err, user) {
