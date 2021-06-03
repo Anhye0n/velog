@@ -98,8 +98,8 @@ passport.use('local-login', new LocalStrategy({
                                     let de_password = key.toString("base64")
                                     // 비밀번호 맞을 때
                                     if (de_password === db_password) {
-                                        req.session.user_id = username
-                                        req.session.save()
+                                        // req.session.user_id = username
+                                        // req.session.save()
                                         const user = {
                                             id: username,
                                             password: de_password,
