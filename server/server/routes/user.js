@@ -73,50 +73,52 @@ passport.use('local-login', new LocalStrategy({
     }, function (username, password, done) {
         console.log('LocalStrategy', username, password)
 
+    function success(data, user){
+        return done(data, user);
+    }
+
         let sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;"
 
+
         conn.query(sql, username, function (err, result) {
-                let id = result[0].success;
-                if (err) {
-                    return done(err);
-                }
-                if (id === 0) {
-                    return done(null, false, {message: 'Incorrect ID.'});
-                } else if (id === 1) {
-                    let in_sql = "SELECT user_salt FROM user_info WHERE id=?;" +
-                        "SELECT password FROM user_info WHERE id=?;" +
-                        "SELECT name FROM user_info WHERE id=?;" +
-                        "SELECT email FROM user_info WHERE id=?;"
-
-                        conn.query(in_sql, [username, username, username, username], function (err, result) {
-                                let salt = result[0][0].user_salt
-                                let db_password = result[1][0].password
-                                let db_name = result[2][0].name
-                                let db_email = result[3][0].email
-
-                                crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
-                                    let de_password = key.toString("base64")
-                                    // 비밀번호 맞을 때
-                                    if (de_password === db_password) {
-                                        // req.session.user_id = username
-                                        // req.session.save()
-                                        const user = {
-                                            id: username,
-                                            password: de_password,
-                                            name: db_name,
-                                            email: db_email
-                                        }
-                                        return done(null, user);
-                                    } else { // 비밀번호 안 맞을 때
-                                        return done(null, false, {message: 'Incorrect Password.'});
-                                    }
-                                });
-
-                            }
-                        )
-                }
+            let id = result[0].success;
+            if (err) {
+                return done(err);
             }
-        )
+            if (id === 0) {
+                return done(null, false, {message: 'Incorrect ID.'});
+            } else if (id === 1) {
+                let in_sql = "SELECT user_salt FROM user_info WHERE id=?;" +
+                    "SELECT password FROM user_info WHERE id=?;" +
+                    "SELECT name FROM user_info WHERE id=?;" +
+                    "SELECT email FROM user_info WHERE id=?;"
+
+                conn.query(in_sql, [username, username, username, username], function (err, result) {
+                    let salt = result[0][0].user_salt
+                    let db_password = result[1][0].password
+                    let db_name = result[2][0].name
+                    let db_email = result[3][0].email
+
+                    crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
+                        let de_password = key.toString("base64")
+                        // 비밀번호 맞을 때
+                        if (de_password === db_password) {
+                            // req.session.user_id = username
+                            // req.session.save()
+                            const user = {
+                                id: username,
+                                password: de_password,
+                                name: db_name,
+                                email: db_email
+                            }
+                            return success(null, user);
+                        } else { // 비밀번호 안 맞을 때
+                            return done(null, false, {message: 'Incorrect Password.'});
+                        }
+                    });
+                })
+            }
+        })
         // User.findOne({username: username}, function (err, user) {
         //     if (err) {
         //         return done(err);
