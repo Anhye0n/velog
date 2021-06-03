@@ -86,7 +86,7 @@ passport.use('local-login', new LocalStrategy({
                     let in_sql = "SELECT user_salt FROM user_info WHERE id=?;" +
                         "SELECT password FROM user_info WHERE id=?;" +
                         "SELECT name FROM user_info WHERE id=?;" +
-                        "SELECT email FROM user_info WHERE id=?;" +
+                        "SELECT email FROM user_info WHERE id=?;"
 
                         conn.query(in_sql, [username, username, username, username], function (err, result) {
                                 let salt = result[0][0].user_salt
