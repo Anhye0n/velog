@@ -17,25 +17,19 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const flash = require('connect-flash')
 
-router.use(
-    cors({
-        origin: "http://anhye0n.me/", // server의 url이 아닌, 요청하는 client의 url
-        credentials: true
-    })
-);
+
+router.use(passport.initialize()) //passport를 사용하도록 설정
+router.use(passport.session()) // passport 사용 시 session을 활용
+router.use(flash())
 
 router.use(session({
     secret: 'session key',
     resave: false,
     saveUninitialized: true,
     store: new mysqlStore(db_info.db_info),
-    cookie : { secure : false, maxAge : (4 * 60 * 60 * 1000) }, // 4 hours
-
+    cookie: {secure: false}
 }))
 
-router.use(passport.initialize()) //passport를 사용하도록 설정
-router.use(passport.session()) // passport 사용 시 session을 활용
-router.use(flash())
 
 // /api/user/register가 아닌 /user/register로 하기.
 router.post('/user/register', function (req, res, next) {
