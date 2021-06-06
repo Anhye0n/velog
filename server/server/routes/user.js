@@ -20,7 +20,7 @@ const flash = require('connect-flash')
 router.use(session({
     secret: 'session key',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: new mysqlStore(db_info.db_info),
     cookie: {secure: false}
 }))
