@@ -91,7 +91,6 @@ passport.use('local-login', new LocalStrategy({
     usernameField: 'id',
     passwordField: 'password',
 }, function (username, password, done) {
-    console.log(1111111111111111111111111111111111111)
     let sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;"
 
     conn.query(sql, username, function (err, result) {
@@ -140,7 +139,6 @@ router.post('/user/login', passport.authenticate('local-login', {
     failureRedirect: '/user/login.html',
     failureFlash: true
 }), function (req, res){
-    console.log(22222222222222222222222222222222)
     req.session.save(function (){
         console.log('session save..')
         res.redirect('/user/login_success.html')
