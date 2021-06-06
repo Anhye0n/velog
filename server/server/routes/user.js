@@ -58,13 +58,6 @@ router.post('/user/register', function (req, res, next) {
     })
 });
 
-router.get('/', function (req, res){
-    var msg
-    var errMsg = req.flash('error')
-    if(errMsg) msg = errMsg
-    res.render('/user/login',{'message' : msg})
-})
-
 //session
 passport.serializeUser(function (user, done) {
     console.log('serializeUser : ', user)

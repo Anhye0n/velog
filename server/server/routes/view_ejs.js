@@ -15,6 +15,8 @@ router.get('/user/register', (req, res) => {
     res.render('./user/register');
 })
 router.get('/user/login', (req, res) => {
+    let fmsg = req.flash()
+    console.log(fmsg)
     res.render('./user/login');
 })
 router.get('/user/login_success', (req, res) => {
