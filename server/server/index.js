@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extend:false}))
 app.use(bodyParser.json())
 
 //views 라우터
-app.set('views', path.join(__dirname, '../views/'))
+app.set('views', path.join(__dirname, '../views/user'))
 app.set('view engine', 'ejs') //ejs 사용
 
 const view_router = require('./routes/view_ejs')
