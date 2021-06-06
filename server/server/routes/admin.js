@@ -34,9 +34,8 @@ router.post('/auto_increment_reset', function (req, res, next) {
         } else {
             console.log('초기화 성공!')
             res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-            res.write("<script type='text/javascript'>alert(\'auto increment 수정됨\'); location.href='http://anhye0n.me/user'</script>")
+            res.write("<script type='text/javascript'>alert(\'auto increment 수정됨\'); location.href='/'</script>")
             res.end()
-            // res.redirect('http://anhye0n.me/')
         }
     });
 })
