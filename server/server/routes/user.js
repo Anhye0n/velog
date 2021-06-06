@@ -27,16 +27,18 @@ router.use(session({
 router.use(passport.initialize()) //passport를 사용하도록 설정
 router.use(passport.session()) // passport 사용 시 session을 활용
 router.use(flash())
-
-router.get('/flash', function (req, res) {
-    // Set a flash message by passing the key, followed by the value, to req.flash().
-    req.flash('info', 'Flash is back!')
-    res.send('flash')
-});
-
+//
+// router.get('/flash', function (req, res) {
+//     // Set a flash message by passing the key, followed by the value, to req.flash().
+//     req.flash('info', 'Flash is back!')
+//     res.render('./user/login', req.flash('info'))
+//     console.log('')
+// });
+//
 router.get('/', function (req, res) {
     // Get an array of flash messages by passing the key to req.flash()
-    res.render('index', {messages: req.flash('info')});
+    console.log(req.flash().error[0])
+    // res.render('./user/login', {messages: req.flash('info')});
 });
 
 // /api/user/register가 아닌 /user/register로 하기.
@@ -157,6 +159,7 @@ router.post('/user/login', passport.authenticate('local-login', {
 
 router.get('/user/logout', function (req, res) {
     req.logout();
+    req.session.destroy()
     req.session.save(function () {
         res.redirect('/');
     })
