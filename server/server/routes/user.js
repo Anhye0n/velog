@@ -27,7 +27,6 @@ router.use(session({
 
 router.use(passport.initialize()) //passport를 사용하도록 설정
 router.use(passport.session()) // passport 사용 시 session을 활용
-router.use(session) // passport 사용 시 session을 활용
 router.use(flash())
 
 // /api/user/register가 아닌 /user/register로 하기.
@@ -136,13 +135,9 @@ passport.use('local-login', new LocalStrategy({
 ));
 
 router.post('/user/login', passport.authenticate('local-login', {
-    // successRedirect: '/user/login_success.html',
+    successRedirect: '/user/login_success.html',
     failureRedirect: '/user/login.html',
     failureFlash: true
-}, function (req, res) {
-    req.session.save(function () {
-        res.redirect('/user/login_success.html');
-    });
 }))
 
 router.get('/user/logout', function (req, res) {
