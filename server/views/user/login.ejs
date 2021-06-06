@@ -16,7 +16,7 @@
             <td><input type="password" name="password" autocomplete="on" placeholder="비밀번호"></td>
         </tr>
     </table>
-    <section class="message"> <%= if(message) { %> <%= message %> <%= } %></section>
+    <section class="message"> <%= if(message !== undefined) { %> <%= message %> <%= } %></section>
     <button type="submit">로그인</button>
 </form>
 </body>
