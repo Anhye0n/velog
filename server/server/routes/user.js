@@ -90,7 +90,6 @@ passport.use('local-login', new LocalStrategy({
     // 기본값은 username, password이지만 이름이 다르게 설정되있으면 여기서 설정
     usernameField: 'id',
     passwordField: 'password',
-    passReqToCallback: true
 }, function (username, password, done) {
     console.log(1111111111111111111111111111111111111)
     let sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;"
