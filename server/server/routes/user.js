@@ -35,7 +35,7 @@ router.use(flash())
 //     console.log('')
 // });
 //
-router.get('/', function (req, res) {
+router.get('/user/login', function (req, res) {
     // Get an array of flash messages by passing the key to req.flash()
     console.log(req.flash().error[0])
     // res.render('./user/login', {messages: req.flash('info')});
