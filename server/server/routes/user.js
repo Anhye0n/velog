@@ -58,6 +58,13 @@ router.post('/user/register', function (req, res, next) {
     })
 });
 
+router.get('/', function (req, res){
+    var msg
+    var errMsg = req.flash('error')
+    if(errMsg) msg = errMsg
+    res.render('/user/login',{'message' : msg})
+})
+
 //session
 passport.serializeUser(function (user, done) {
     console.log('serializeUser : ', user)
@@ -136,12 +143,12 @@ passport.use('local-login', new LocalStrategy({
 
 router.post('/user/login', passport.authenticate('local-login', {
     // successRedirect: '/user/login_success.html',
-    failureRedirect: '/user/login.html',
+    failureRedirect: '/user/login',
     failureFlash: true
 }), function (req, res){
     req.session.save(function (){
         console.log('session save..')
-        res.redirect('/user/login_success.html')
+        res.redirect('/user/login_success')
     })
 })
 
