@@ -78,7 +78,7 @@ passport.deserializeUser(function (id, done) {
             id: id,
             password: password
         }
-        console.log('deserializeUser', user)
+        console.log('deserializeUser', user.email)
         done(null, user)
     })
 
@@ -91,7 +91,6 @@ passport.use('local-login', new LocalStrategy({
         passwordField: 'password'
     }, function (username, password, done) {
         let sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;"
-
 
         conn.query(sql, username, function (err, result) {
             let id = result[0].success;
@@ -136,13 +135,19 @@ passport.use('local-login', new LocalStrategy({
 ));
 
 router.post('/user/login', passport.authenticate('local-login', {
-    successRedirect: '/user/login_success.html',
+    // successRedirect: '/user/login_success.html',
     failureRedirect: '/user/login.html',
     failureFlash: true
+}, function (req, res) {
+    req.session.save(function () {
+        res.redirect('/user/login_success.html');
+    });
 }))
 
 router.get('/user/logout', function (req, res) {
     req.logout();
-    res.redirect('/');
+    req.session.save(function () {
+        res.redirect('/');
+    })
 })
 module.exports = router;
