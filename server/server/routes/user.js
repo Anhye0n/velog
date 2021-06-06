@@ -60,10 +60,12 @@ router.post('/user/register', function (req, res, next) {
 
 //session
 passport.serializeUser(function (user, done) {
+    console.log('serializeUser : ', user)
     done(null, user.id);
 });
 
 passport.deserializeUser(function (id, done) {
+    console.log('deserializeUser_id', id)
     let sql = "SELECT * FROM user_info WHERE id=?"
     conn.query(sql, id, function (err, result) {
         let name = result[0].name
