@@ -9,19 +9,25 @@ const conn = db_info.init()
 const session = require('express-session')
 
 router.get('/', (req, res) => {
-    res.render('index');
+    res.render('./user/index');
 })
 router.get('/user/register', (req, res) => {
-    res.render('register');
+    res.render('./user/register');
 })
 router.get('/user/login', (req, res) => {
-    res.render('login');
+    res.render('./user/login');
 })
 router.get('/user/login_success', (req, res) => {
-    res.render('login_success');
+    res.render('./user/login_success');
 })
 router.get('/user/regi_success', (req, res) => {
-    res.render('regi_success');
+    res.render('./user/regi_success');
+})
+router.get('/admin/auto_increment_reset', (req, res) => {
+    res.render('./admin/auto_increment_reset');
+})
+router.get('/admin/decrypto_test', (req, res) => {
+    res.render('./admin/decrypto_test');
 })
 
 module.exports = router
