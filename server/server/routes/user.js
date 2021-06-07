@@ -81,7 +81,8 @@ router.post('/user/login', function (req, res) {
                 var salt = result[0][0].user_salt
                 var db_password = result[1][0].password
                 var db_id_value = result[2][0].id
-                var db_email_value = result[3][0].email
+                // var db_email_value = result[3][0].email
+                console.log(JSON.stringify(result))
 
                 crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
                     var de_password = key.toString("base64")
