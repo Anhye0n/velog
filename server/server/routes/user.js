@@ -24,10 +24,10 @@ router.use(session({
     store: new mysqlStore(db_info.db_info),
     cookie : { secure : false, maxAge : (4 * 60 * 60 * 1000)}
 }))
-
-router.use(passport.initialize()) //passport를 사용하도록 설정
-router.use(passport.session()) // passport 사용 시 session을 활용
-router.use(flash())
+//
+// router.use(passport.initialize()) //passport를 사용하도록 설정
+// router.use(passport.session()) // passport 사용 시 session을 활용
+// router.use(flash())
 
 router.get('/', function (req, res) {
     // Set a flash message by passing the key, followed by the value, to req.flash().
