@@ -19,8 +19,6 @@ router.use(session({
     store: new mysqlStore(db_info.db_info)
 }))
 
-console.log(db_info.db_info)
-
 router.get('/', function(req, res){
     sess = req.session;
     console.log(sess);
