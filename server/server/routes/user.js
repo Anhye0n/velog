@@ -21,7 +21,8 @@ router.use(session({
     secret: 'session key',
     resave: false,
     saveUninitialized: true,
-    store: new mysqlStore(db_info.db_info)
+    store: new mysqlStore(db_info.db_info),
+    cookie : { secure : false}
 }))
 
 router.use(passport.initialize()) //passport를 사용하도록 설정
@@ -73,7 +74,7 @@ router.post('/user/register', function (req, res, next) {
 //session
 passport.serializeUser(function (user, done) {
     console.log('serializeUser : ', user)
-    done(null, user.id);
+    done(null, user);
 });
 
 passport.deserializeUser(function (id, done) {
