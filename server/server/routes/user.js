@@ -44,7 +44,7 @@ router.post('/user/register', function (req, res) {
                     console.log('query is not excuted. insert fail...\n' + err);
                 } else {
                     console.log('Success Insert!')
-                    res.redirect('http://anhye0n.me/user/regi_success.html')
+                    res.redirect('http://anhye0n.me/user/regi_success')
                 }
             });
         })
@@ -68,7 +68,7 @@ router.post('/user/login', function (req, res) {
         if (db_id === 0) {
             res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
             res.write('<script>alert(\'가입되지 않은 아이디 입니다.\')</script>')
-            res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
+            res.end('<script>location.href=\'http://anhye0n.me/user/login\'</script>')
         } else if (db_id === 1) { //id가 있을 때
 
             var in_sql = "SELECT user_salt FROM user_info WHERE id=?;" +
@@ -86,14 +86,14 @@ router.post('/user/login', function (req, res) {
                     if (de_password === db_password) {
                         req.session.user_id = db_id_value
                         req.session.save(function () {
-                            res.redirect('http://anhye0n.me/user/login_success.html')
+                            res.redirect('http://anhye0n.me/user/login_success')
                         })
                         console.log('session : ', req.session)
 
                     } else { // 비밀번호 안 맞을 때
                         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
                         res.write('<script>alert(\'비밀번호가 옳지 않습니다.\')</script>')
-                        res.end('<script>location.href=\'http://anhye0n.me/user/login.html\'</script>')
+                        res.end('<script>location.href=\'http://anhye0n.me/user/login\'</script>')
                     }
                 });
             })
