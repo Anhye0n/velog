@@ -13,23 +13,6 @@ app.use(bodyParser.urlencoded({extend:false}))
 
 app.use(bodyParser.json())
 
-//session
-const session = require('express-session')
-const mysqlStore = require('express-mysql-session')(session)
-
-//passport
-const flash = require('connect-flash')
-
-app.use(passport.initialize()) //passport를 사용하도록 설정
-app.use(passport.session()) // passport 사용 시 session을 활용
-app.use(flash())
-
-app.use (function (req, res, next) {
-    res.header ( "Access-Control-Allow-Origin", "*");
-    res.header ( "Access-Control-Allow-Headers", "Origin, X -Requested-With, Content-Type, Accept ");
-    next ();
-});
-
 //views 라우터
 app.set('views', path.join(__dirname, '../views'))
 app.set('view engine', 'ejs') //ejs 사용
