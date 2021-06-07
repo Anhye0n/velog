@@ -21,6 +21,11 @@ router.use(session({
 
 console.log(db_info.db_info)
 
+router.get('/', function(req, res){
+    sess = req.session;
+    console.log(sess);
+});
+
 // /api/user/register가 아닌 /user/register로 하기.
 router.post('/user/register', function (req, res) {
 
@@ -71,18 +76,21 @@ router.post('/user/login', function (req, res) {
 
             var in_sql = "SELECT user_salt FROM user_info WHERE id=?;" +
                 "SELECT password FROM user_info WHERE id=?;" +
-                "SELECT id FROM user_info WHERE id=?;"
+                "SELECT id FROM user_info WHERE id=?;" +
+                "SELECT email FROM user_info WHERE id=?;"
 
             conn.query(in_sql, [id, id, id], function (err, result) {
                 var salt = result[0][0].user_salt
                 var db_password = result[1][0].password
                 var db_id_value = result[2][0].id
+                var db_email_value = result[3][0].email
 
                 crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
                     var de_password = key.toString("base64")
                     // 비밀번호 맞을 때
                     if (de_password === db_password) {
                         req.session.user_id = db_id_value
+                        req.session.user_email = db_email_value
                         req.session.save(function () {
                             res.redirect('http://anhye0n.me/user/login_success')
                         })
