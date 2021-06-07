@@ -19,7 +19,7 @@ router.use(session({
     store: new mysqlStore(db_info.db_info)
 }))
 
-router.get('/', function(req, res){
+router.get('/', function (req, res) {
     sess = req.session;
     console.log(sess);
 });
@@ -69,7 +69,7 @@ router.post('/user/login', function (req, res) {
 
         //id 안맞을 때
         if (db_id === 0) {
-            res.render('./user/login', {'message':'아이디가 옳지 않습니다.'})
+            res.render('./user/login', {'message': '아이디가 옳지 않습니다.'})
         } else if (db_id === 1) { //id가 있을 때
 
             var in_sql = "SELECT user_salt FROM user_info WHERE id=?;" +
@@ -93,14 +93,16 @@ router.post('/user/login', function (req, res) {
                         req.session.user_email = db_email_value
                         req.session.user_name = db_name_value
                         req.session.save(function () {
-                            res.redirect('http://anhye0n.me/user/login_success')
-                            res.render('./user/login_success', {'id':req.session.user_id,'email':req.session.user_email,'name':req.session.user_name})
-
+                            res.render('./user/login_success', {
+                                'id': req.session.user_id,
+                                'email': req.session.user_email,
+                                'name': req.session.user_name
+                            })
                         })
                         console.log('로그인 됨 : ', req.session.user_email)
 
                     } else { // 비밀번호 안 맞을 때
-                        res.render('./user/login', {'message':'비밀번호가 옳지 않습니다.'})
+                        res.render('./user/login', {'message': '비밀번호가 옳지 않습니다.'})
                     }
                 });
             })
