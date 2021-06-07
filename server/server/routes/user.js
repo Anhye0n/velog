@@ -27,20 +27,18 @@ router.use(session({
 router.use(passport.initialize()) //passport를 사용하도록 설정
 router.use(passport.session()) // passport 사용 시 session을 활용
 router.use(flash())
-//
-// router.get('/flash', function (req, res) {
-//     // Set a flash message by passing the key, followed by the value, to req.flash().
-//     req.flash('info', 'Flash is back!')
-//     res.render('./user/login', req.flash('info'))
-//     console.log('')
-// });
-//
-router.get('/user/login', function (req, res) {
-    // Get an array of flash messages by passing the key to req.flash()
-    console.log('test')
-    console.log(req.flash().error[0])
-    // res.render('./user/login', {messages: req.flash('info')});
+
+router.get('/', function (req, res) {
+    // Set a flash message by passing the key, followed by the value, to req.flash().
+    res.render('./user/login', req.flash('message'))
+    console.log(req.flash('message'))
 });
+router.get('/user/login_success', function (req, res) {
+    // Set a flash message by passing the key, followed by the value, to req.flash().
+    res.render('./user/login_success', req.flash('message'))
+    console.log('')
+});
+
 
 // /api/user/register가 아닌 /user/register로 하기.
 router.post('/user/register', function (req, res, next) {
@@ -139,7 +137,7 @@ passport.use('local-login', new LocalStrategy({
                         }
                         return done(null, user);
                     } else { // 비밀번호 안 맞을 때
-                        return done(null, false, {message: 'Incorrect Password.'});
+                        return done(null, false, req.flash('successmessage', 'Incorrect Password.'));
                     }
                 });
             })
