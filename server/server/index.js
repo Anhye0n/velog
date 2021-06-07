@@ -37,7 +37,6 @@ app.use('/', view_router)
 //     res.render('index');
 // })
 //
-//
 // app.use('/', serveStatic(path.join(__dirname, '../views'))) //메인 주소
 //
 // app.use('/user', serveStatic(path.join(__dirname, '../views/user'))) //유저 관리 주소
