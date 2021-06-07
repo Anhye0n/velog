@@ -66,9 +66,7 @@ router.post('/user/login', function (req, res) {
 
         //id 안맞을 때
         if (db_id === 0) {
-            res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-            res.write('<script>alert(\'가입되지 않은 아이디 입니다.\')</script>')
-            res.end('<script>location.href=\'http://anhye0n.me/user/login\'</script>')
+            res.render('./user/login', {'message':'아이디가 옳지 않습니다.'})
         } else if (db_id === 1) { //id가 있을 때
 
             var in_sql = "SELECT user_salt FROM user_info WHERE id=?;" +
@@ -91,9 +89,6 @@ router.post('/user/login', function (req, res) {
                         console.log('session : ', req.session)
 
                     } else { // 비밀번호 안 맞을 때
-                        // res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-                        // res.write('<script>alert(\'비밀번호가 옳지 않습니다.\')</script>')
-                        // res.end('<script>location.href=\'http://anhye0n.me/user/login\'</script>')
                         res.render('./user/login', {'message':'비밀번호가 옳지 않습니다.'})
                     }
                 });
