@@ -75,13 +75,15 @@ router.post('/user/login', function (req, res) {
             var in_sql = "SELECT user_salt FROM user_info WHERE id=?;" +
                 "SELECT password FROM user_info WHERE id=?;" +
                 "SELECT id FROM user_info WHERE id=?;" +
-                "SELECT email FROM user_info WHERE id=?;"
+                "SELECT email FROM user_info WHERE id=?;" +
+                "SELECT name FROM user_info WHERE id=?;"
 
-            conn.query(in_sql, [id, id, id, id], function (err, result) {
+            conn.query(in_sql, [id, id, id, id, id], function (err, result) {
                 var salt = result[0][0].user_salt
                 var db_password = result[1][0].password
                 var db_id_value = result[2][0].id
                 var db_email_value = result[3][0].email
+                var db_name_value = result[4][0].name
 
                 crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
                     var de_password = key.toString("base64")
@@ -89,10 +91,13 @@ router.post('/user/login', function (req, res) {
                     if (de_password === db_password) {
                         req.session.user_id = db_id_value
                         req.session.user_email = db_email_value
+                        req.session.user_name = db_name_value
                         req.session.save(function () {
                             res.redirect('http://anhye0n.me/user/login_success')
+                            res.render('./user/login_success', {'id':req.session.user_id,'email':req.session.user_email,'name':req.session.user_name})
+
                         })
-                        console.log('session : ', req.session)
+                        console.log('로그인 됨 : ', req.session.user_email)
 
                     } else { // 비밀번호 안 맞을 때
                         res.render('./user/login', {'message':'비밀번호가 옳지 않습니다.'})

@@ -1,12 +1,21 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <% if (locals.id){ %>
+
+    <% }else{ %>
+        <script>alert('로그인이 되지 않았습니다.');
+            location.href = 'http://anhye0n.me/user/login';</script>
+    <% } %>
 </head>
 <body>
 <h1>우왕! 로그인 성공!!!!</h1>
-<%= locals.user %>
+<%= user.id %>
+<%= user.email %>
+<%= user.name %>
 <a href="http://anhye0n.me/api/user/logout">로그아웃</a>
 </body>
 </html>

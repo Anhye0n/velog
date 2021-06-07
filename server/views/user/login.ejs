@@ -8,6 +8,12 @@
             color: red;
         }
     </style>
+    <% if (locals.id){ %>
+        <script>alert('로그인 되었습니다.');
+            location.href = 'http://anhye0n.me/';</script>
+    <% }else{ %>
+
+    <% } %>
 </head>
 <body>
 <form action="/api/user/login" method="post">
