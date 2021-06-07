@@ -78,22 +78,23 @@ passport.serializeUser(function (user, done) {
 
 passport.deserializeUser(function (id, done) {
     console.log('deserializeUser_id', id)
-    let sql = "SELECT * FROM user_info WHERE id=?"
-    conn.query(sql, id, function (err, result) {
-        let name = result[0].name
-        let email = result[0].email
-        let id = result[0].id
-        let password = result[0].password
-
-        let user = {
-            name: name,
-            email: email,
-            id: id,
-            password: password
-        }
-        console.log('deserializeUser', user.email)
-        done(null, user)
-    })
+    // let sql = "SELECT * FROM user_info WHERE id=?"
+    // conn.query(sql, id, function (err, result) {
+    //     let name = result[0].name
+    //     let email = result[0].email
+    //     let id = result[0].id
+    //     let password = result[0].password
+    //
+    //     let user = {
+    //         name: name,
+    //         email: email,
+    //         id: id,
+    //         password: password
+    //     }
+    //     console.log('deserializeUser', user.email)
+    //     done(null, user)
+    // })
+    done(null, id)
 
 });
 
@@ -137,7 +138,7 @@ passport.use('local-login', new LocalStrategy({
                         }
                         return done(null, user);
                     } else { // 비밀번호 안 맞을 때
-                        return done(null, false, req.flash('successmessage', 'Incorrect Password.'));
+                        return done(null, false, {message: 'Incorrect ID.'});
                     }
                 });
             })
