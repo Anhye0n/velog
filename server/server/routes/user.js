@@ -22,7 +22,7 @@ router.use(session({
     resave: false,
     saveUninitialized: true,
     store: new mysqlStore(db_info.db_info),
-    cookie : { secure : false}
+    cookie : { secure : false, maxAge : (4 * 60 * 60 * 1000)}
 }))
 
 router.use(passport.initialize()) //passport를 사용하도록 설정
