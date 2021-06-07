@@ -77,7 +77,7 @@ router.post('/user/login', function (req, res) {
                 "SELECT id FROM user_info WHERE id=?;" +
                 "SELECT email FROM user_info WHERE id=?;"
 
-            conn.query(in_sql, [id, id, id], function (err, result) {
+            conn.query(in_sql, [id, id, id, id], function (err, result) {
                 var salt = result[0][0].user_salt
                 var db_password = result[1][0].password
                 var db_id_value = result[2][0].id
