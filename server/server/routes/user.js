@@ -103,7 +103,7 @@ router.post('/user/login', function (req, res) {
 router.get('/user/logout', function (req, res) {
     delete req.session.user_id
     req.session.save(function () {
-        res.redirect('http://anhye0n.me/user')
+        res.redirect('http://anhye0n.me/')
     })
 })
 module.exports = router;
