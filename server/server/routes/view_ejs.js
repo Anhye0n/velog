@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+const sess = req.session;
 
 
 router.get('/', (req, res) => {
-    const sess = req.session;
     res.render('./user/index', {
         sess: sess
     });
