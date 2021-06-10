@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     });
     console.log(sess)
 })
-router.get('/register', (req, res) => {
+router.get('/user/register', (req, res) => {
     const sess = req.session;
     sess.user_id = 0
     sess.user_email = 0
@@ -22,7 +22,7 @@ router.get('/register', (req, res) => {
         sess: sess
     });
 })
-router.get('/login', (req, res) => {
+router.get('/user/login', (req, res) => {
     const sess = req.session;
     sess.user_id = 0
     sess.user_email = 0
@@ -31,7 +31,7 @@ router.get('/login', (req, res) => {
         sess: sess
     });
 })
-router.get('/login_success', (req, res) => {
+router.get('/user/login_success', (req, res) => {
     const sess = req.session;
     sess.user_id = 0
     sess.user_email = 0
@@ -40,7 +40,7 @@ router.get('/login_success', (req, res) => {
         sess: sess
     });
 })
-router.get('/regi_success', (req, res) => {
+router.get('/user/regi_success', (req, res) => {
     const sess = req.session;
     sess.user_id = 0
     sess.user_email = 0
