@@ -84,6 +84,7 @@ router.post('/user/login', function (req, res) {
                         //         'name': req.session.user_name
                         //     })
                         // })
+                        res.render('./user/login_success', {sess: req.session})
                         console.log('로그인 됨 : ', req.session.user_email)
 
                     } else { // 비밀번호 안 맞을 때
