@@ -76,15 +76,12 @@ router.post('/user/login', function (req, res) {
                         req.session.user_id = db_id_value
                         req.session.user_email = db_email_value
                         req.session.user_name = db_name_value
-                        req.session.save()
-                        // req.session.save(function () {
-                        //     res.render('./user/login_success', {
-                        //         'id': req.session.user_id,
-                        //         'email': req.session.user_email,
-                        //         'name': req.session.user_name
-                        //     })
-                        // })
-                        res.render('./user/login_success', {sess: req.session})
+                        req.session.save(function () {
+                            res.render('./user/login_success', {
+                                sess: req.session
+                            })
+                        })
+                        // res.render('./user/login_success', {sess: req.session})
                         console.log('로그인 됨 : ', req.session.user_email)
 
                     } else { // 비밀번호 안 맞을 때
