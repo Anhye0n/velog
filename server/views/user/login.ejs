@@ -8,7 +8,7 @@
             color: #ff0000;
         }
     </style>
-    <% if (sess.user_id !== 0){ %>
+    <% if (locals.user_id !== 0){ %>
         <script>alert('로그인 되었습니다.');
             location.href = 'http://anhye0n.me/';</script>
     <% }else{ %>
@@ -17,7 +17,7 @@
 </head>
 <body>
 <form action="/api/user/login" method="post">
-    <p><%= sess.user_id %></p>
+    <p><%= locals.user_id %></p>
 
     <table>
         <tr>

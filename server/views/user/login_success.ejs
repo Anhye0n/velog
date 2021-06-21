@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <% if (sess.user_id !== 0){ %>
+    <% if (locals.user_id !== 0){ %>
 
     <% }else{ %>
         <script>alert('로그인이 되지 않았습니다.');
@@ -13,9 +13,9 @@
 </head>
 <body>
 <h1>우왕! 로그인 성공!!!!</h1>
-<p><%= sess.user_id %></p>
-<p><%= sess.user_email %></p>
-<p><%= sess.user_name %></p>
+<p><%= locals.user_id %></p>
+<p><%= locals.user_email %></p>
+<p><%= locals.user_name %></p>
 <a href="http://anhye0n.me/api/user/logout">로그아웃</a>
 </body>
 </html>

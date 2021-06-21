@@ -8,59 +8,40 @@ const conn = db_info.init()
 //crypto
 const crypto = require('crypto')
 
-router.get('/', (req, res) => {
-    const sess = req.session;
+//session
+const session = require('express-session')
+const mysqlStore = require('express-mysql-session')(session)
 
-    res.render('./user/index', {
-        sess: sess
-    });
-    console.log(sess)
-})
-router.get('/user/register', (req, res) => {
-    const sess = req.session;
+//passport
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+const flash = require('connect-flash')
 
-    res.render('./user/register', {
-        sess: sess
-    });
-})
-router.get('/user/login', (req, res) => {
-    const sess = req.session;
+router.use(session({
+    secret: 'session key',
+    resave: false,
+    saveUninitialized: true,
+    store: new mysqlStore(db_info.db_info)
+}))
 
-    res.render('./user/login', {
-        sess: sess
-    });
-})
-router.get('/user/login_success', (req, res) => {
-    const sess = req.session;
+router.use(passport.initialize()) //passport를 사용하도록 설정
+router.use(passport.session()) // passport 사용 시 session을 활용
+router.use(flash())
 
-    res.render('./user/login_success', {
-        sess: sess
-    });
-})
-router.get('/user/regi_success', (req, res) => {
-    const sess = req.session;
+router.get('/user/login', function (req, res) {
+    // Set a flash message by passing the key, followed by the value, to req.flash().
+    res.render('./user/login', req.flash('message'))
+    console.log('')
+});
+router.get('/user/login_success', function (req, res) {
+    // Set a flash message by passing the key, followed by the value, to req.flash().
+    res.render('./user/login_success', req.flash('message'))
+    console.log('')
+});
 
-    res.render('./user/regi_success', {
-        sess: sess
-    });
-})
-router.get('/admin/auto_increment_reset', (req, res) => {
-    const sess = req.session;
-
-    res.render('./admin/auto_increment_reset', {
-        sess: sess
-    });
-})
-router.get('/admin/decrypto_test', (req, res) => {
-    const sess = req.session;
-
-    res.render('./admin/decrypto_test', {
-        sess: sess
-    });
-})
 
 // /api/user/register가 아닌 /user/register로 하기.
-router.post('/user/register', function (req, res) {
+router.post('/user/register', function (req, res, next) {
 
     var name = req.body.user_name // 포스트 방식은 body, get 방식은 query
     var email = req.body.email
@@ -82,70 +63,105 @@ router.post('/user/register', function (req, res) {
                     console.log('query is not excuted. insert fail...\n' + err);
                 } else {
                     console.log('Success Insert!')
-                    res.redirect('http://anhye0n.me/user/regi_success')
+                    res.redirect('http://anhye0n.me/user/regi_success.html')
                 }
             });
         })
     })
 });
 
+//session
+passport.serializeUser(function (user, done) {
+    console.log('serializeUser : ', user)
+    done(null, user.id);
+});
 
-router.post('/user/login', function (req, res) {
-    var id = req.body.id;
-    var password = req.body.password;
-
-    //id 유무 확인
-    //id가 있으면 success의 이름으로 1이 반환되고, 없으면 0이 반환됨.
-    var sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;"
-
+passport.deserializeUser(function (id, done) {
+    console.log('deserializeUser_id', id)
+    let sql = "SELECT * FROM user_info WHERE id=?"
     conn.query(sql, id, function (err, result) {
-        if (err) throw err;
-        var db_id = result[0].success
+        let name = result[0].name
+        let email = result[0].email
+        let id = result[0].id
+        let password = result[0].password
 
-        //id 안맞을 때
-        if (db_id === 0) {
-            res.render('./user/login', {'message': '아이디가 옳지 않습니다.'})
-        } else if (db_id === 1) { //id가 있을 때
+        let user = {
+            name: name,
+            email: email,
+            id: id,
+            password: password
+        }
+        console.log('deserializeUser', user.email)
+        done(null, user)
+    })
 
-            var in_sql = "SELECT user_salt FROM user_info WHERE id=?;" +
+});
+
+passport.use('local-login', new LocalStrategy({
+    // Form에서 post로 받아온 값임.
+    // 기본값은 username, password이지만 이름이 다르게 설정되있으면 여기서 설정
+    usernameField: 'id',
+    passwordField: 'password',
+}, function (username, password, done) {
+    let sql = "SELECT exists (SELECT * FROM user_info WHERE id=?) as success;"
+
+    conn.query(sql, username, function (err, result) {
+        let id = result[0].success;
+        if (err) {
+            return done(err);
+        } else if (id === 0) {
+            return done(null, false, {message: 'Incorrect ID.'});
+        } else if (id === 1) {
+            let in_sql = "SELECT user_salt FROM user_info WHERE id=?;" +
                 "SELECT password FROM user_info WHERE id=?;" +
-                "SELECT id FROM user_info WHERE id=?;" +
-                "SELECT email FROM user_info WHERE id=?;" +
-                "SELECT name FROM user_info WHERE id=?;"
+                "SELECT name FROM user_info WHERE id=?;" +
+                "SELECT email FROM user_info WHERE id=?;"
 
-            conn.query(in_sql, [id, id, id, id, id], function (err, result) {
-                var salt = result[0][0].user_salt
-                var db_password = result[1][0].password
-                var db_id_value = result[2][0].id
-                var db_email_value = result[3][0].email
-                var db_name_value = result[4][0].name
+            conn.query(in_sql, [username, username, username, username], function (err, result) {
+                let salt = result[0][0].user_salt
+                let db_password = result[1][0].password
+                let db_name = result[2][0].name
+                let db_email = result[3][0].email
 
                 crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
-                    var de_password = key.toString("base64")
+                    let de_password = key.toString("base64")
                     // 비밀번호 맞을 때
                     if (de_password === db_password) {
-                        req.session.user_id = db_id_value
-                        req.session.user_email = db_email_value
-                        req.session.user_name = db_name_value
-                        req.session.save(function () {
-                            res.render('./user/login_success', {
-                                sess: req.session
-                            })
-                        })
-                        // res.render('./user/login_success', {sess: req.session})
-                        console.log('로그인 됨 : ', req.session.user_email)
-
+                        // req.session.user_id = username
+                        // req.session.save()
+                        const user = {
+                            id: username,
+                            password: de_password,
+                            name: db_name,
+                            email: db_email
+                        }
+                        return done(null, user);
                     } else { // 비밀번호 안 맞을 때
-                        res.render('./user/login', {'message': '비밀번호가 옳지 않습니다.'})
+                        return done(null, false, req.flash('successmessage', 'Incorrect Password.'));
                     }
                 });
             })
         }
     })
-});
+}));
+
+router.post('/user/login', passport.authenticate('local-login', {
+    // successRedirect: '/user/login_success.html',
+    failureRedirect: '/user/login',
+    failureFlash: true
+}), function (req, res) {
+    req.session.save(function () {
+        console.log('session save..')
+        res.redirect('/user/login_success')
+    })
+})
+
 router.get('/user/logout', function (req, res) {
     req.session.destroy(function () {
-        res.redirect('http://anhye0n.me/')
+        res.redirect('/');
     })
+    // req.session.save(function () {
+    //     res.redirect('/');
+    // })
 })
 module.exports = router;
