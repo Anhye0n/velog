@@ -157,9 +157,8 @@ router.post('/user/login', passport.authenticate('local-login', {
 })
 
 router.get('/user/logout', function (req, res) {
-    req.session.destroy(function () {
-        res.redirect('/');
-    })
+    req.session.destroy()
+    res.redirect('/')
     // req.session.save(function () {
     //     res.redirect('/');
     // })
