@@ -4,18 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <% if (locals.user_id !== 0){ %>
-
-    <% }else{ %>
+    <% if (locals.id === undefined){ %>
         <script>alert('로그인이 되지 않았습니다.');
             location.href = 'http://anhye0n.me/user/login';</script>
+    <% }else{ %>
+
     <% } %>
 </head>
 <body>
 <h1>우왕! 로그인 성공!!!!</h1>
-<p><%= locals.user_id %></p>
-<p><%= locals.user_email %></p>
-<p><%= locals.user_name %></p>
+<p><%= locals.id %></p>
 <a href="http://anhye0n.me/api/user/logout">로그아웃</a>
 </body>
 </html>

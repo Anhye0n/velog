@@ -137,7 +137,7 @@ passport.use('local-login', new LocalStrategy({
                         }
                         return done(null, user);
                     } else { // 비밀번호 안 맞을 때
-                        return done(null, false, req.flash('successmessage', 'Incorrect Password.'));
+                        return done(null, false, {message: 'Incorrect ID.'});
                     }
                 });
             })
