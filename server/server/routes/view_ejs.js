@@ -17,7 +17,6 @@ router.get('/user/login', (req, res) => {
     res.render('./user/login');
 })
 router.get('/user/login_success', (req, res) => {
-
     res.render('./user/login_success', {'user_id': req.user.id});
 })
 
