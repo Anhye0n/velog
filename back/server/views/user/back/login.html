@@ -3,17 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>로그인</title>
-    <style>
-        .message{
-            color: #ff0000;
-        }
-    </style>
-    <% if (locals.user_id !== 0){ %>
-
-    <% }else{ %>
-        <script>alert('로그인 되었습니다.');
-            location.href = 'http://anhye0n.me/';</script>
-    <% } %>
 </head>
 <body>
 <form action="/api/user/login" method="post">
@@ -28,11 +17,6 @@
         </tr>
     </table>
     <button type="submit">로그인</button>
-    <section class="message">
-        <% if (locals.errMsg) { %>
-            <h2><%= errMsg %></h2>
-        <% } %>
-    </section>
 </form>
 </body>
 </html>

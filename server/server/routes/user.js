@@ -147,7 +147,7 @@ passport.use('local-login', new LocalStrategy({
 
 router.post('/user/login', passport.authenticate('local-login', {
     // successRedirect: '/user/login_success.html',
-    failureRedirect: '/api/user/login',
+    failureRedirect: '/user/login',
     failureFlash: true
 }), function (req, res) {
     req.session.save(function () {
@@ -164,16 +164,4 @@ router.get('/user/logout', function (req, res) {
     });
 })
 
-router.get('/api/user/login', (req, res) => {
-    var msg;
-    var err = req.flash('error')
-    if (err){
-        msg = err;
-    }
-    res.render('./user/login', {'errMsg': msg});
-})
-router.get('/api/user/login_success', (req, res) => {
-
-    res.render('./user/login_success', {'user_id':req.user.id});
-})
 module.exports = router;
