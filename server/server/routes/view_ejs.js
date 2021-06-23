@@ -13,7 +13,8 @@ router.get('/user/login', (req, res) => {
     // if (err) {
     //     msg = err;
     // }
-    res.render('./user/login', {'errMsg': msg});
+    // {'errMsg': msg}
+    res.render('./user/login');
 })
 router.get('/user/login_success', (req, res) => {
 
