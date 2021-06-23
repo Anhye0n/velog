@@ -155,19 +155,17 @@ router.get('/user/logout', function (req, res) {
 router.get('/user/login_success', (req, res) => {
     res.render('./user/login_success', {'user_id': req.user.id});
 })
-router.get('/', (req, res) => {
-    res.render('./user/index');
-})
+
 router.get('/user/register', (req, res) => {
     res.render('./user/register');
 })
+
 router.get('/user/login', (req, res) => {
     let msg;
     let err = req.flash('error')
     if (err) {
         msg = err;
     }
-
     res.render('./user/login',{'errMsg': msg});
 })
 

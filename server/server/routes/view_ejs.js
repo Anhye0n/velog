@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+router.get('/', (req, res) => {
+    res.render('./user/index');
+})
+
 router.get('/admin/auto_increment_reset', (req, res) => {
 
     res.render('./admin/auto_increment_reset');
