@@ -153,7 +153,7 @@ router.get('/user/logout', function (req, res) {
 })
 
 router.get('/user/login_success', (req, res) => {
-    res.render('./user/login_success', {'user_id': req.user.id});
+    res.render('./user/login_success', {'user': req.user});
 })
 
 router.get('/user/register', (req, res) => {
@@ -166,7 +166,7 @@ router.get('/user/login', (req, res) => {
     if (err) {
         msg = err;
     }
-    res.render('./user/login',{'errMsg': msg, 'user_id': req.user.id});
+    res.render('./user/login',{'errMsg': msg});
 })
 
 router.get('/user/regi_success', (req, res) => {
