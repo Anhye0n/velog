@@ -163,4 +163,9 @@ router.get('/user/logout', function (req, res) {
         res.redirect('/');
     });
 })
+
+router.get('/user/login_success', (req, res) => {
+
+    res.render('./user/login_success', {'user_id':req.user.id});
+})
 module.exports = router;
