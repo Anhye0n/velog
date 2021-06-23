@@ -166,7 +166,12 @@ router.get('/user/login', (req, res) => {
     if (err) {
         msg = err;
     }
-    res.render('./user/login',{'errMsg': msg});
+    let user;
+    let user_info = req.user
+    if (user_info) {
+        user = user_info;
+    }
+    res.render('./user/login',{'errMsg': msg, 'user': user});
 })
 
 router.get('/user/regi_success', (req, res) => {
