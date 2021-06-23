@@ -8,11 +8,11 @@ router.get('/user/register', (req, res) => {
     res.render('./user/register');
 })
 router.get('/user/login', (req, res) => {
-    let msg;
-    let err = req.flash('error')
-    if (err) {
-        msg = err;
-    }
+    // let msg;
+    // let err = req.flash('error')
+    // if (err) {
+    //     msg = err;
+    // }
     res.render('./user/login', {'errMsg': msg});
 })
 router.get('/user/login_success', (req, res) => {
