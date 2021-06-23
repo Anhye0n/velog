@@ -147,7 +147,7 @@ passport.use('local-login', new LocalStrategy({
 
 router.post('/user/login', passport.authenticate('local-login', {
     // successRedirect: '/user/login_success.html',
-    failureRedirect: '/user/login',
+    failureRedirect: '/api/user/login',
     failureFlash: true
 }), function (req, res) {
     req.session.save(function () {
