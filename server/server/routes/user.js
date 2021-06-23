@@ -135,7 +135,7 @@ passport.use('local-login', new LocalStrategy({
 
 router.post('/user/login', passport.authenticate('local-login', {
     successRedirect: '/api/user/login_success',
-    failureRedirect: '/user/login',
+    failureRedirect: '/api/user/login',
     failureFlash: true
 }), function (req, res) {
     req.session.save(function () {
@@ -155,4 +155,25 @@ router.get('/user/logout', function (req, res) {
 router.get('/user/login_success', (req, res) => {
     res.render('./user/login_success', {'user_id': req.user.id});
 })
+router.get('/', (req, res) => {
+    res.render('./user/index');
+})
+router.get('/user/register', (req, res) => {
+    res.render('./user/register');
+})
+router.get('/user/login', (req, res) => {
+    let msg;
+    let err = req.flash('error')
+    if (err) {
+        msg = err;
+    }
+
+    res.render('./user/login',{'errMsg': msg});
+})
+
+router.get('/user/regi_success', (req, res) => {
+
+    res.render('./user/regi_success');
+})
+
 module.exports = router;
