@@ -29,18 +29,6 @@ router.use(passport.initialize()) //passport를 사용하도록 설정
 router.use(passport.session()) // passport 사용 시 session을 활용
 router.use(flash())
 
-router.get('/user/login', function (req, res) {
-    // Set a flash message by passing the key, followed by the value, to req.flash().
-    res.render('./user/login', req.flash('message'))
-    console.log('')
-});
-router.get('/user/login_success', function (req, res) {
-    // Set a flash message by passing the key, followed by the value, to req.flash().
-    res.render('./user/login_success', req.flash('message'))
-    console.log('')
-});
-
-
 // /api/user/register가 아닌 /user/register로 하기.
 router.post('/user/register', function (req, res, next) {
 
@@ -146,13 +134,13 @@ passport.use('local-login', new LocalStrategy({
 }));
 
 router.post('/user/login', passport.authenticate('local-login', {
-    // successRedirect: '/user/login_success.html',
+    successRedirect: '/user/login_success.html',
     failureRedirect: '/user/login',
     failureFlash: true
 }), function (req, res) {
     req.session.save(function () {
         console.log('session save..')
-        res.redirect('/api/user/login_success')
+        res.redirect('/user/login_success')
     })
 })
 
