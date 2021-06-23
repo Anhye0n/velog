@@ -137,7 +137,7 @@ passport.use('local-login', new LocalStrategy({
                         }
                         return done(null, user);
                     } else { // 비밀번호 안 맞을 때
-                        return done(null, false, {message: 'Incorrect ID.'});
+                        return done(null, false, {message: 'Incorrect password.'});
                     }
                 });
             })
@@ -164,6 +164,14 @@ router.get('/user/logout', function (req, res) {
     });
 })
 
+router.get('/api/user/login', (req, res) => {
+    var msg;
+    var err = req.flash('error')
+    if (err){
+        msg = err;
+    }
+    res.render('./user/login', {'errMsg': msg});
+})
 router.get('/api/user/login_success', (req, res) => {
 
     res.render('./user/login_success', {'user_id':req.user.id});
