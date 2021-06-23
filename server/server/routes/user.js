@@ -77,8 +77,8 @@ passport.serializeUser(function (user, done) {
     done(null, user);
 });
 
-passport.deserializeUser(function (id, done) {
-    console.log('deserializeUser_id : ', id)
+passport.deserializeUser(function (user, done) {
+    console.log('deserializeUser_id : ', user)
     // let sql = "SELECT * FROM user_info WHERE id=?"
     // conn.query(sql, id, function (err, result) {
     //     let name = result[0].name
@@ -93,7 +93,7 @@ passport.deserializeUser(function (id, done) {
     //         password: password
     //     }
     //     console.log('deserializeUser : ', user.email)
-        done(null, id)
+        done(null, user)
     // })
 });
 
