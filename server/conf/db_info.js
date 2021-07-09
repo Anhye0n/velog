@@ -5,7 +5,6 @@ var db_info = {
     password: 'xhdka2256',
     database: 'db_test',
     multipleStatements: true,
-    ttl:60*60
 }
 
 module.exports = {
