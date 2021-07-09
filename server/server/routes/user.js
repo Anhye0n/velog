@@ -134,13 +134,13 @@ passport.use('local-login', new LocalStrategy({
 }));
 
 router.post('/user/login', passport.authenticate('local-login', {
-    successRedirect: '/api/user/login_success',
-    failureRedirect: '/api/user/login',
+    successRedirect: '/user/login_success',
+    failureRedirect: '/user/login',
     failureFlash: true
 }), function (req, res) {
     req.session.save(function () {
         console.log('session save..')
-        res.redirect('/api/user/login_success')
+        res.redirect('/user/login_success')
     })
 })
 
