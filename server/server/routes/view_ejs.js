@@ -5,6 +5,7 @@ router.get('/', (req, res) => {
     res.render('./user/index');
 })
 
+// 어드민 페이지
 router.get('/admin/auto_increment_reset', (req, res) => {
 
     res.render('./admin/auto_increment_reset');
@@ -14,17 +15,7 @@ router.get('/admin/decrypto_test', (req, res) => {
     res.render('./admin/decrypto_test');
 })
 
-router.post('/user/login', passport.authenticate('local-login', {
-    successRedirect: '/api/user/login_success',
-    failureRedirect: '/api/user/login',
-    failureFlash: true
-}), function (req, res) {
-    req.session.save(function () {
-        console.log('session save..')
-        res.redirect('/api/user/login_success')
-    })
-})
-
+// login router 처리
 router.get('/user/logout', function (req, res) {
     req.logout();
     req.session.save((err) => {
