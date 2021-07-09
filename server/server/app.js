@@ -26,7 +26,7 @@ app.use('/api', user_info)
 
 //views 파일
 const view_router = require('./routes/view_ejs')
-app.use('/', view_router)
+app.use('/', view_router, user_info)
 
 const db_test = require('./routes/admin')
 app.use('/admin', db_test)
