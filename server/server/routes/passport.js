@@ -6,13 +6,11 @@ const conn = db_info.init()
 const crypto = require('crypto')
 
 //session
-const mysqlStore = require('express-mysql-session')(session)
 
 //passport
-const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 
-module.exports = (express) => {
+module.exports = (passport) => {
     passport.serializeUser(function (user, done) {
         console.log('serializeUser : ', user)
         done(null, user);
