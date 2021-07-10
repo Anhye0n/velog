@@ -26,13 +26,13 @@ app.use(session({
 }))
 
 
-app.use('/src',express.static(__dirname + '../src'))
-console.log('dirname : ', path.join(__dirname+'../src'))
 require('./routes/user_handling/passport')(passport)
 
 app.use(passport.initialize()) //passport를 사용하도록 설정
 app.use(passport.session()) // passport 사용 시 session을 활용
 app.use(flash())
+
+app.use(express.static(path.join(__dirname,'../src')))
 
 //views 라우터
 app.set('views', path.join(__dirname, '../views'))
