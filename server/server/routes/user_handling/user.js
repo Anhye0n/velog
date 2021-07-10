@@ -31,9 +31,9 @@ router.post('/user/register', function (req, res, next) {
                 "select EXISTS (SELECT * FROM user_info where id=? limit 1) as id_exist;"
 
             conn.query(check_email_sql, [email, id], function (err, result) {
-                console.log(result)
-                // console.log(result[0].id_exist)
-                // console.log(result[1].id_exist)
+                console.log(result[0].email_exist)
+                console.log(result[1].id_exist)
+
                 if (result[0].email_exist === 6) {
                     res.render('./user/register', {'errmsg': req.flash('Exist email')})
                 } else {
