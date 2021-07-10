@@ -26,6 +26,7 @@ app.use(session({
 }))
 
 require('./routes/passport')(passport)
+
 app.use(passport.initialize()) //passport를 사용하도록 설정
 app.use(passport.session()) // passport 사용 시 session을 활용
 app.use(flash())

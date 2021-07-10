@@ -8,13 +8,8 @@ const conn = db_info.init()
 //crypto
 const crypto = require('crypto')
 
-//session
-const session = require('express-session')
-const mysqlStore = require('express-mysql-session')(session)
-
 //passport
 const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy
 
 // /api/user/register가 아닌 /user/register로 하기.
 router.post('/user/register', function (req, res, next) {
