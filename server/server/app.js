@@ -25,7 +25,7 @@ app.use(session({
     cookie:{maxAge:3.6e+6} // 1시간
 }))
 
-const user_info = require('./routes/user')(passport)
+// const user_info = require('./routes/user')(passport)
 const passport_login = require('./routes/passport')(passport)
 
 app.use(passport.initialize()) //passport를 사용하도록 설정
