@@ -5,7 +5,7 @@ const conn = db_info.init()
 //crypto
 const crypto = require('crypto')
 
-//passport
+//user
 const LocalStrategy = require('passport-local').Strategy
 
 module.exports = (passport, router) =>{
@@ -83,13 +83,13 @@ module.exports = (passport, router) =>{
     }));
 
     router.post('/user/login', passport.authenticate('local-login', {
-        successRedirect: '/api/user/login_success',
-        failureRedirect: '/api/user/login',
+        successRedirect: '/user/login_success',
+        failureRedirect: '/user/login',
         failureFlash: true
     }), function (req, res) {
         req.session.save(function () {
             console.log('session save..')
-            res.redirect('/api/user/login_success')
+            res.redirect('/user/login_success')
         })
     })
 }

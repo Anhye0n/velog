@@ -12,9 +12,9 @@
 // const session = require('express-session')
 // const mysqlStore = require('express-mysql-session')(session)
 //
-// //passport
-// const passport = require('passport')
-// const LocalStrategy = require('passport-local')
+// //user
+// const user = require('user')
+// const LocalStrategy = require('user-local')
 // const flash = require('connect-flash')
 //
 // router.use(session({
@@ -24,8 +24,8 @@
 //     store : new mysqlStore(db_info.db_info)
 // }))
 //
-// router.use(passport.initialize())
-// router.use(passport.session())
+// router.use(user.initialize())
+// router.use(user.session())
 // router.use(flash())
 //
 // console.log(db_info.db_info)

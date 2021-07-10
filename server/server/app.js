@@ -26,10 +26,10 @@ app.use(session({
     cookie:{maxAge:3.6e+6} // 1시간
 }))
 
-require('./routes/passport/passport')(passport, router)
+require('./routes/user/passport')(passport, router)
 
 app.use(passport.initialize()) //passport를 사용하도록 설정
-app.use(passport.session()) // passport 사용 시 session을 활용
+app.use(passport.session()) // user 사용 시 session을 활용
 app.use(flash())
 
 //views 라우터
@@ -37,7 +37,7 @@ app.set('views', path.join(__dirname, '../views'))
 app.set('view engine', 'ejs') //ejs 사용
 
 //라우터
-const user_info = require('./routes/user')
+const user_info = require('./routes/user/register')
 app.use('/api', user_info)
 
 //views 파일

@@ -12,7 +12,7 @@ const crypto = require('crypto')
 const session = require('express-session')
 const mysqlStore = require('express-mysql-session')(session)
 
-//passport
+//user
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const flash = require('connect-flash')
@@ -26,7 +26,7 @@ router.use(session({
 }))
 
 router.use(passport.initialize()) //passport를 사용하도록 설정
-router.use(passport.session()) // passport 사용 시 session을 활용
+router.use(passport.session()) // user 사용 시 session을 활용
 router.use(flash())
 
 router.get('/user/login', function (req, res) {
