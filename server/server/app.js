@@ -14,7 +14,7 @@ const session = require('express-session')
 const mysqlStore = require('express-mysql-session')(session)
 const flash = require('connect-flash')
 
-app.use(bodyParser.urlencoded({extend:false}))
+app.use(bodyParser.urlencoded({extend: false}))
 
 app.use(bodyParser.json())
 
@@ -23,10 +23,10 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     store: new mysqlStore(db_info.db_info),
-    cookie:{maxAge:3.6e+6} // 1시간
+    cookie: {maxAge: 3.6e+6} // 1시간
 }))
+const passport_login = require('./routes/user/passport')(passport, router)
 
-require('./routes/user/passport')(passport, router)
 app.use(passport.initialize()) //passport를 사용하도록 설정
 app.use(passport.session()) // user 사용 시 session을 활용
 app.use(flash())
@@ -37,7 +37,7 @@ app.set('view engine', 'ejs') //ejs 사용
 
 //라우터
 const user_info = require('./routes/user/register')
-    app.use('/api', user_info)
+app.use('/api', user_info, passport_login)
 
 //views 파일
 const view_router = require('./routes/view_ejs')

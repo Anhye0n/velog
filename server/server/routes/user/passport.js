@@ -16,20 +16,7 @@ module.exports = (passport, router) =>{
 
     passport.deserializeUser(function (user, done) {
         console.log('deserializeUser_id : ', user)
-        // let sql = "SELECT * FROM user_info WHERE id=?"
-        // conn.query(sql, id, function (err, result) {
-        //     let name = result[0].name
-        //     let email = result[0].email
-        //     let id = result[0].id
-        //     let password = result[0].password
-        //
-        //     let user = {
-        //         name: name,
-        //         email: email,
-        //         id: id,
-        //         password: password
-        //     }
-        //     console.log('deserializeUser : ', user.email)
+
         done(null, user)
         // })
     });
