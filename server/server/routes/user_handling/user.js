@@ -50,8 +50,8 @@ router.post('/user/register', function (req, res, next) {
                         if (err) {
                             console.log('query is not excuted. insert fail...\n' + err);
                         } else {
-                            console.log('Success Insert!')
-                            res.render('./user/register_success', {'email': req.flash(email),'id': req.flash(id),'name': req.flash(name),})
+                            console.log('User '+id+' Register!')
+                            res.render('./user/regi_success', {'email': req.flash(email),'id': req.flash(id),'name': req.flash(name),})
                         }
                     });
                 }
