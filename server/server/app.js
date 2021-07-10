@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const router = express.Router();
 
 // DB
 const db_info = require('../conf/db_info')
@@ -25,7 +26,7 @@ app.use(session({
     cookie:{maxAge:3.6e+6} // 1시간
 }))
 
-require('./routes/passport/passport')(passport)
+require('./routes/passport/passport')(passport, router)
 
 app.use(passport.initialize()) //passport를 사용하도록 설정
 app.use(passport.session()) // passport 사용 시 session을 활용
