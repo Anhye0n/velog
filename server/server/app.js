@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({extend:false}))
 
 app.use(bodyParser.json())
 
-router.use(session({
+app.use(session({
     secret: 'session key',
     resave: false,
     saveUninitialized: true,
