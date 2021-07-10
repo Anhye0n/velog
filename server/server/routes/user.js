@@ -39,7 +39,7 @@ router.post('/user/register', function (req, res, next) {
                     console.log('query is not excuted. insert fail...\n' + err);
                 } else {
                     console.log('Success Insert!')
-                    res.redirect('http://anhye0n.me/regi_success.html')
+                    res.redirect('http://anhye0n.me/user/regi_success')
                 }
             });
         })
