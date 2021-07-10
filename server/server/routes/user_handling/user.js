@@ -31,11 +31,18 @@ router.post('/user/register', function (req, res, next) {
                 "select EXISTS (SELECT * FROM user_info where id=? limit 1) as id_exist;"
 
             conn.query(check_email_sql, [email, id], function (err, result) {
-                console.log(result[0][0].email_exist)
-                console.log(result[1][0].id_exist)
+                // console.log(result[0][0].email_exist)
+                // console.log(result[1][0].id_exist)
 
-                if (result[0].email_exist === 6) {
-                    res.render('./user/register', {'errmsg': req.flash('Exist email')})
+                if (result[0][0].email_exist === 1 && result[1][0].id_exist === 1) {
+                    res.render('./user/register', {
+                        'err_email': req.flash('Exist email'),
+                        'err_id': req.flash('Exist id')
+                    })
+                } else if (result[1][0].id_exist === 1) {
+                    res.render('./user/register', {'err_id': req.flash('Exist id')})
+                } else if (result[0][0].email_exist === 1) {
+                    res.render('./user/register', {'err_email': req.flash('Exist email')})
                 } else {
                     var sql = "INSERT INTO user_info (name, email, id, password, user_salt) VALUES (?, ?, ?, ?, ?)";
 
@@ -44,7 +51,7 @@ router.post('/user/register', function (req, res, next) {
                             console.log('query is not excuted. insert fail...\n' + err);
                         } else {
                             console.log('Success Insert!')
-                            res.redirect('http://anhye0n.me/user/regi_success')
+                            res.render('./user/register_success', {'email': req.flash(email),'id': req.flash(id),'name': req.flash(name),})
                         }
                     });
                 }

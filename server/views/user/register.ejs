@@ -13,7 +13,7 @@
             var p2 = document.getElementById('pass_check_2').value
             var btn = document.getElementById('btn')
             if( p1 === p2){
-                alert('비밀번호가 일치합니다.')
+                // alert('비밀번호가 일치합니다.')
                 register_form.submit()
             }else if(p1 !== p2){
                 alert('비밀번호가 일치하지 않습니다.')
@@ -24,8 +24,8 @@
 <body>
 <form id="register_form" action="/api/user/register" method="post">
     <p>이름 : <input type="text" name="user_name" autocomplete="on" placeholder="이름" autofocus></p>
-    <p>이메일 : <input type="email" name="email" autocomplete="on" placeholder="이메일"></p><span class="message"><%= locals.errmsg %></span>
-    <p>아이디 : <input type="text" name="id" autocomplete="on" placeholder="아이디"></p>
+    <p>이메일 : <input type="email" name="email" autocomplete="on" placeholder="이메일"></p><span class="message"><%= locals.err_email %></span>
+    <p>아이디 : <input type="text" name="id" autocomplete="on" placeholder="아이디"></p><span class="message"><%= locals.err_id %></span>
     <p>비밀번호 : <input type="password" id="pass_check_1" name="password" autocomplete="on" placeholder="비밀번호"></p>
     <p>비밀번호 확인: <input type="password" id="pass_check_2" autocomplete="on" placeholder="비밀번호"></p>
     <button type="button" onclick="pass_check()">회원가입</button>
