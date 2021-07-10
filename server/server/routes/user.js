@@ -69,27 +69,4 @@ router.get('/user/login_success', (req, res) => {
     res.render('./user/login_success', {'user': req.user});
 })
 
-router.get('/user/register', (req, res) => {
-    res.render('./user/register');
-})
-
-router.get('/user/login', (req, res) => {
-    let msg;
-    let err = req.flash('error')
-    if (err) {
-        msg = err;
-    }
-    let user;
-    let user_info = req.user
-    if (user_info) {
-        user = user_info;
-    }
-    res.render('./user/login',{'errMsg': msg, 'user': user});
-})
-
-router.get('/user/regi_success', (req, res) => {
-
-    res.render('./user/regi_success');
-})
-
 module.exports = router;
