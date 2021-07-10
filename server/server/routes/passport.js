@@ -1,6 +1,3 @@
-const express = require('express');
-const router = express.Router();
-
 //DB
 const db_info = require('../../conf/db_info')
 const conn = db_info.init()
@@ -8,63 +5,10 @@ const conn = db_info.init()
 //crypto
 const crypto = require('crypto')
 
-//session
-const session = require('express-session')
-const mysqlStore = require('express-mysql-session')(session)
-
 //passport
-const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
-const flash = require('connect-flash')
 
-router.use(session({
-    secret: 'session key',
-    resave: false,
-    saveUninitialized: true,
-    store: new mysqlStore(db_info.db_info),
-    cookie:{maxAge:3.6e+6} // 1시간
-}))
-
-router.use(passport.initialize()) //passport를 사용하도록 설정
-router.use(passport.session()) // passport 사용 시 session을 활용
-router.use(flash())
-
-// /api/user/register가 아닌 /user/register로 하기.
-
-
-
-
-module.exports = () => {
-    router.post('/user/register', function (req, res, next) {
-
-        var name = req.body.user_name // 포스트 방식은 body, get 방식은 query
-        var email = req.body.email
-        var id = req.body.id
-        var password = req.body.password
-
-        // 암호화
-        crypto.randomBytes(64, (err, buf) => {
-            crypto.pbkdf2(password, buf.toString("base64"), 100, 64, 'sha512', (err, key) => {
-                var de_password = key.toString("base64")
-                var user_salt = buf.toString("base64")
-
-                var user_regi = [name, email, id, de_password, user_salt]
-
-                var sql = "INSERT INTO user_info (name, email, id, password, user_salt) VALUES (?, ?, ?, ?, ?)";
-
-                conn.query(sql, user_regi, function (err, result) {
-                    if (err) {
-                        console.log('query is not excuted. insert fail...\n' + err);
-                    } else {
-                        console.log('Success Insert!')
-                        res.redirect('http://anhye0n.me/user/regi_success.html')
-                    }
-                });
-            })
-        })
-    });
-
-//session
+module.exports = (passport) =>{
     passport.serializeUser(function (user, done) {
         console.log('serializeUser : ', user)
         done(null, user);
@@ -137,23 +81,4 @@ module.exports = () => {
             }
         })
     }));
-
-    router.post('/user/login', passport.authenticate('local-login', {
-        successRedirect: '/api/user/login_success',
-        failureRedirect: '/api/user/login',
-        failureFlash: true
-    }), function (req, res) {
-        req.session.save(function () {
-            console.log('session save..')
-            res.redirect('/api/user/login_success')
-        })
-    })
-
-    router.get('/user/logout', function (req, res) {
-        req.logout();
-        req.session.save((err) => {
-            if (err) throw err;
-            res.redirect('/');
-        });
-    })
 }
