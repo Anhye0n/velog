@@ -27,9 +27,10 @@ router.post('/user/register', function (req, res, next) {
 
             var user_regi = [name, email, id, de_password, user_salt]
 
-            let check_email_sql = "select EXISTS (SELECT * FROM user_info where email=? limit 1) as email_exist; select EXISTS (SELECT * FROM user_info where id=? limit 1) as id_exist;"
+            let check_email_sql = "select EXISTS (SELECT * FROM user_info where email=? limit 1) as email_exist"
+            let check_id_sql = "select EXISTS (SELECT * FROM user_info where id=? limit 1) as id_exist;"
 
-            conn.query(check_email_sql, email, function (err, result, field) {
+            conn.query(check_email_sql+check_id_sql, [email, id], function (err, result, field) {
                 console.log(result)
                 // console.log(result[0].id_exist)
                 console.log(result[1].id_exist)
