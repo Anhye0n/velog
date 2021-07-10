@@ -25,6 +25,9 @@ app.use(session({
     cookie:{maxAge:3.6e+6} // 1시간
 }))
 
+const user_info = require('./routes/user')(passport)
+const passport_login = require('./routes/passport')(passport)
+
 app.use(passport.initialize()) //passport를 사용하도록 설정
 app.use(passport.session()) // passport 사용 시 session을 활용
 app.use(flash())
@@ -34,8 +37,6 @@ app.set('views', path.join(__dirname, '../views'))
 app.set('view engine', 'ejs') //ejs 사용
 
 //라우터
-const user_info = require('./routes/user')(passport)
-const passport_login = require('./routes/passport')(passport)
 app.use('/api', user_info, passport_login)
 
 //views 파일
