@@ -26,8 +26,8 @@ app.use(session({
 }))
 
 
-app.use('/src',express.static(path.join(__dirname + '../src')))
-
+app.use('/src',express.static(__dirname + '../src'))
+console.log('dirname : ', __dirname)
 require('./routes/user_handling/passport')(passport)
 
 app.use(passport.initialize()) //passport를 사용하도록 설정
