@@ -1,5 +1,5 @@
 //DB
-const db_info = require('../../conf/db_info')
+const db_info = require('../../../conf/db_info')
 const conn = db_info.init()
 
 //crypto
