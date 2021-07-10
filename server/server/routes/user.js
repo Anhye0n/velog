@@ -9,11 +9,8 @@ const conn = db_info.init()
 const crypto = require('crypto')
 
 //session
-const mysqlStore = require('express-mysql-session')(session)
-
 //passport
 const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy
 const flash = require('connect-flash')
 
 // /api/user/register가 아닌 /user/register로 하기.
