@@ -26,7 +26,7 @@ app.use(session({
 }))
 
 
-app.use(express.static(path.join(__dirname + '../src/')))
+app.use('/src',express.static(path.join(__dirname + '../src')))
 
 require('./routes/user_handling/passport')(passport)
 
