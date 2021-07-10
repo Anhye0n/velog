@@ -8,17 +8,7 @@ const crypto = require('crypto')
 //user
 const LocalStrategy = require('passport-local').Strategy
 
-module.exports = (passport, router) => {
-    router.post('/user/login', passport.authenticate('local-login', {
-        successRedirect: '/user/login_success',
-        failureRedirect: '/user/login',
-        failureFlash: true
-    }), function (req, res) {
-        req.session.save(function () {
-            console.log('session save..')
-            res.redirect('/user/login_success')
-        })
-    })
+module.exports = (passport, router) =>{
     passport.serializeUser(function (user, done) {
         console.log('serializeUser : ', user)
         done(null, user);
@@ -26,7 +16,20 @@ module.exports = (passport, router) => {
 
     passport.deserializeUser(function (user, done) {
         console.log('deserializeUser_id : ', user)
-
+        // let sql = "SELECT * FROM user_info WHERE id=?"
+        // conn.query(sql, id, function (err, result) {
+        //     let name = result[0].name
+        //     let email = result[0].email
+        //     let id = result[0].id
+        //     let password = result[0].password
+        //
+        //     let user = {
+        //         name: name,
+        //         email: email,
+        //         id: id,
+        //         password: password
+        //     }
+        //     console.log('deserializeUser : ', user.email)
         done(null, user)
         // })
     });
@@ -78,4 +81,15 @@ module.exports = (passport, router) => {
             }
         })
     }));
+
+    router.post('/user/login', passport.authenticate('local-login', {
+        successRedirect: '/user/login_success',
+        failureRedirect: '/user/login',
+        failureFlash: true
+    }), function (req, res) {
+        req.session.save(function () {
+            console.log('session save..')
+            res.redirect('/user/login_success')
+        })
+    })
 }
