@@ -25,6 +25,9 @@ app.use(session({
     cookie:{maxAge:3.6e+6} // 1시간
 }))
 
+
+app.use(express.static(path.join(__dirname + '../src/')))
+
 require('./routes/user_handling/passport')(passport)
 
 app.use(passport.initialize()) //passport를 사용하도록 설정
