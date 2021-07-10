@@ -13,6 +13,16 @@ router.get('/admin/decrypto_test', (req, res) => {
 
     res.render('./admin/decrypto_test');
 })
+router.post('/user/login', passport.authenticate('local-login', {
+    successRedirect: '/api/user/login_success',
+    failureRedirect: '/api/user/login',
+    failureFlash: true
+}), function (req, res) {
+    req.session.save(function () {
+        console.log('session save..')
+        res.redirect('/api/user/login_success')
+    })
+})
 
 router.get('/user/logout', function (req, res) {
     req.logout();

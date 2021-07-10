@@ -2,14 +2,14 @@ const express = require('express');
 const router = express.Router();
 
 //DB
-const db_info = require('../../../conf/db_info')
+const db_info = require('../../conf/db_info')
 const conn = db_info.init()
 
 //crypto
 const crypto = require('crypto')
 
 //session
-//user
+//passport
 const passport = require('passport')
 const flash = require('connect-flash')
 

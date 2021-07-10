@@ -12,9 +12,9 @@
 // const session = require('express-session')
 // const mysqlStore = require('express-mysql-session')(session)
 //
-// //user
-// const user = require('user')
-// const LocalStrategy = require('user-local').Strategy
+// //passport
+// const passport = require('passport')
+// const LocalStrategy = require('passport-local').Strategy
 // const flash = require('connect-flash')
 //
 // router.use(session({
@@ -24,8 +24,8 @@
 //     store: new mysqlStore(db_info.db_info)
 // }))
 //
-// router.use(user.initialize()) //passport를 사용하도록 설정
-// router.use(user.session()) // user 사용 시 session을 활용
+// router.use(passport.initialize()) //passport를 사용하도록 설정
+// router.use(passport.session()) // passport 사용 시 session을 활용
 // router.use(flash())
 //
 // router.get('/user/login', function (req, res) {
@@ -71,12 +71,12 @@
 // });
 //
 // //session
-// user.serializeUser(function (user, done) {
+// passport.serializeUser(function (user, done) {
 //     console.log('serializeUser : ', user)
 //     done(null, user.id);
 // });
 //
-// user.deserializeUser(function (id, done) {
+// passport.deserializeUser(function (id, done) {
 //     console.log('deserializeUser_id', id)
 //     let sql = "SELECT * FROM user_info WHERE id=?"
 //     conn.query(sql, id, function (err, result) {
@@ -97,7 +97,7 @@
 //
 // });
 //
-// user.use('local-login', new LocalStrategy({
+// passport.use('local-login', new LocalStrategy({
 //     // Form에서 post로 받아온 값임.
 //     // 기본값은 username, password이지만 이름이 다르게 설정되있으면 여기서 설정
 //     usernameField: 'id',
@@ -145,7 +145,7 @@
 //     })
 // }));
 //
-// router.post('/user/login', user.authenticate('local-login', {
+// router.post('/user/login', passport.authenticate('local-login', {
 //     // successRedirect: '/user/login_success.html',
 //     failureRedirect: '/user/login',
 //     failureFlash: true
