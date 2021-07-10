@@ -10,7 +10,7 @@ const crypto = require('crypto')
 
 //passport
 const passport = require('passport')
-const flash = require('connect-flash')
+
 // /api/user/register가 아닌 /user/register로 하기.
 router.post('/user/register', function (req, res, next) {
 
@@ -36,13 +36,13 @@ router.post('/user/register', function (req, res, next) {
 
                 if (result[0][0].email_exist === 1 && result[1][0].id_exist === 1) {
                     res.render('./user/register', {
-                        'err_email': req.flash('Exist email'),
-                        'err_id': req.flash('Exist id')
+                        'err_email': 'Exist email',
+                        'err_id': 'Exist id'
                     })
                 } else if (result[1][0].id_exist === 1) {
-                    res.render('./user/register', {'err_id': req.flash('Exist id')})
+                    res.render('./user/register', {'err_id': 'Exist id'})
                 } else if (result[0][0].email_exist === 1) {
-                    res.render('./user/register', {'err_email': req.flash('Exist email')})
+                    res.render('./user/register', {'err_email': 'Exist email'})
                 } else {
                     var sql = "INSERT INTO user_info (name, email, id, password, user_salt) VALUES (?, ?, ?, ?, ?)";
 
@@ -51,7 +51,7 @@ router.post('/user/register', function (req, res, next) {
                             console.log('query is not excuted. insert fail...\n' + err);
                         } else {
                             console.log('User '+id+' Register!')
-                            res.render('./user/regi_success', {'email': req.flash(email),'id': req.flash(id),'name': req.flash(name),})
+                            res.render('./user/regi_success', {'email': email,'id': id,'name': name,})
                         }
                     });
                 }
