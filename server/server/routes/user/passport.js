@@ -8,7 +8,17 @@ const crypto = require('crypto')
 //user
 const LocalStrategy = require('passport-local').Strategy
 
-module.exports = (passport, router) =>{
+module.exports = (passport, router) => {
+    router.post('/user/login', passport.authenticate('local-login', {
+        successRedirect: '/user/login_success',
+        failureRedirect: '/user/login',
+        failureFlash: true
+    }), function (req, res) {
+        req.session.save(function () {
+            console.log('session save..')
+            res.redirect('/user/login_success')
+        })
+    })
     passport.serializeUser(function (user, done) {
         console.log('serializeUser : ', user)
         done(null, user);
@@ -68,15 +78,4 @@ module.exports = (passport, router) =>{
             }
         })
     }));
-
-    router.post('/user/login', passport.authenticate('local-login', {
-        successRedirect: '/user/login_success',
-        failureRedirect: '/user/login',
-        failureFlash: true
-    }), function (req, res) {
-        req.session.save(function () {
-            console.log('session save..')
-            res.redirect('/user/login_success')
-        })
-    })
 }
