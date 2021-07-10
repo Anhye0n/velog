@@ -10,7 +10,7 @@ const crypto = require('crypto')
 
 //passport
 const passport = require('passport')
-
+const flash = require('connect-flash')
 // /api/user/register가 아닌 /user/register로 하기.
 router.post('/user/register', function (req, res, next) {
 
@@ -27,16 +27,24 @@ router.post('/user/register', function (req, res, next) {
 
             var user_regi = [name, email, id, de_password, user_salt]
 
-            var sql = "INSERT INTO user_info (name, email, id, password, user_salt) VALUES (?, ?, ?, ?, ?)";
+            let check_email_sql = "select EXISTS (SELECT * FROM user_info where email=? limit 1) as success;"
 
-            conn.query(sql, user_regi, function (err, result) {
-                if (err) {
-                    console.log('query is not excuted. insert fail...\n' + err);
-                } else {
-                    console.log('Success Insert!')
-                    res.redirect('http://anhye0n.me/user/regi_success')
+            conn.query(check_email_sql, email, function (err, result, field) {
+                if (result[0] === 1) {
+                    res.render('./user/register', {'errmsg': req.flash('Exist email')})
+                }else{
+                    var sql = "INSERT INTO user_info (name, email, id, password, user_salt) VALUES (?, ?, ?, ?, ?)";
+
+                    conn.query(sql, user_regi, function (err, result) {
+                        if (err) {
+                            console.log('query is not excuted. insert fail...\n' + err);
+                        } else {
+                            console.log('Success Insert!')
+                            res.redirect('http://anhye0n.me/user/regi_success')
+                        }
+                    });
                 }
-            });
+            })
         })
     })
 });
