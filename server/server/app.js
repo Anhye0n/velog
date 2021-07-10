@@ -43,7 +43,7 @@ app.use('/api', user_info)
 const view_router = require('./routes/view_ejs')
 app.use('/', view_router)
 
-const db_test = require('./routes/admin')
+const db_test = require('./routes/admin/admin')
 app.use('/admin', db_test)
 
 app.listen(80, () => {
