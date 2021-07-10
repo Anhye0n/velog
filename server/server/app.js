@@ -35,7 +35,7 @@ app.set('view engine', 'ejs') //ejs 사용
 
 //라우터
 const user_info = require('./routes/user')(passport)
-app.use('/api', user_info, passport_login)
+app.use('/api', user_info)
 
 //views 파일
 const view_router = require('./routes/view_ejs')
