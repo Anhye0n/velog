@@ -20,7 +20,7 @@ app.use(bodyParser.json())
 app.use(session({
     secret: 'session key',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: new mysqlStore(db_info.db_info),
     cookie: {maxAge: 1000 * 60 * 60} // 1시간
 }))
