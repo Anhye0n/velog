@@ -20,7 +20,7 @@ last-update 2021-07-11
 |email|VARCHAR|100|유저 이메일|
 |id|VARCHAR|100|유저 아이디|
 |password|VARCHAR|100|유저 비밀번호|
-|user_salt|LONGTEXT|100|유저 비밀번호 salt키|
+|user_salt|LONGTEXT||유저 비밀번호 salt키|
 
 ```javascript
 //user_salt는 crypto 모듈 사용
