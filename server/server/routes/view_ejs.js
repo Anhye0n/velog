@@ -4,8 +4,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
     //session에 담긴 user정보
     //req로 접근 가능
-    //user가 들어있지 않을 때 에러가 나지 않기 위해 아래 처럼 설정
-    user = req.user;
+    let user = req.user;
     res.render('./user/index', {'user': user});
 })
 
@@ -23,13 +22,10 @@ router.get('/user/register', (req, res) => {
 })
 
 router.get('/user/login', (req, res) => {
-    let msg;
     let err = req.flash('error')
-    if (err) {
-        msg = err;
-    }
     let user = req.user
-    res.render('./user/login', {'errMsg': msg, 'user': user});
+
+    res.render('./user/login', {'errMsg': err, 'user': user});
 })
 
 router.get('/user/regi_success', (req, res) => {
