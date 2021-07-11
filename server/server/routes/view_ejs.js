@@ -1,8 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
+//session에 담긴 user정보
+//req로 접근 가능
+let user;
+let user_info = req.user
+if (user_info) {
+    user = user_info;
+}
+
 router.get('/', (req, res) => {
-    res.render('./user/index');
+    res.render('./user/index', {'user': user});
 })
 
 router.get('/admin/auto_increment_reset', (req, res) => {
@@ -23,11 +31,6 @@ router.get('/user/login', (req, res) => {
     let err = req.flash('error')
     if (err) {
         msg = err;
-    }
-    let user;
-    let user_info = req.user
-    if (user_info) {
-        user = user_info;
     }
     res.render('./user/login',{'errMsg': msg, 'user': user});
 })
