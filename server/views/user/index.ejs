@@ -13,8 +13,12 @@
     <br>
     <hr>
     <br>
-    E-mail : <%= locals.user.email %>>님 반갑습니다.
-    <%= locals.user.name %>>님 반갑습니다.
+    <% if (locals.user){ %>
+        E-mail : <%= locals.user.email %>
+    <% locals.user.name } %>님 반갑습니다.
+    <% else { %>
+    <% } %>
+
     <a href="http://anhye0n.me/user/register">회원가입 페이지</a>
     <br>
     <a href="http://anhye0n.me/user/login">로그인 페이지</a>
