@@ -33,13 +33,13 @@ router.post('/user/register', function (req, res, next) {
             conn.query(check_email_sql, [email, id], function (err, result) {
                 if (result[0][0].email_exist === 1 && result[1][0].id_exist === 1) {
                     res.render('./user/register', {
-                        'err_email': 'Exist email',
-                        'err_id': 'Exist id'
+                        'err_email': 'The ID already exists.\n',
+                        'err_id': 'The Email already exists.\n'
                     })
                 } else if (result[1][0].id_exist === 1) {
-                    res.render('./user/register', {'err_id': 'Exist id'})
+                    res.render('./user/register', {'err_id': 'The ID already exists.'})
                 } else if (result[0][0].email_exist === 1) {
-                    res.render('./user/register', {'err_email': 'Exist email'})
+                    res.render('./user/register', {'err_email': 'The Email already exists.'})
                 } else {
                     var sql = "INSERT INTO user_info (name, email, id, password, user_salt) VALUES (?, ?, ?, ?, ?)";
 
@@ -69,8 +69,7 @@ router.post('/user/login', passport.authenticate('local-login', {
 })
 
 router.get('/user/logout', function (req, res) {
-    req.logout();
-    req.session.save((err) => {
+    req.session.destroy((err) => {
         if (err) throw err;
         res.redirect('/');
     });
