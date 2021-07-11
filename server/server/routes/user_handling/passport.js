@@ -10,6 +10,7 @@ const crypto = require('crypto')
 //passport
 const LocalStrategy = require('passport-local').Strategy
 
+//app.js에서 passport 모듈 가져옴
 module.exports = (passport) => {
     passport.serializeUser(function (user, done) {
         console.log('serializeUser : ', user)

@@ -8,6 +8,7 @@ const conn = db_info.init()
 //crypto
 const crypto = require('crypto')
 
+//비밀번호 복호화
 router.post('/decrypto', function (req, res, next) {
 
     var password = req.body.password
@@ -21,6 +22,7 @@ router.post('/decrypto', function (req, res, next) {
     });
 })
 
+//유저 auto_increment 관리
 router.post('/auto_increment_reset', function (req, res, next) {
 
     var last_num = req.body.last_num

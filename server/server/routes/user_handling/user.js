@@ -27,6 +27,7 @@ router.post('/user/register', function (req, res, next) {
 
             var user_regi = [name, email, id, de_password, user_salt]
 
+            //email_exist와 id_exist에 각각 데이터가 존재하면 1이 반환됨. 없을 시 0
             let check_email_sql = "select EXISTS (SELECT * FROM user_info where email=? limit 1) as email_exist;" +
                 "select EXISTS (SELECT * FROM user_info where id=? limit 1) as id_exist;"
 
