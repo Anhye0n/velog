@@ -5,6 +5,11 @@ Release:	20.04<br>
 Codename:	focal<br>
 
 last-update 2021-07-11
+
+```bash
+$ npm start
+```
+
 ## DB info
 - Using Mysql
 - DB name : db_test
