@@ -1,7 +1,7 @@
 
 html, body {
     /*width: 100%의 여백 없애기 용*/
-    background: url("/src/img/spaceship-2560x1440-futuristic-clouds-4k-23187.png") no-repeat center center fixed;
+    background: url("/src/img/shotinraww-267315-unsplash.jpg") no-repeat center center fixed;
     background-size: cover;
     height: 100%;
     overflow: hidden;
@@ -42,7 +42,7 @@ input::placeholder {
 .item:nth-child(1) {
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
-    background: url("/src/img/spaceship-2560x1440-futuristic-clouds-4k-231872.png") no-repeat center center;
+    background: url("/src/img/shotinraww-267315-unsplash2.png") no-repeat center center;
     background-size: cover;
     padding-right: 1px;
     font-size: 80px;
