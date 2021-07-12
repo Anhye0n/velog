@@ -2,40 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>회원가입</title>
+    <title>로그인</title>
+    <!--<% if (locals.user === undefined){ %>
 
+    <% }else{ %>
+    <script>alert('로그인 되었습니다.');
+    location.href = 'http://anhye0n.me/';</script>
+    <% } %>-->
     <link rel="stylesheet" href="/src/css/main.css">
-
+    <link rel="stylesheet" href="/src/css/register.css">
+    <link rel="stylesheet" href="/src/css/font.css">
     <script type="text/javascript">
-        function pass_check(){
+        function pass_check() {
             var register_form = document.getElementById('register_form');
             var p1 = document.getElementById('pass_check_1').value
             var p2 = document.getElementById('pass_check_2').value
             var btn = document.getElementById('btn')
-            if( p1 === p2){
+            if (p1 === p2) {
                 // alert('비밀번호가 일치합니다.')
                 register_form.submit()
-            }else if(p1 !== p2){
+            } else if (p1 !== p2) {
                 alert('비밀번호가 일치하지 않습니다.')
             }
         }
     </script>
 </head>
 <body>
-<form id="register_form" action="/api/user/register" method="post">
-    <p>이름 : <input type="text" name="user_name" autocomplete="on" placeholder="이름" autofocus></p>
-    <p>이메일 : <input type="email" name="email" autocomplete="on" placeholder="이메일"><span class="message"> <%= locals.err_email %></span></p>
-    <p>아이디 : <input type="text" name="id" autocomplete="on" placeholder="아이디"><span class="message"> <%= locals.err_id %></span></p>
-    <p>비밀번호 : <input type="password" id="pass_check_1" name="password" autocomplete="on" placeholder="비밀번호"></p>
-    <p>비밀번호 확인: <input type="password" id="pass_check_2" autocomplete="on" placeholder="비밀번호"></p>
-    <button type="button" onclick="pass_check()">회원가입</button>
-</form>
-<div>
-    <h2>기능들</h2>
-    <ul>
-        <li>이메일이 이미 존재 할 시에 알림</li>
-        <li>아이디가 이미 존재 할 시에 알림</li>
-    </ul>
+<div id="regi_container">
+    <div id="regi_box">
+        <div class="item">
+            <p id="item_welcome">W e l c o m e</p>
+            <p class="round-font">A n H y e 0 n . m e</p>
+        </div>
+        <div class="item">
+            <p id="regi_title">R E G I S T E R</p>
+            <form id="register_form" action="/api/user/register" method="post">
+                <table id="form_table">
+                    <tr>
+                        <td><input type="text" name="user_name" autocomplete="on" placeholder="Name"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="email" name="email" autocomplete="on" placeholder="E-mail"></td>
+                    <tr>
+                        <td class="regi_error"><%= locals.err_email %></td>
+                    </tr>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="id" autocomplete="on" placeholder="ID"></td>
+                    </tr>
+                    <tr>
+                        <td class="regi_error"><%= locals.err_id %></td>
+                    </tr>
+                    <tr>
+                        <td><input type="password" id="pass_check_1" name="password" autocomplete="on" placeholder="Password"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="password" id="pass_check_2" autocomplete="on" placeholder="Password 확인"></td>
+                    </tr>
+                </table>
+                <button class="regi_button" type="button" onclick="pass_check()">S U B M I T</button>
+            </form>
+            <hr style="width: 80%">
+            <button class="regiser_button" type="button" onclick="location.href = 'http://anhye0n.me/user/login'">L O G I N</button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

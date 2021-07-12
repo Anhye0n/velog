@@ -1,3 +1,10 @@
+html, body {
+    /*width: 100%의 여백 없애기 용*/
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
 .message{
     color: #ff0000;
 }

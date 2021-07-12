@@ -1,0 +1,15 @@
+/*font*/
+
+@import url('https://fonts.googleapis.com/css2?family=Crete+Round&display=swap');
+/*font-family: 'Crete Round', serif;*/
+
+@import url('https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap');
+/*font-family: 'Zen Tokyo Zoo', cursive;*/
+
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+/*font-family: 'Varela Round', sans-serif;*/
+
+@font-face {
+    font-family: 'nanumround';
+    src: url("/src/font/NanumFontSetup_TTF_SQUARE_ROUND/NanumSquareRoundR.ttf");
+}
