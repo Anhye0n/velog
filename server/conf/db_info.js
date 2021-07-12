@@ -3,7 +3,7 @@ var db_info = {
     host: 'localhost',
     user: 'root',
     password: 'xhdka2256',
-    database: 'db_test',
+    database: 'velog',
     multipleStatements: true,
 }
 
