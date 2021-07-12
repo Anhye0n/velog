@@ -52,6 +52,7 @@ input::placeholder {
 #item_welcome {
     padding-top: 80px;
     white-space: nowrap;
+    color: #ffffff;
 }
 
 #regi_title {
@@ -138,6 +139,7 @@ input::placeholder {
     font-size: 20px;
     text-shadow: 1px 1px 5px #ffffff;
     font-family: 'Crete Round', serif;
+    color: #ffffff;
 }
 
 .item:nth-child(2) {
