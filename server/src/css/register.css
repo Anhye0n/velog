@@ -44,7 +44,6 @@ input::placeholder {
     border-bottom-left-radius: 30px;
     background: url("/src/img/shotinraww-267315-unsplash2.png") no-repeat center center;
     background-size: cover;
-    padding-right: 1px;
     font-size: 80px;
     font-family: 'Zen Tokyo Zoo', cursive;
 }
