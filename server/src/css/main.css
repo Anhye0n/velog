@@ -3,14 +3,178 @@ html, body {
     margin: 0;
     padding: 0;
     width: 100%;
+    height: 100%;
 }
+
+a {
+    text-decoration: none;
+}
+
 input:-webkit-autofill {
-    -webkit-box-shadow:0 0 0 50px white inset; /* Change the color to your own background color */
+    -webkit-box-shadow: 0 0 0 50px white inset; /* Change the color to your own background color */
 }
 
 input:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0 50px white inset;
 }
-.message{
+
+.message {
     color: #ff0000;
+}
+
+#index_box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+#box_left {
+    position: fixed;
+    overflow-y: auto;
+    width: 350px;
+    height: 100%;
+    border: 1px solid #000000;
+    /*background: url("../../src/img/diego-ph-5LOhydOtTKU-unsplash2.png") no-repeat;*/
+    /*background-size: cover;*/
+    background: #ffffff;
+}
+
+#box_right {
+    flex-grow: 1;
+    min-width: 1000px;
+    height: 1800px;
+    margin-left: 350px;
+    border: 1px solid #000000;
+}
+
+#left_top_title {
+    text-align: center;
+    font-size: 40px;
+}
+
+#left_top_title img {
+    margin-top: 20px;
+    width: 100px;
+}
+
+#anhye0n {
+    font-family: 'Kaushan Script', cursive;
+    font-weight: normal;
+}
+
+#left_top_title p {
+    margin-top: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+#user_info {
+    text-align: left;
+    padding-left: 40px;
+}
+
+#left_div{
+    width: 100%;
+}
+
+.left_menu {
+    list-style: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    color: #505050;
+}
+
+.left_menu:hover a{
+    text-decoration: underline;
+    color: #1e77bc;
+}
+
+.left_menu a {
+    color: #505050;
+}
+
+#user_info_name {
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+#user_info_name span {
+    font-size: 23px;
+}
+
+#user_info_email {
+    margin-top: -10px;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+}
+
+#user_logout_edit {
+    width: 100%;
+    display: flex;
+    text-align: center;
+}
+
+.log_button {
+    flex-grow: 1;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: none;
+    border: 1px solid #343434;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.log_button:hover{
+    background: #1e77bc;
+    color: #ffffff;
+    transition: 0.3s;
+}
+
+#user_logout {
+    border-left: none;
+    border-right: none;
+
+}
+
+#user_edit {
+    border-right: none;
+}
+
+#search_box{
+    text-align: center;
+    margin-top: 20px;
+}
+
+#search{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    width: 230px;
+    height: 40px;
+    border: none;
+    background: #e3e3e3;
+    padding-left: 15px;
+}
+
+#search_icon{
+    margin-bottom: -13px;
+    padding-right: 10px;
+    padding-left: 10px;
+    height: 42px;
+    background: #e3e3e3;
+}
+
+#search:focus{
+    outline-color: #29aae0;
+}
+
+#copyright{
+    position: absolute;
+    bottom: 10px;
+    margin-bottom: 0;
+    margin-left: 13px;
 }

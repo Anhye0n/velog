@@ -3,36 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../../src/css/main.css">
+    <link rel="stylesheet" href="/src/css/main.css">
+    <link rel="stylesheet" href="/src/css/font.css">
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </head>
 <body>
-<div>
-    <h1>Anhye0n.me</h1>
-    <h2>boiler-plate</h2>
-    <h2>register, login</h2>
-    <h3>last-update : 2021-07-11</h3>
-    <hr>
-    <% if (locals.user){ %>
-        E-mail : <%= user.email %>
-        <br>
-        <%= user.name %>님 반갑습니다.
-    <% } %>
-    <hr>
-    <a href="http://anhye0n.me/user/register">회원가입 페이지</a>
-    <br>
-    <a href="http://anhye0n.me/user/login">로그인 페이지</a>
-    <br>
-    <a href="http://anhye0n.me/api/user/logout">로그아웃 페이지</a>
-    <br>
-    <br>
-    <hr>
-    <hr>
-    <br>
-    <h2>관리자 페이지</h2>
-    <a href="http://anhye0n.me/admin/decrypto_test">복호화 테스트 페이지</a>
-    <br>
-    <a href="http://anhye0n.me/admin/auto_increment_reset">auto_increment 초기화 페이지</a>
+<div id="index_box">
+    <div id="box_left">
+        <div id="left_top_title">
+            <img src="/src/img/logo.png" alt="">
+            <p><span id="anhye0n">AnHye0n</span> Blog</p>
+        </div>
+        <div id="user_info">
+            <% if (locals.user){ %>
+                <p id="user_info_name"><span><%= user.name %></span> 님</p>
+                <p id="user_info_email"><%= user.email %></p>
+            <% }else{ %>
+                <p id="user_info_name"><span>Guest</span> 님</p>
+                <p id="user_info_email">Welcome AnHye0n blog</p>
+            <% } %>
+        </div>
+        <div id="user_logout_edit">
+            <% if (locals.user){ %>
+                <button id="user_logout" class="log_button" type="button"
+                        onclick="location.href='http://anhye0n.me/api/user/logout'">LOGOUT
+                </button>
+                <button id="user_edit" class="log_button" type="button"
+                        onclick="location.href='http://anhye0n.me/api/user/my_info'">MY INFO
+                </button>
+            <% } else{ %>
+                <button id=" user_logout
+            " class="log_button" type="button"
+                        onclick="location.href='http://anhye0n.me/user/register'">REGISTER
+                </button>
+                <button id="user_logout" class="log_button" type="button"
+                        onclick="location.href='http://anhye0n.me/user/login'">LOGIN
+                </button>
+            <% } %>
+        </div>
+        <div id="left_div">
+            <ul>
+                <li class="left_menu"><a href="">My Info.</a></li>
+                <li class="left_menu"><a href="">Portfolio</a></li>
+                <li class="left_menu"><a href="">All Ariticle</a></li>
+                <li class="left_menu"><a href="">All Categories</a></li>
+                <li class="left_menu"><a href="">Site Info.</a></li>
+                <li class="left_menu"><a href="http://anhye0n.me:8070">다른 링크(쇼핑몰)</a></li>
+            </ul>
+        </div>
+        <% if (locals.user.id === 'ajh08070'){ %>
+            <hr style="width: 60%; height:0; border:0; border-top:1px solid #c2c2c2;">
+            <ul>
+                <p style="margin-left: 90px; font-family: 'nanumround', serif; font-weight: bold; margin-bottom: -10px">
+                    Admin Page</p>
+                <li class="left_menu"><a href="http://anhye0n.me/admin/decrypto_test">복호화 테스트</a></li>
+                <li class="left_menu"><a href="http://anhye0n.me/admin/auto_increment_reset">auto_increment 초기화 페이지</a></li>
+            </ul>
+        <% } %>
+        <hr style="width: 60%; height:0; border:0; border-top:1px solid #c2c2c2;">
 
+        <div id="search_box">
+            <input type="text" id="search" placeholder="Search"><i id="search_icon" class="fas fa-search"></i>
+        </div>
+
+        <p id="copyright">© 2021. AnJeongHyeon All rights reserved.</p>
+    </div>
+    <div id="box_right">
+        <p id="right_title">dfasdfasf</p>
+        <p id="right_content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam at autem cumque dolorem
+            eligendi est ipsum
+            iusto labore laborum natus perferendis, quaerat reiciendis sint unde vel veniam vitae voluptate
+            voluptatum!</p>
+    </div>
 </div>
 </body>
 </html>
