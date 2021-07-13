@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <% if(locals.user === undefined){ %>
+        <script>alert('잘못된 접근입니다.');
+            location.href = 'http://anhye0n.me'</script>
+    <% }else if (user.id !== 'ajh08070'){ %>
+        <script>alert('잘못된 접근입니다.');
+            location.href = 'http://anhye0n.me'</script>
+    <%} %>
     <meta charset="UTF-8">
     <title>복호화 테스트</title>
 </head>

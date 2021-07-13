@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% if(locals.user === undefined){ %>
+        <script>alert('잘못된 접근입니다.');
+            location.href = 'http://anhye0n.me'</script>
+    <% }else if (user.id !== 'ajh08070'){ %>
+            <script>alert('잘못된 접근입니다.');
+                location.href = 'http://anhye0n.me'</script>
+    <%} %>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/src/css/font.css">
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <style>
+        #top {
+            font-size: 50px;
+            text-align: center;
+        }
+
+        #top img {
+            width: 200px;
+            margin-top: 20px;
+        }
+
+        #top p {
+            margin-top: -8px;
+        }
+
+        #anhye0n {
+            font-family: 'Kaushan Script', cursive;
+            font-weight: normal;
+        }
+
+        .left_menu {
+            text-align: center;
+            list-style: none;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: #505050;
+        }
+
+        #admin_title {
+            font-family: nanumround, serif;
+            font-weight: bold;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+<div id="top">
+    <img src="/src/img/logo.png" alt="">
+    <p><span id="anhye0n">AnHye0n</span> Blog</p>
+    <p id="admin_title">관리자 페이지</p>
+</div>
+<ul>
+    <li class="left_menu"><a href="http://anhye0n.me/">메인 페이지</a></li>
+    <hr style="width: 10%; margin-top: 30px; margin-bottom: 30px">
+    <li class="left_menu"><a href="http://anhye0n.me/admin/decrypto_test">복호화 테스트</a></li>
+    <li class="left_menu"><a href="http://anhye0n.me/admin/auto_increment_reset">auto_increment 초기화
+            페이지</a></li>
+</ul>
+</body>
+</html>

@@ -8,6 +8,11 @@ router.get('/', (req, res) => {
     res.render('./user/index', {'user': user});
 })
 
+router.get('/admin', (req, res) => {
+    let user = req.user
+    res.render('./admin/index', {'user':user});
+})
+
 router.get('/admin/auto_increment_reset', (req, res) => {
 
     res.render('./admin/auto_increment_reset');
