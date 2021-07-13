@@ -134,19 +134,20 @@ input:-webkit-autofill:focus {
     transition: 0.3s;
 }
 
-#user_logout {
+#user_edit {
     border-left: none;
     border-right: none;
 
 }
 
-#user_edit {
+#user_logout {
     border-right: none;
 }
 
 #search_box{
     text-align: center;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 #search{

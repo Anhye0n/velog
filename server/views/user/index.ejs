@@ -25,15 +25,14 @@
         </div>
         <div id="user_logout_edit">
             <% if (locals.user){ %>
-                <button id="user_logout" class="log_button" type="button"
-                        onclick="location.href='http://anhye0n.me/api/user/logout'">LOGOUT
-                </button>
                 <button id="user_edit" class="log_button" type="button"
                         onclick="location.href='http://anhye0n.me/api/user/my_info'">MY INFO
                 </button>
+                <button id="user_logout" class="log_button" type="button"
+                        onclick="location.href='http://anhye0n.me/api/user/logout'">LOGOUT
+                </button>
             <% } else{ %>
-                <button id=" user_logout
-            " class="log_button" type="button"
+                <button id="user_edit" class="log_button" type="button"
                         onclick="location.href='http://anhye0n.me/user/register'">REGISTER
                 </button>
                 <button id="user_logout" class="log_button" type="button"
@@ -60,7 +59,8 @@
             <% if (user.id === 'ajh08070'){ %>
                 <hr style="width: 60%; height:0; border:0; border-top:1px solid #c2c2c2;">
                 <ul>
-                    <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;" href="http://anhye0n.me/admin/">Admin Page</a></li>
+                    <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
+                                             href="http://anhye0n.me/admin/">Admin Page</a></li>
                 </ul>
             <% } %>
         <% } %>
