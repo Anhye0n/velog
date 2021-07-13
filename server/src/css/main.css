@@ -33,7 +33,7 @@ input:-webkit-autofill:focus {
     overflow-y: auto;
     width: 350px;
     height: 100%;
-    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
     /*background: url("../../src/img/diego-ph-5LOhydOtTKU-unsplash2.png") no-repeat;*/
     /*background-size: cover;*/
     background: #ffffff;
