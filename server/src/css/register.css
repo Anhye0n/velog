@@ -57,6 +57,7 @@ input::placeholder {
 #regi_title {
     font-size: 50px;
     font-weight: bold;
+    font-family: 'Roboto', sans-serif;
 }
 
 #form_table {

@@ -9,7 +9,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 /*font-family: 'Varela Round', sans-serif;*/
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+/*font-family: 'Roboto', sans-serif;*/
+
 @font-face {
     font-family: 'nanumround';
     src: url("/src/font/NanumFontSetup_TTF_SQUARE_ROUND/NanumSquareRoundR.ttf");
 }
+
