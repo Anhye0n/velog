@@ -82,12 +82,12 @@ input::placeholder {
     border: none;
     margin-top: 10px;
     padding-bottom: 5px;
-    border-bottom: 3px solid #172D40;
+    border-bottom: 1px solid #172D40;
     transition: 0.3s;
 }
 
 #form_table tr td input:hover {
-    border-bottom: 3px solid #f2d1b3;
+    border-bottom: 1px solid #f2d1b3;
     transition: 0.3s;
 }
 
