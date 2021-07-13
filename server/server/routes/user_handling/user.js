@@ -59,7 +59,8 @@ router.post('/user/register', function (req, res, next) {
 });
 
 router.post('/user/login', passport.authenticate('local-login', {
-    successRedirect: '/api/user/login_success',
+    // successRedirect: '/api/user/login_success',
+    successRedirect: '/',
     failureRedirect: '/user/login',
     failureFlash: true
 }), function (req, res) {
