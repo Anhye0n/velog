@@ -58,7 +58,6 @@ module.exports = (passport) => {
                             // req.session.save()
                             const user = {
                                 id: username,
-                                password: de_password,
                                 name: db_name,
                                 email: db_email
                             }
