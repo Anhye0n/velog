@@ -263,8 +263,14 @@ input:-webkit-autofill:focus {
 }
 
 .content_box p {
+    transition: 0.3s;
     font-family: 'Poiret One', cursive;
     position: relative;
     top: 125px;
     font-size: 30px;
+}
+
+.content_box:hover p{
+    transition: transform 0.3s;
+    transform: translate(10px, 10px);
 }
