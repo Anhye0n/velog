@@ -3,7 +3,6 @@ const app = express()
 
 // DB
 const db_info = require('../conf/db_info')
-const conn = db_info.init()
 
 //모듈
 const bodyParser = require('body-parser'), path = require('path')
