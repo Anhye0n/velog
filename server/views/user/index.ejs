@@ -26,7 +26,7 @@
         <div id="user_logout_edit">
             <% if (locals.user){ %>
                 <button id="user_edit" class="log_button" type="button"
-                        onclick="location.href='http://anhye0n.me/api/user/my_info'">MY INFO
+                        onclick="location.href='http://anhye0n.me/user/my_info'">MY INFO
                 </button>
                 <button id="user_logout" class="log_button" type="button"
                         onclick="location.href='http://anhye0n.me/api/user/logout'">LOGOUT
@@ -39,14 +39,24 @@
                         onclick="location.href='http://anhye0n.me/user/login'">LOGIN
                 </button>
             <% } %>
+            <!--버튼 길이 조정-->
+
+            <script>
+                let button_width = document.getElementById('user_logout_edit')
+                let division = button_width.offsetWidth / 2
+
+                document.getElementById('user_edit').style.width = division + 'px'
+                document.getEleentById('user_logout').style.width = division + 'px'
+                console.log(button_width.offsetWidth)
+            </script>
         </div>
         <div id="left_div">
             <ul>
-                <li class="left_menu"><a href="">My Info.</a></li>
-                <li class="left_menu"><a href="">Portfolio</a></li>
-                <li class="left_menu"><a href="">All Ariticle</a></li>
-                <li class="left_menu"><a href="">All Categories</a></li>
-                <li class="left_menu"><a href="">Site Info.</a></li>
+                <li class="left_menu"><a href="http://anhye0n.me/user/my_info">My Info.</a></li>
+                <li class="left_menu"><a href="http://anhye0n.me/contents/portfolio">Portfolio</a></li>
+                <li class="left_menu"><a href="http://anhye0n.me/contents/all_article">All Ariticle</a></li>
+                <li class="left_menu"><a href="http://anhye0n.me/contents/all_categories">All Categories</a></li>
+                <li class="left_menu"><a href="http://anhye0n.me/contents/site_info">Site Info.</a></li>
                 <li class="left_menu"><a href="http://anhye0n.me:8070">다른 링크(쇼핑몰)</a></li>
             </ul>
         </div>
