@@ -4,10 +4,9 @@ var db_info = {
     user: 'root',
     password: 'xhdka2256',
     database: 'velog',
-    multipleStatements: true
+    multipleStatements: true,
 }
 
-//왜 안올라가냐ㅑㅑㅑㅑ
 module.exports = {
     init: function () {
         return mysql.createConnection(db_info);
