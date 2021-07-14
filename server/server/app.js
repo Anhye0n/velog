@@ -5,7 +5,7 @@ const app = express()
 const db_info = require('../conf/db_info')
 
 //모듈
-const bodyParser = require('body-parser'), path = require('path')
+const bodyParser = require('body-parser'), path = require('path'), favicon = require('serve-favicon')
 const passport = require('passport')
 
 //session
@@ -25,6 +25,7 @@ app.use(session({
     cookie: {maxAge: 1000 * 60 * 60} // 1시간
 }))
 
+app.use(favicon(path.join(__dirname, '../src/img', 'favicon.ico')));
 require('./routes/user_handling/passport')(passport)
 
 app.use(passport.initialize()) //passport를 사용하도록 설정
