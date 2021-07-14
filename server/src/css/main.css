@@ -288,3 +288,21 @@ input:-webkit-autofill:focus {
     transform: translate(10px, 10px);
     transition: 0.3s;
 }
+
+#left_botton_icon{
+    text-align: center;
+}
+
+#github_icon{
+    font-size: 25px;
+    padding-left: 5px;
+    padding-right: 5px;
+    cursor: pointer;
+}
+
+#email_icon{
+    font-size: 25px;
+    padding-left: 5px;
+    padding-right: 5px;
+    cursor: pointer;
+}
