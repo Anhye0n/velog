@@ -33,9 +33,7 @@ input:-webkit-autofill:focus {
     overflow-y: auto;
     width: 350px;
     height: 100%;
-    border-right: 1px solid #000000;
-    /*background: url("../../src/img/diego-ph-5LOhydOtTKU-unsplash2.png") no-repeat;*/
-    /*background-size: cover;*/
+    /*border-right: 1px solid #000000;*/
     background: #ffffff;
 }
 
@@ -88,7 +86,7 @@ input:-webkit-autofill:focus {
 
 .left_menu:hover a {
     text-decoration: underline;
-    color: #1e77bc;
+    color: #2182bf;
 }
 
 .left_menu a {
@@ -117,20 +115,23 @@ input:-webkit-autofill:focus {
     width: 100%;
     display: flex;
     text-align: center;
+    /*border-top: 1px solid #343434;*/
+    /*border-bottom: 1px solid #343434;*/
 }
 
 .log_button {
     /*flex-grow: 1;*/
     padding-top: 10px;
     padding-bottom: 10px;
+    /*background: #e3e3e3;*/
     background: none;
-    border: 1px solid #343434;
+    border: none;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .log_button:hover {
-    background: #1e77bc;
+    background: #2182bf;
     color: #ffffff;
     transition: 0.3s;
 }
