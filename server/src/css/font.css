@@ -11,9 +11,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400&display=swap');
 /*font-family: 'Roboto', sans-serif;*/
+/*100,200,300,400*/
 
 @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
 /*font-family: 'Kaushan Script', cursive;*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+/*font-family: 'Poiret One', cursive;*/
+
+@import url('https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap');
+/*font-family: 'Otomanopee One', sans-serif;*/
 
 @font-face {
     font-family: 'nanumround';

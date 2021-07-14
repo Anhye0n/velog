@@ -47,9 +47,13 @@ app.use('/api', user_info)
 const view_router = require('./routes/view_ejs')
 app.use('/', view_router)
 
-//어드민 페이지 파일 라우터
+//어드민 파일 라우터
 const db_test = require('./routes/admin/admin')
-app.use('/admin', db_test)
+app.use('/api/admin', db_test)
+
+//어드민 views 파일 라우터
+const admin_view = require('./routes/admin/admin_view')
+app.use('/admin', admin_view)
 
 app.listen(80, () => {
     console.log(`Example app listening at http://anhye0n.me`)

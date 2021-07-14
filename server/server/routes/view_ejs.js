@@ -8,22 +8,6 @@ router.get('/', (req, res) => {
     res.render('./user/index', {'user': user});
 })
 
-router.get('/admin', (req, res) => {
-    let user = req.user
-    res.render('./admin/index', {'user': user});
-})
-
-router.get('/admin/auto_increment_reset', (req, res) => {
-    let user = req.user
-
-    res.render('./admin/auto_increment_reset', {'user': user});
-})
-router.get('/admin/decrypto_test', (req, res) => {
-    let user = req.user
-
-    res.render('./admin/decrypto_test', {'user': user});
-})
-
 router.get('/user/register', (req, res) => {
     res.render('./user/register');
 })
