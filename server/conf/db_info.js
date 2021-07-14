@@ -7,6 +7,7 @@ var db_info = {
     multipleStatements: true
 }
 
+//왜 안올라가냐ㅑㅑㅑㅑ
 module.exports = {
     init: function () {
         return mysql.createConnection(db_info);
