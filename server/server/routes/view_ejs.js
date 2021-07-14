@@ -5,7 +5,7 @@ router.get('/', (req, res) => {
     //session에 담긴 user정보
     //req로 접근 가능
     let user = req.user;
-    res.render('./user/index', {'user': user});
+    res.render('./index', {'user': user});
 })
 
 router.get('/user/register', (req, res) => {
