@@ -32,6 +32,14 @@ router.get('/user/my_info', (req, res) => {
 })
 
 // contents views
+router.get('/contents/whoami', (req, res) => {
+    //session에 담긴 user정보
+    //req로 접근 가능
+    let user = req.user;
+    res.render('./contents/whoami',{'user': user});
+})
+
+// contents views
 router.get('/contents/portfolio', (req, res) => {
     //session에 담긴 user정보
     //req로 접근 가능

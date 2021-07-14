@@ -255,11 +255,24 @@ input:-webkit-autofill:focus {
     right: 0;
     bottom: 0;
     background-color: #000;
+    transition: 0.3s;
+}
+
+.content_box:hover:before {
+    content: "";
+    opacity: 0.65;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    transition: 0.3s;
 }
 
 .content_box:hover {
-    box-shadow: 5px 5px 30px #aaaaaa;
-    transition: transform 0.3s;
+    box-shadow: 10px 10px 20px #868686;
+    transition: 0.3s;
     transform: translate(-5px, -5px);
 }
 
@@ -272,6 +285,6 @@ input:-webkit-autofill:focus {
 }
 
 .content_box:hover p{
-    transition: transform 0.3s;
     transform: translate(10px, 10px);
+    transition: 0.3s;
 }
