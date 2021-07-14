@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/src/css/main.css">
+    <link rel="stylesheet" href="/src/css/contents.css">
     <link rel="stylesheet" href="/src/css/font.css">
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
 </head>
 <body>
 <div id="index_box">
@@ -15,32 +17,25 @@
             <p><span id="anhye0n">AnHye0n</span> Blog</p>
         </div>
         <div id="user_info">
-            <% if (locals.user){ %>
-                <p id="user_info_name"><span><%= user.name %></span> 님</p>
-                <p id="user_info_email"><%= user.email %></p>
-            <% }else{ %>
-                <p id="user_info_name"><span>Guest</span> 님</p>
-                <p id="user_info_email">Welcome AnHye0n blog</p>
-            <% } %>
+            <!--로그인 되면 이름 띄우기-->
+            <p id="user_info_name"><span>Guest</span> 님</p>
+            <!--로그인 되면 이메일 띄우기-->
+            <!--<p id="user_info_email">ajh08070@naver.com</p>-->
+            <p id="user_info_email">Welcome AnHye0n blog</p>
         </div>
         <div id="user_logout_edit">
-            <% if (locals.user){ %>
-                <button id="user_edit" class="log_button" type="button"
-                        onclick="location.href='http://anhye0n.me/user/my_info'">MY INFO
-                </button>
-                <button id="user_logout" class="log_button" type="button"
-                        onclick="location.href='http://anhye0n.me/api/user/logout'">LOGOUT
-                </button>
-            <% } else{ %>
-                <button id="user_edit" class="log_button" type="button"
-                        onclick="location.href='http://anhye0n.me/user/register'">REGISTER
-                </button>
-                <button id="user_logout" class="log_button" type="button"
-                        onclick="location.href='http://anhye0n.me/user/login'">LOGIN
-                </button>
-            <% } %>
+            <!--로그인 안되있을 시 로그인과 회원가입으로-->
+            <button id="user_edit" class="log_button" type="button"
+                    onclick="location.href='http://anhye0n.me/api/user/register'">REGISTER
+            </button>
+            <button id="user_logout" class="log_button" type="button"
+                    onclick="location.href='http://anhye0n.me/user/login'">LOGIN
+            </button>
+            <!--            <button id="user_edit" class="log_button" type="button">MY INFO</button>-->
+            <!--            <button id="user_logout" class="log_button" type="button"-->
+            <!--                    onclick="location.href='http://anhye0n.me/api/user/logout'">LOGOUT
+                        </button>-->
             <!--버튼 길이 조정-->
-
             <script>
                 let button_width = document.getElementById('user_logout_edit')
                 let division = button_width.offsetWidth / 2
@@ -52,7 +47,8 @@
         </div>
         <div id="left_div">
             <ul>
-                <li class="left_menu"><a href="http://anhye0n.me/user/my_info">My Info.</a></li>
+                <li class="left_menu"><a href="http://anhye0n.me/contents/whoami"><p>Who am <strong>I</strong></p></a>
+                </li>
                 <li class="left_menu"><a href="http://anhye0n.me/contents/portfolio">Portfolio</a></li>
                 <li class="left_menu"><a href="http://anhye0n.me/contents/all_article">All Ariticle</a></li>
                 <li class="left_menu"><a href="http://anhye0n.me/contents/all_categories">All Categories</a></li>
@@ -60,43 +56,29 @@
                 <li class="left_menu"><a href="http://anhye0n.me:8070">다른 링크(쇼핑몰)</a></li>
             </ul>
         </div>
+
         <hr style="width: 60%; height:0; border:0; border-top:1px solid #c2c2c2;">
 
         <div id="search_box">
             <input type="text" id="search" placeholder="Search"><i id="search_icon" class="fas fa-search"></i>
         </div>
-        <% if (locals.user){ %>
-            <% if (user.id === 'ajh08070'){ %>
-                <hr style="width: 60%; height:0; border:0; border-top:1px solid #c2c2c2;">
-                <ul>
-                    <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
-                                             href="http://anhye0n.me/admin/">Admin Page</a></li>
-                </ul>
-            <% } %>
-        <% } %>
+        <hr style="width: 60%; height:0; border:0; border-top:1px solid #c2c2c2;">
+        <ul>
+            <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
+                                     href="http://anhye0n.me/admin/">Admin Page</a></li>
+        </ul>
+
+        <div id="left_botton_icon">
+            <i id="github_icon" class="fab fa-github" onclick="window.open('https://github.com/AnHye0n')"></i>
+            <i id="email_icon" class="far fa-envelope" title="ajhrc08070@gmail.com"></i>
+        </div>
         <p id="copyright">© 2021. AnJeongHyeon All rights reserved.</p>
     </div>
     <div id="box_right">
         <div id="box_right_padding">
-            <p id="right_title">M a i n</p>
-            <p id="right_content">ALL Contents</p>
-            <div id="box_list">
-                <div class="content_box" onclick="location.href = 'http://anhye0n.me/user/my_info'">
-                    <p>My Info.</p>
-                </div>
-                <div class="content_box" onclick="location.href = 'http://anhye0n.me/contents/portfolio'">
-                    <p>Portfolio</p>
-                </div>
-                <div class="content_box" onclick="location.href = 'http://anhye0n.me/contents/all_article'">
-                    <p>All Article</p>
-                </div>
-                <div class="content_box" onclick="location.href = 'http://anhye0n.me/contents/all_categories'">
-                    <p>All Categories</p>
-                </div>
-                <div class="content_box" onclick="location.href = 'http://anhye0n.me/contents/site_info'">
-                    <p>Site Info.</p>
-                </div>
-            </div>
+            <p id="right_title">All Article</p>
+            <p id="right_content">This is a page where you can see the entire article.</p>
+
         </div>
     </div>
 </div>
