@@ -25,7 +25,9 @@ app.use(session({
     cookie: {maxAge: 1000 * 60 * 60} // 1시간
 }))
 
+// favicon 설정
 app.use(favicon(path.join(__dirname, '../src/img', 'favicon.ico')));
+
 require('./routes/user_handling/passport')(passport)
 
 app.use(passport.initialize()) //passport를 사용하도록 설정
