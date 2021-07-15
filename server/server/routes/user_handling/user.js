@@ -58,6 +58,17 @@ router.post('/user/register', function (req, res, next) {
     })
 });
 
+router.post('/user/board_write', function (req, res, next) {
+
+    var name = req.body.user_name // 포스트 방식은 body, get 방식은 query
+    var email = req.body.email
+    var id = req.body.id
+    var password = req.body.password
+
+    // 암호화
+
+});
+
 router.post('/user/login', passport.authenticate('local-login', {
     // successRedirect: '/api/user/login_success',
     successRedirect: '/',

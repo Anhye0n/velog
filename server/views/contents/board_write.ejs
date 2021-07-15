@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/src/css/main.css">
-    <link rel="stylesheet" href="/src/css/contents.css">
     <link rel="stylesheet" href="/src/css/font.css">
+    <link rel="stylesheet" href="/src/css/contents.css">
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 </head>
@@ -88,9 +88,28 @@
     </div>
     <div id="box_right">
         <div id="box_right_padding">
-            <p id="right_title">Site Info</p>
-            <p id="right_content">This page explains about this site.</p>
-
+            <p id="right_title">Board Write</p>
+            <p id="right_content">This page is where you write.</p>
+            <form id="content_write" action="/api/user/board_write" method="post">
+                <div>
+                    <input type="text" id="title" name="title" placeholder="제목" autofocus required>
+                </div>
+                <hr style="width: 70px; border: 3px solid #555555; margin-left: 2px; margin-bottom: 20px">
+                <div style="text-align: left">
+                    <select name="categories" id="categories">
+                        <option value="none" selected disabled hidden>태그를 선택하세요.</option>
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="mercedes">Mercedes</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                </div>
+                <div>
+                    <textarea id="contents" name="contents" cols="111" rows="40" placeholder="내용을 작성하세요."
+                              required></textarea>
+                </div>
+                <button type="submit" id="contents_uplaod">upload</button>
+            </form>
         </div>
     </div>
 </div>

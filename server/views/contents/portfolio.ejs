@@ -62,11 +62,23 @@
         <div id="search_box">
             <input type="text" id="search" placeholder="Search"><i id="search_icon" class="fas fa-search"></i>
         </div>
-        <hr style="width: 60%; height:0; border:0; border-top:1px solid #c2c2c2;">
-        <ul>
-            <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
-                                     href="http://anhye0n.me/admin/">Admin Page</a></li>
-        </ul>
+        <% if (locals.user){ %>
+            <% if (user.id !== 'ajh08070'){ %>
+                <hr style="width: 60%; height:0; border:0; border-top:1px solid #c2c2c2;">
+                <ul>
+                    <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
+                                             href="http://anhye0n.me/contents/board_write">글 작성하기</a></li>
+                </ul>
+            <% }else if (user.id === 'ajh08070'){ %>
+                <hr style="width: 60%; height:0; border:0; border-top:1px solid #c2c2c2;">
+                <ul>
+                    <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
+                                             href="http://anhye0n.me/admin/">Admin Page</a></li>
+                    <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
+                                             href="http://anhye0n.me/contents/board_write">글 작성하기</a></li>
+                </ul>
+            <% } %>
+        <% } %>
 
         <div id="left_botton_icon">
             <i id="github_icon" class="fab fa-github" onclick="window.open('https://github.com/AnHye0n')"></i>

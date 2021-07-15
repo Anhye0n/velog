@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/src/css/main.css">
-    <link rel="stylesheet" href="/src/css/contents.css">
-    <link rel="stylesheet" href="/src/css/font.css">
+    <link rel="stylesheet" href="../../../src/css/main.css">
+    <link rel="stylesheet" href="../../../src/css/font.css">
+    <link rel="stylesheet" href="../../../src/css/contents.css">
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 </head>
@@ -13,7 +13,7 @@
 <div id="index_box">
     <div id="box_left">
         <div id="left_top_title">
-            <img src="/src/img/logo.png" alt="">
+            <img src="../../../src/img/logo.png" alt="">
             <p><span id="anhye0n">AnHye0n</span> Blog</p>
         </div>
         <div id="user_info">
@@ -62,23 +62,11 @@
         <div id="search_box">
             <input type="text" id="search" placeholder="Search"><i id="search_icon" class="fas fa-search"></i>
         </div>
-        <% if (locals.user){ %>
-            <% if (user.id !== 'ajh08070'){ %>
-                <hr style="width: 60%; height:0; border:0; border-top:1px solid #c2c2c2;">
-                <ul>
-                    <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
+        <hr style="width: 60%; height:0; border:0; border-top:1px solid #c2c2c2;">
+        <ul>
+            <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
                                              href="http://anhye0n.me/contents/board_write">글 작성하기</a></li>
-                </ul>
-            <% }else if (user.id === 'ajh08070'){ %>
-                <hr style="width: 60%; height:0; border:0; border-top:1px solid #c2c2c2;">
-                <ul>
-                    <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
-                                             href="http://anhye0n.me/admin/">Admin Page</a></li>
-                    <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
-                                             href="http://anhye0n.me/contents/board_write">글 작성하기</a></li>
-                </ul>
-            <% } %>
-        <% } %>
+        </ul>
 
         <div id="left_botton_icon">
             <i id="github_icon" class="fab fa-github" onclick="window.open('https://github.com/AnHye0n')"></i>
@@ -88,12 +76,30 @@
     </div>
     <div id="box_right">
         <div id="box_right_padding">
-            <p id="right_title">Site Info</p>
-            <p id="right_content">This page explains about this site.</p>
-
+            <p id="right_title">Board Write</p>
+            <p id="right_content">This page is where you write.</p>
+            <form id="content_write" action="/api/user/board_write" method="post">
+                <div>
+                    <input type="text" id="title" name="title" placeholder="제목" autofocus required>
+                </div>
+                <hr style="width: 70px; border: 3px solid #555555; margin-left: 2px; margin-bottom: 20px">
+                <div style="text-align: left">
+                    <select name="categories" id="categories">
+                        <option value="none" selected disabled hidden>태그를 선택하세요.</option>
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="mercedes">Mercedes</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                </div>
+                <div>
+                    <textarea id="contents" name="contents" cols="111" rows="40" placeholder="내용을 작성하세요." required></textarea>
+                </div>
+                <button type="submit" id="contents_uplaod">upload</button>
+            </form>
         </div>
     </div>
 </div>
 </body>
-<script type="text/javascript" src="/src/js/main.js"></script>
+<script type="text/javascript" src="../../../src/js/main.js"></script>
 </html>
