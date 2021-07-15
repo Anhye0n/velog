@@ -105,7 +105,7 @@
                 <div style="text-align: left">
                     <select name="categories" id="categories">
                         <option value="none" selected disabled hidden>태그를 선택하세요.</option>
-                        <%= categories.substr(1, -1) %>
+                        <%= categories.slice(-1, 2) %>
                         <option value="volvo">Volvo</option>
                         <option value="saab">Saab</option>
                         <option value="mercedes">Mercedes</option>
