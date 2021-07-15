@@ -53,6 +53,7 @@ input:-webkit-autofill:focus {
 #left_top_title img {
     margin-top: 20px;
     width: 100px;
+    cursor: pointer;
 }
 
 #anhye0n {
@@ -64,6 +65,7 @@ input:-webkit-autofill:focus {
     margin-top: 0;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+    cursor: pointer;
 }
 
 #user_info {
