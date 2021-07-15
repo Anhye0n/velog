@@ -71,8 +71,8 @@ router.get('/contents/board_write', (req, res) => {
         console.log('================')
         console.log(categories)
         console.log('================')
+        res.render('./contents/board_write', {'user': user, 'categories':categories});
     })
-    res.render('./contents/board_write', {'user': user, 'categories':categories});
 })
 
 module.exports = router
