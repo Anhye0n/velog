@@ -62,16 +62,17 @@ router.get('/contents/site_info', (req, res) => {
 router.get('/contents/board_write', (req, res) => {
     let user = req.user;
     let sql = "SELECT * FROM categories"
-    let categories = []
+    let categories = ''
     conn.query(sql, function (err, rows) {
         for (i = 0; i < rows.length; i++) {
             // console.log(rows[i].categories)
-            categories[i] = "<option value='" + rows[i].categories + "'>" + rows[i].categories + "</option>\n"
+            categories += "<option value='" + rows[i].categories + "'>" + rows[i].categories + "</option>"
+
+            console.log('================')
+            console.log(categories)
+            console.log('================')
         }
     })
-
-    console.log(categories)
-    console.log('================')
     res.render('./contents/board_write', {'user': user});
 })
 
