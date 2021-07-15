@@ -1,11 +1,19 @@
 const express = require('express');
 const router = express.Router();
 
+//DB
+const db_info = require('../../../conf/db_info')
+const conn = db_info.init()
+
 router.get('/', (req, res) => {
     //session에 담긴 user정보
     //req로 접근 가능
     let user = req.user;
     res.render('./index', {'user': user});
+    let sql = "SELECT * FROM categories"
+    conn.query(sql, function (err, rows){
+        console.log(rows)
+    })
 })
 
 router.get('/user/register', (req, res) => {
@@ -56,8 +64,6 @@ router.get('/contents/site_info', (req, res) => {
 })
 
 router.get('/contents/board_write', (req, res) => {
-
-
     let user = req.user;
     res.render('./contents/board_write', {'user': user});
 })
