@@ -66,14 +66,13 @@ router.get('/contents/board_write', (req, res) => {
     conn.query(sql, function (err, rows) {
         for (i = 0; i < rows.length; i++) {
             // console.log(rows[i].categories)
-            categories += "<option value='" + rows[i].categories + "'>" + rows[i].categories + "</option>"
-
-            console.log('================')
-            console.log(categories)
-            console.log('================')
+            categories += "<option value='" + rows[i].categories + "'>" + rows[i].categories + "</option>\n"
         }
+        console.log('================')
+        console.log(categories)
+        console.log('================')
     })
-    res.render('./contents/board_write', {'user': user});
+    res.render('./contents/board_write', {'user': user, 'categories':categories});
 })
 
 module.exports = router
