@@ -10,12 +10,6 @@ router.get('/', (req, res) => {
     //req로 접근 가능
     let user = req.user;
     res.render('./index', {'user': user});
-    let sql = "SELECT * FROM categories"
-    conn.query(sql, function (err, rows) {
-        for (i = 0; i < rows.length; i++) {
-            console.log(rows[i].categories)
-        }
-    })
 })
 
 router.get('/user/register', (req, res) => {
@@ -67,6 +61,16 @@ router.get('/contents/site_info', (req, res) => {
 
 router.get('/contents/board_write', (req, res) => {
     let user = req.user;
+    let sql = "SELECT * FROM categories"
+    let categories = ''
+    conn.query(sql, function (err, rows) {
+        for (i = 0; i < rows.length; i++) {
+            console.log(rows[i].categories)
+            categories += "<option value='" + rows[i].categories + "'>" + rows[i].categories + "</option>\n"
+        }
+    })
+
+    console.log(categories)
     res.render('./contents/board_write', {'user': user});
 })
 
