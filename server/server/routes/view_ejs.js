@@ -11,8 +11,10 @@ router.get('/', (req, res) => {
     let user = req.user;
     res.render('./index', {'user': user});
     let sql = "SELECT * FROM categories"
-    conn.query(sql, function (err, rows){
-        console.log(rows[0].categories)
+    conn.query(sql, function (err, rows) {
+        for (i = 0; i < 3; i++) {
+            console.log(rows[i].categories)
+        }
     })
 })
 
