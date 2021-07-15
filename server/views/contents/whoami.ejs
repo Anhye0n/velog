@@ -17,25 +17,32 @@
             <p><span id="anhye0n">AnHye0n</span> Blog</p>
         </div>
         <div id="user_info">
-            <!--로그인 되면 이름 띄우기-->
-            <p id="user_info_name"><span>Guest</span> 님</p>
-            <!--로그인 되면 이메일 띄우기-->
-            <!--<p id="user_info_email">ajh08070@naver.com</p>-->
-            <p id="user_info_email">Welcome AnHye0n blog</p>
+            <% if (locals.user){ %>
+                <p id="user_info_name"><span><%= user.name %></span> 님</p>
+                <p id="user_info_email"><%= user.email %></p>
+            <% }else{ %>
+                <p id="user_info_name"><span>Guest</span> 님</p>
+                <p id="user_info_email">Welcome AnHye0n blog</p>
+            <% } %>
         </div>
         <div id="user_logout_edit">
-            <!--로그인 안되있을 시 로그인과 회원가입으로-->
-            <button id="user_edit" class="log_button" type="button"
-                    onclick="location.href='http://anhye0n.me/api/user/register'">REGISTER
-            </button>
-            <button id="user_logout" class="log_button" type="button"
-                    onclick="location.href='http://anhye0n.me/user/login'">LOGIN
-            </button>
-            <!--            <button id="user_edit" class="log_button" type="button">MY INFO</button>-->
-            <!--            <button id="user_logout" class="log_button" type="button"-->
-            <!--                    onclick="location.href='http://anhye0n.me/api/user/logout'">LOGOUT
-                        </button>-->
+            <% if (locals.user){ %>
+                <button id="user_edit" class="log_button" type="button"
+                        onclick="location.href='http://anhye0n.me/user/my_info'">MY INFO
+                </button>
+                <button id="user_logout" class="log_button" type="button"
+                        onclick="location.href='http://anhye0n.me/api/user/logout'">LOGOUT
+                </button>
+            <% } else{ %>
+                <button id="user_edit" class="log_button" type="button"
+                        onclick="location.href='http://anhye0n.me/user/register'">REGISTER
+                </button>
+                <button id="user_logout" class="log_button" type="button"
+                        onclick="location.href='http://anhye0n.me/user/login'">LOGIN
+                </button>
+            <% } %>
             <!--버튼 길이 조정-->
+
             <script>
                 let button_width = document.getElementById('user_logout_edit')
                 let division = button_width.offsetWidth / 2
