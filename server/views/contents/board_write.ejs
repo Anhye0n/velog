@@ -105,7 +105,9 @@
                 <div style="text-align: left">
                     <select name="categories" id="categories">
                         <option value="none" selected disabled hidden>태그를 선택하세요.</option>
-                        <%= categories[0] %>
+                        <% for(i = 0; i < categories.length; i++){ %>>
+                        <option value="<%= categories[i] %>"><%= categories[i] %></option>
+                        <% } %>
                         <option value="volvo">Volvo</option>
                         <option value="saab">Saab</option>
                         <option value="mercedes">Mercedes</option>
