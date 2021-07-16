@@ -37,11 +37,14 @@ app.use(flash())
 //src 파일 경로
 app.use('/src', express.static(path.join(__dirname, '../src')))
 
+//common 파일 경로
+app.use('/common', express.static(path.join(__dirname, '../views/common')))
+
 //ejs 사용
 app.set('views', path.join(__dirname, '../views'))
 app.set('view engine', 'ejs') //ejs 사용
 
-//유저 핸들링 라우터
+//user handling 라우터
 const user_info = require('./routes/user_handling/user')
 app.use('/api', user_info)
 
@@ -49,11 +52,11 @@ app.use('/api', user_info)
 const view_router = require('./routes/view_ejs')
 app.use('/', view_router)
 
-//어드민 파일 라우터
+//admin 라우터
 const db_test = require('./routes/admin/admin')
 app.use('/api/admin', db_test)
 
-//어드민 views 파일 라우터
+//admin views 파일 라우터
 const admin_view = require('./routes/admin/admin_view')
 app.use('/admin', admin_view)
 
