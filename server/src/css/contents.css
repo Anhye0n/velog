@@ -7,6 +7,7 @@
     box-shadow: 3px 3px 20px #787878;
     font-family: nanumround, serif;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .all_article_box:hover {
