@@ -81,11 +81,11 @@ router.post('/user/board_write', function (req, res, next) {
         if (err) {
             console.log(err)
         } else {
-            console.log('##################')
-            console.log('')
-            console.log('contents insert succcess')
             console.log('')
             console.log('##################')
+            console.log(writer+'posting an article!')
+            console.log('##################')
+            console.log('')
         }
     })
     // 암호화

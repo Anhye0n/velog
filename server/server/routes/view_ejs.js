@@ -50,13 +50,6 @@ router.get('/contents/all_article', (req, res) => {
     let sql = "SELECT * FROM board"
 
     conn.query(sql, function (err, rows){
-        console.log(rows)
-        console.log('=====================')
-        console.log(rows.length)
-        console.log('=====================')
-        console.log(rows[0])
-        console.log('=====================')
-        console.log(rows[1])
 
         res.render('./contents/all_article', {'user': user, 'board':rows});
     })
@@ -83,9 +76,6 @@ router.get('/contents/board_write', (req, res) => {
             categories[i] = rows[i].categories
         }
 
-        console.log('================')
-        console.log(categories)
-        console.log('================')
         res.render('./contents/board_write', {'user': user, 'categories': categories});
     })
 })
@@ -95,10 +85,7 @@ router.get('/contents/view', (req, res) => {
     let sql = "SELECT * FROM board WHERE num = ?"
 
     conn.query(sql,[1], function (err, rows) {
-        console.log('================')
-        console.log(rows)
-        console.log('================')
-        console.log(rows[0].title)
+
         res.render('./contents/content_view', {'user': user});
     })
 })
