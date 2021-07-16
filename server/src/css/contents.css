@@ -34,13 +34,9 @@
 }
 
 .article_box_bottom{
-    position: relative;
-    /*margin-top: 30px;*/
-    padding-top: 8px;
-    bottom: -15px;
-    padding-left: 2px;
+    margin-top: 0;
+    margin-left: 20px;
     font-size: 14px;
-    border-top: 1px solid #7f7f7f;
 }
 
 .article_box_box {
@@ -61,6 +57,7 @@
 
 .article_box_content {
     margin-top: 13px;
+    min-height: 144px;
 }
 
 #content_write {
