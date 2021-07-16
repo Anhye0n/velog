@@ -17,30 +17,17 @@
             <p><span id="anhye0n">AnHye0n</span> Blog</p>
         </div>
         <div id="user_info">
-            <% if (locals.user){ %>
             <p id="user_info_name"><span><%= user.name %></span> 님</p>
             <p id="user_info_email"><%= user.email %></p>
-            <% }else{ %>
-            <p id="user_info_name"><span>Guest</span> 님</p>
-            <p id="user_info_email">Welcome AnHye0n blog</p>
-            <% } %>
         </div>
         <div id="user_logout_edit">
-            <% if (locals.user){ %>
-            <button id="user_edit" class="log_button" type="button"
-                    onclick="location.href='http://anhye0n.me/user/my_info'">MY INFO
-            </button>
-            <button id="user_logout" class="log_button" type="button"
-                    onclick="location.href='http://anhye0n.me/api/user/logout'">LOGOUT
-            </button>
-            <% } else{ %>
+
             <button id="user_edit" class="log_button" type="button"
                     onclick="location.href='http://anhye0n.me/user/register'">REGISTER
             </button>
             <button id="user_logout" class="log_button" type="button"
                     onclick="location.href='http://anhye0n.me/user/login'">LOGIN
             </button>
-            <% } %>
             <!--버튼 길이 조정-->
 
             <script>
@@ -69,23 +56,11 @@
         <div id="search_box">
             <input type="text" id="search" placeholder="Search"><i id="search_icon" class="fas fa-search"></i>
         </div>
-        <% if (locals.user){ %>
-        <% if (user.id !== 'ajh08070'){ %>
         <hr style="width: 60%; height:0; border:0; border-top:1px solid #c2c2c2;">
         <ul>
             <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
                                      href="http://anhye0n.me/contents/board_write">글 작성하기</a></li>
         </ul>
-        <% }else if (user.id === 'ajh08070'){ %>
-        <hr style="width: 60%; height:0; border:0; border-top:1px solid #c2c2c2;">
-        <ul>
-            <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
-                                     href="http://anhye0n.me/admin/">Admin Page</a></li>
-            <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
-                                     href="http://anhye0n.me/contents/board_write">글 작성하기</a></li>
-        </ul>
-        <% } %>
-        <% } %>
 
         <div id="left_botton_icon">
             <i id="github_icon" class="fab fa-github" onclick="window.open('https://github.com/AnHye0n')"></i>
@@ -95,28 +70,17 @@
     </div>
     <div id="box_right">
         <div id="box_right_padding">
-            <p id="right_title">Board Write</p>
-            <p id="right_content">This page is where you write.</p>
-            <form id="content_write" action="/api/user/board_write" method="post">
-                <div>
-                    <input type="text" id="title" name="title" placeholder="제목" autofocus required>
-                </div>
+            <p id="right_title">Board</p>
+            <p id="right_content">2021-07-15</p>
+            <div id="board_view_box">
+                <p id="board_view_title">감사합니다</p>
                 <hr style="width: 70px; border: 3px solid #555555; margin-left: 2px; margin-bottom: 20px">
-                <div style="text-align: left">
-                    <input type="text" name="writer" value="<%= user.name%>" style="display: none">
-                    <select name="categories" id="categories">
-                        <option value="none" selected disabled hidden>태그를 선택하세요.</option>
-                        <% for(i = 0; i < categories.length; i++){ %>
-                        <option value="<%= categories[i] %>"><%= categories[i] %></option>
-                        <% } %>
-                    </select>
+
+                <p id="board_view_tag"># 낙서</p>
+                <div id="board_view_content_box">
+                    <p id="board_view_content">동해물과 백두산이</p>
                 </div>
-                <div>
-                    <textarea id="contents" name="contents" cols="111" rows="40" placeholder="내용을 작성하세요."
-                              required></textarea>
-                </div>
-                <button type="submit" id="contents_uplaod">upload</button>
-            </form>
+            </div>
         </div>
     </div>
 </div>

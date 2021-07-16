@@ -22,6 +22,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap');
 /*font-family: 'Otomanopee One', sans-serif;*/
 
+/*나눔 스퀘어*/
+@font-face {
+    font-family: 'NanumSquareL';
+    src: url("/src/font/NanumFontSetup_TTF_SQUARE/NanumSquareL.ttf");
+}
+
+@font-face {
+    font-family: 'NanumSquareR';
+    src: url("/src/font/NanumFontSetup_TTF_SQUARE/NanumSquareR.ttf");
+}
+
+@font-face {
+    font-family: 'NanumSquareB';
+    src: url("/src/font/NanumFontSetup_TTF_SQUARE/NanumSquareB.ttf");
+}
+
+@font-face {
+    font-family: 'NanumSquareEB';
+    src: url("/src/font/NanumFontSetup_TTF_SQUARE/NanumSquareEB.ttf");
+}
+
+/*local*/
+@font-face {
+    font-family: 'NanumSquareL';
+    src: url("../font/NanumFontSetup_TTF_SQUARE/NanumSquareL.ttf");
+}
+
+@font-face {
+    font-family: 'NanumSquareR';
+    src: url("../font/NanumFontSetup_TTF_SQUARE/NanumSquareR.ttf");
+}
+
+@font-face {
+    font-family: 'NanumSquareB';
+    src: url("../font/NanumFontSetup_TTF_SQUARE/NanumSquareB.ttf");
+}
+
+@font-face {
+    font-family: 'NanumSquareEB';
+    src: url("../font/NanumFontSetup_TTF_SQUARE/NanumSquareEB.ttf");
+}
+
+
+/*나눔 라운드*/
 @font-face {
     font-family: 'nanumround';
     src: url("/src/font/NanumFontSetup_TTF_SQUARE_ROUND/NanumSquareRoundR.ttf");
