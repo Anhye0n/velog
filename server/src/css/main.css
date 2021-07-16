@@ -321,4 +321,12 @@ input:-webkit-autofill:focus {
     #box_right_padding {
         padding-left: 0;
     }
+
+    #right_title {
+        padding-left: 40px;
+    }
+
+    #right_content {
+        padding-left: 40px;
+    }
 }
