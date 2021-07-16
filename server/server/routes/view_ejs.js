@@ -51,8 +51,11 @@ router.get('/contents/all_article', (req, res) => {
 
     conn.query(sql, function (err, rows){
         console.log(rows)
+        console.log('=====================')
         console.log(rows.length)
+        console.log('=====================')
         console.log(rows[0])
+        console.log('=====================')
         console.log(rows[1])
 
         res.render('./contents/all_article', {'user': user, 'board':rows});
