@@ -40,7 +40,7 @@ input:-webkit-autofill:focus {
 
 #box_right {
     flex-grow: 1;
-    min-width: 1000px;
+    /*min-width: 1000px;*/
     height: 1800px;
     margin-left: 350px;
     /*border: 1px solid #000000;*/
