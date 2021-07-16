@@ -37,9 +37,6 @@ app.use(flash())
 //src 파일 경로
 app.use('/src', express.static(path.join(__dirname, '../src')))
 
-//common 파일 경로
-app.use('/common', express.static(path.join(__dirname, '../views/common')))
-
 //ejs 사용
 app.set('views', path.join(__dirname, '../views'))
 app.set('view engine', 'ejs') //ejs 사용
