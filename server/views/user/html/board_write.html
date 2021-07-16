@@ -65,7 +65,7 @@
         <hr style="width: 60%; height:0; border:0; border-top:1px solid #c2c2c2;">
         <ul>
             <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
-                                             href="http://anhye0n.me/contents/board_write">글 작성하기</a></li>
+                                     href="http://anhye0n.me/contents/board_write">글 작성하기</a></li>
         </ul>
 
         <div id="left_botton_icon">
@@ -79,9 +79,7 @@
             <p id="right_title">Board Write</p>
             <p id="right_content">This page is where you write.</p>
             <form id="content_write" action="/api/user/board_write" method="post">
-                <div>
-                    <input type="text" id="title" name="title" placeholder="제목" autofocus required>
-                </div>
+                <input type="text" id="title" name="title" placeholder="제목" autofocus required>
                 <hr style="width: 70px; border: 3px solid #555555; margin-left: 2px; margin-bottom: 20px">
                 <div style="text-align: left">
                     <span id="contents_write_tag">#</span>
@@ -94,7 +92,8 @@
                     </select>
                 </div>
                 <div>
-                    <textarea id="contents" name="contents" cols="111" rows="40" placeholder="내용을 작성하세요." required></textarea>
+                    <textarea id="contents" name="contents" cols="111" rows="40" placeholder="내용을 작성하세요."
+                              required></textarea>
                 </div>
                 <button type="submit" id="contents_uplaod">upload</button>
             </form>

@@ -87,7 +87,7 @@ router.get('/contents/view', (req, res) => {
 
     conn.query(sql,[req_title], function (err, rows) {
         console.log(rows)
-        res.render('./contents/content_view', {'user': user});
+        res.render('./contents/content_view', {'user': user, 'board':rows});
     })
 })
 
