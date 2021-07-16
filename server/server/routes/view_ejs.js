@@ -46,7 +46,18 @@ router.get('/contents/portfolio', (req, res) => {
 
 router.get('/contents/all_article', (req, res) => {
     let user = req.user;
-    res.render('./contents/all_article', {'user': user});
+
+    let sql = "SELECT * FROM board"
+
+    conn.query(sql, function (err, rows){
+        console.log(rows)
+        console.log(rows.length)
+        console.log(rows[0])
+        console.log(rows[1])
+
+        res.render('./contents/all_article', {'user': user, 'board':rows});
+    })
+
 })
 
 router.get('/contents/all_categories', (req, res) => {
