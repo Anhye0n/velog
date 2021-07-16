@@ -5,6 +5,7 @@ var db_info = {
     password: 'xhdka2256',
     database: 'velog',
     multipleStatements: true,
+    dateStrings: 'date'
 }
 
 module.exports = {
