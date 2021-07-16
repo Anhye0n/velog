@@ -62,11 +62,11 @@ router.get('/contents/site_info', (req, res) => {
 router.get('/contents/board_write', (req, res) => {
     let user = req.user;
     let sql = "SELECT * FROM categories"
-    let categories = ''
+    let categories = []
     conn.query(sql, function (err, rows) {
         for (i = 0; i < rows.length; i++) {
             // console.log(rows[i].categories)
-            categories += "<option value='" + rows[i].categories + "'>" + rows[i].categories + "</option>\n"
+            categories[i] = rows[i].categories
         }
         console.log('================')
         console.log(categories)
