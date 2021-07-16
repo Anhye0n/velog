@@ -80,11 +80,11 @@ router.get('/contents/view', (req, res) => {
     let user = req.user;
     let sql = "SELECT * FROM board WHERE num = ?"
 
-    conn.query(sql,[0], function (err, rows) {
+    conn.query(sql,[1], function (err, rows) {
         console.log('================')
         console.log(rows)
         console.log('================')
-        console.log(rows.title)
+        console.log(rows[0].title)
         res.render('./contents/content_view', {'user': user});
     })
 })
