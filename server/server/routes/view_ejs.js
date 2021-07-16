@@ -68,6 +68,7 @@ router.get('/contents/board_write', (req, res) => {
             // console.log(rows[i].categories)
             categories[i] = rows[i].categories
         }
+
         console.log('================')
         console.log(categories)
         console.log('================')

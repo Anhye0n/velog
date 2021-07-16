@@ -11,21 +11,33 @@ const crypto = require('crypto')
 //passport
 const passport = require('passport')
 
+//Date
+const now = new Date();
+let year = now.getDate()
+let month = now.getMonth()
+let date = now.getDate()
+let hour = now.getHours()
+let minute = now.getMinutes()
+let second = now.setSeconds()
+
+const now_date = year+'-'+month+'-'+date
+const now_time = hour+':'+minute+':'+second
+
 // /api/user/register가 아닌 /user/register로 하기.
 router.post('/user/register', function (req, res, next) {
 
-    var name = req.body.user_name // 포스트 방식은 body, get 방식은 query
-    var email = req.body.email
-    var id = req.body.id
-    var password = req.body.password
+    let name = req.body.user_name // 포스트 방식은 body, get 방식은 query
+    let email = req.body.email
+    let id = req.body.id
+    let password = req.body.password
 
     // 암호화
     crypto.randomBytes(64, (err, buf) => {
         crypto.pbkdf2(password, buf.toString("base64"), 100, 64, 'sha512', (err, key) => {
-            var de_password = key.toString("base64")
-            var user_salt = buf.toString("base64")
+            let de_password = key.toString("base64")
+            let user_salt = buf.toString("base64")
 
-            var user_regi = [name, email, id, de_password, user_salt]
+            let user_regi = [name, email, id, de_password, user_salt]
 
             //email_exist와 id_exist에 각각 데이터가 존재하면 1이 반환됨. 없을 시 0
             let check_email_sql = "select EXISTS (SELECT * FROM user_info where email=? limit 1) as email_exist;" +
@@ -42,7 +54,7 @@ router.post('/user/register', function (req, res, next) {
                 } else if (result[0][0].email_exist === 1) {
                     res.render('./user/register', {'err_email': 'The Email already exists.'})
                 } else {
-                    var sql = "INSERT INTO user_info (name, email, id, password, user_salt) VALUES (?, ?, ?, ?, ?)";
+                    let sql = "INSERT INTO user_info (name, email, id, password, user_salt) VALUES (?, ?, ?, ?, ?)";
 
                     conn.query(sql, user_regi, function (err, result) {
                         if (err) {
@@ -60,11 +72,20 @@ router.post('/user/register', function (req, res, next) {
 
 router.post('/user/board_write', function (req, res, next) {
 
-    var name = req.body.user_name // 포스트 방식은 body, get 방식은 query
-    var email = req.body.email
-    var id = req.body.id
-    var password = req.body.password
+    let title = req.body.title
+    let categori = req.body.categories
+    let writer = req.body.writer
+    let content = req.body.contents
 
+    let sql = "INSERT INTO board (title, categori, content, writer, date) VALUES (?,?,?,?,?)"
+
+    conn.query(sql, [title, categori, writer, content, now_date+now_time], function (err, result){
+        if (err){
+            console.log(err)
+        }else{
+            console.log('contents insert succcess')
+        }
+    })
     // 암호화
 
 });
