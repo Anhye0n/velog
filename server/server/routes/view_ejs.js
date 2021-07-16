@@ -84,7 +84,7 @@ router.get('/contents/view', (req, res) => {
         console.log('================')
         console.log(rows)
         console.log('================')
-        console.log(rows.title)
+        console.log(rows[0].title)
         res.render('./contents/content_view', {'user': user});
     })
 })
