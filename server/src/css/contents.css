@@ -133,21 +133,25 @@
 
 
 #board_view_title {
+    width: 900px;
     font-size: 40px;
     font-family: NanumSquareEB, serif;
 }
 
 #board_view_tag {
+    width: 900px;
     font-size: 20px;
     font-weight: bold;
     font-family: NanumSquareB, serif;
 }
 
 #board_view_content_box {
+    width: 900px;
     margin-top: 40px;
 }
 
 #board_view_content {
+    width: 900px;
     font-family: NanumSquareR, serif;
     font-size: 18px;
 }
