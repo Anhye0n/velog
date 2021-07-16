@@ -11,18 +11,6 @@ const crypto = require('crypto')
 //passport
 const passport = require('passport')
 
-//Date
-const now = new Date();
-let year = now.getFullYear()
-let month = Number(now.getMonth()) + 1
-let date = now.getDate()
-let hour = now.getHours()
-let minute = now.getMinutes()
-let second = now.getSeconds()
-
-const now_date = year + '-' + month + '-' + date
-const now_time = hour + ':' + minute + ':' + second
-
 // /api/user/register가 아닌 /user/register로 하기.
 router.post('/user/register', function (req, res, next) {
 
@@ -71,6 +59,16 @@ router.post('/user/register', function (req, res, next) {
 });
 
 router.post('/user/board_write', function (req, res, next) {
+    const now = new Date();
+    let year = now.getFullYear()
+    let month = Number(now.getMonth()) + 1
+    let date = now.getDate()
+    let hour = now.getHours()
+    let minute = now.getMinutes()
+    let second = now.getSeconds()
+
+    const now_date = year + '-' + month + '-' + date
+    const now_time = hour + ':' + minute + ':' + second
 
     let title = req.body.title
     let categori = req.body.categories
