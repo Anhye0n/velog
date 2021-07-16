@@ -79,7 +79,7 @@ router.post('/user/board_write', function (req, res, next) {
 
     let sql = "INSERT INTO board (title, categori, content, writer, date) VALUES (?,?,?,?,?)"
 
-    conn.query(sql, [title, categori, content, writer, now_date + now_time], function (err, result) {
+    conn.query(sql, [title, categori, content, writer, now_date + ' ' + now_time], function (err, result) {
         if (err) {
             console.log(err)
         } else {
