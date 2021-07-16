@@ -20,8 +20,8 @@ let hour = now.getHours()
 let minute = now.getMinutes()
 let second = now.setSeconds()
 
-const now_date = year+'-'+month+'-'+date
-const now_time = hour+':'+minute+':'+second
+const now_date = year + '-' + month + '-' + date
+const now_time = hour + ':' + minute + ':' + second
 
 // /api/user/register가 아닌 /user/register로 하기.
 router.post('/user/register', function (req, res, next) {
@@ -79,11 +79,15 @@ router.post('/user/board_write', function (req, res, next) {
 
     let sql = "INSERT INTO board (title, categori, content, writer, date) VALUES (?,?,?,?,?)"
 
-    conn.query(sql, [title, categori, writer, content, now_date+now_time], function (err, result){
-        if (err){
+    conn.query(sql, [title, categori, content, writer, now_date + now_time], function (err, result) {
+        if (err) {
             console.log(err)
-        }else{
+        } else {
+            console.log('##################')
+            console.log('')
             console.log('contents insert succcess')
+            console.log('')
+            console.log('##################')
         }
     })
     // 암호화

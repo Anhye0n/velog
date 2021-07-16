@@ -5,10 +5,22 @@ const router = express.Router();
 const db_info = require('../../conf/db_info')
 const conn = db_info.init()
 
+const now = new Date();
+let year = now.getDate()
+let month = now.getMonth()
+let date = now.getDate()
+let hour = now.getHours()
+let minute = now.getMinutes()
+let second = now.setSeconds()
+
+const now_date = year+'-'+month+'-'+date
+const now_time = hour+':'+minute+':'+second
+
 router.get('/', (req, res) => {
     //session에 담긴 user정보
     //req로 접근 가능
     let user = req.user;
+    console.log(now_date+' :: ' + now_time)
     res.render('./index', {'user': user});
 })
 
