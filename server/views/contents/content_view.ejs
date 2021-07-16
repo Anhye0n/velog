@@ -96,19 +96,19 @@
     <div id="box_right">
         <div id="box_right_padding">
             <p id="right_title">Board</p>
-            <p id="right_content"><%= board.date%></p>
+            <p id="right_content"><%= board[0].date %></p>
             <div id="board_view_box">
-                <p id="board_view_title"><%= board.title%></p>
+                <p id="board_view_title"><%= board[0].title %></p>
                 <hr style="width: 70px; border: 3px solid #555555; margin-left: 2px; margin-bottom: 20px">
 
-                <p id="board_view_tag"># <%= board.categori%>></p>
+                <p id="board_view_tag"># <%= board[0].categori %>></p>
                 <div id="board_view_content_box">
-                    <p id="board_view_content"><%= board.content%></p>
+                    <p id="board_view_content"><%= board[0].content %></p>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+</div>
 </div>
 </body>
 <script type="text/javascript" src="/src/js/main.js"></script>
