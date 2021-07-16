@@ -49,9 +49,9 @@ router.get('/contents/all_article', (req, res) => {
 
     let sql = "SELECT * FROM board"
 
-    conn.query(sql, function (err, rows){
+    conn.query(sql, function (err, rows) {
 
-        res.render('./contents/all_article', {'user': user, 'board':rows});
+        res.render('./contents/all_article', {'user': user, 'board': rows});
     })
 
 })
@@ -85,9 +85,8 @@ router.get('/contents/view', (req, res) => {
     let req_title = req.query.title
     let sql = "SELECT * FROM board WHERE title=?"
 
-    conn.query(sql,[req_title], function (err, rows) {
-        console.log(rows)
-        res.render('./contents/content_view', {'user': user, 'board':rows});
+    conn.query(sql, [req_title], function (err, rows) {
+        res.render('./contents/content_view', {'user': user, 'board': rows});
     })
 })
 
