@@ -13,14 +13,14 @@ const passport = require('passport')
 
 //Date
 const now = new Date();
-let year = now.getDate()
+let year = now.getFullYear()
 let month = now.getMonth()
 let date = now.getDate()
 let hour = now.getHours()
 let minute = now.getMinutes()
-let second = now.setSeconds()
+let second = now.getSeconds()
 
-const now_date = year + '-' + month + '-' + date
+const now_date = year + '-' + month + 1 + '-' + date
 const now_time = hour + ':' + minute + ':' + second
 
 // /api/user/register가 아닌 /user/register로 하기.
