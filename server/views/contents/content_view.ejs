@@ -103,7 +103,7 @@
 
                 <p id="board_view_tag"># <%= board[0].categori %>></p>
                 <div id="board_view_content_box">
-                    <p id="board_view_content"><%= board[0].content %></p>
+                    <p id="board_view_content"><%- board[0].content.replace(/\n/g, '<br/>') %></p>
                 </div>
             </div>
         </div>
