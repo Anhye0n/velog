@@ -1,5 +1,5 @@
-var mysql = require('mysql');
-var db_info = {
+let mysql = require('mysql');
+let db_info = {
     host: 'localhost',
     user: 'root',
     password: 'xhdka2256',
