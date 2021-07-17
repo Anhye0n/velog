@@ -181,11 +181,6 @@
     position: relative;
 }
 
-.categories_box:nth-child(1) {
-    background-size: cover;
-    color: #ffffff;
-}
-
 .categories_box:before {
     content: "";
     opacity: 0.5;
@@ -218,7 +213,7 @@
 
 .categories_box p {
     transition: 0.3s;
-    font-family: 'Poiret One', cursive;
+    font-family: NanumSquareB, serif;
     position: relative;
     top: 105px;
     font-size: 30px;
