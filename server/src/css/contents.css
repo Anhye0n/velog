@@ -215,8 +215,8 @@
     transition: 0.3s;
     font-family: NanumSquareL, serif;
     position: relative;
-    top: 105px;
-    font-size: 30px;
+    top: 90px;
+    font-size: 40px;
 }
 
 .categories_box:hover p{
