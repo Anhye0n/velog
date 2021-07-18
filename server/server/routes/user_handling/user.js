@@ -115,7 +115,7 @@ router.get('/user/del_categori', (req, res) => {
 
 router.post('/user/add_categori', upload.single('categori_thumbnail'), (req, res) => {
     console.log(JSON.stringify(req.file))
-    let filename = req.file.originalname
+    let filename = new Date().valueOf() + '_' + req.file.originalname
     let categori = req.body.categori_name
 
     let sql = "INSERT INTO categories(categories, thumbnail) VALUES (?,?)"
