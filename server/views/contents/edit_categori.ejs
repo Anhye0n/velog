@@ -23,6 +23,13 @@
         <div id="box_right_padding">
             <p id="right_title">Edit Categori</p>
             <p id="right_content">This page can you to add and delete categories.</p>
+            <p id="right_content_errmsg">
+                <% if (locals.del_msg) { %>
+            <p id="right_content_errmsg"><%= del_msg %></p>
+
+            <% } else if(locals.add_msg){ %>
+                <p id="right_content_errmsg"><%= add_msg %></p>
+            <% } %>
             <div id="edit_categori_box">
                 <div id="edit_categori_left">
                     <p id="edit_categori_left_titile"># 카테고리 제거</p>
@@ -40,12 +47,14 @@
                 </div>
                 <div id="edit_categori_right">
                     <form id="add_categori" action="/api/user/add_categori" method="post" enctype="multipart/form-data">
-                        <input type="text" id="edit_categori_right_title" name="categori_name" placeholder="# 카테고리 추가" autofocus
+                        <input type="text" id="edit_categori_right_title" name="categori_name" placeholder="# 카테고리 추가"
+                               autofocus
                                required>
                         <hr style="width: 70px; border: 3px solid #555555; margin-left: 2px; margin-bottom: 20px">
 
                         <div>
-                            <input placeholder="대표 이미지" type="file" id="edit_categori_right_contents" name="categori_thumbnail">
+                            <input placeholder="대표 이미지" type="file" id="edit_categori_right_contents"
+                                   name="categori_thumbnail">
                         </div>
                         <button type="submit" id="edit_categori_right_uplaod">upload</button>
                     </form>

@@ -250,6 +250,13 @@ option {
     margin-left: 20px;
 }
 
+#right_content_errmsg{
+    color: red;
+    font-family: NanumSquareR, serif;
+    font-size: 20px;
+    text-align: center;
+}
+
 #edit_categori_left_titile {
     width: 400px;
     height: 60px;

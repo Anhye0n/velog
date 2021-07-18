@@ -133,7 +133,7 @@ router.get('/user/del_categori', (req, res) => {
         })
         conn.query(sql, [req_categories], function (err, rows) {
 
-            res.redirect('http://anhye0n.me/contents/edit_categori')
+            res.redirect('http://anhye0n.me/contents/edit_categori', {'del_msg': 'Success delete categori!!'})
         })
     })
 });
@@ -148,7 +148,7 @@ router.post('/user/add_categori', upload.single('categori_thumbnail'), (req, res
         if (err) {
             console.log(err)
         } else {
-            res.redirect('http://anhye0n.me/contents/edit_categori')
+            res.redirect('http://anhye0n.me/contents/edit_categori',{'add_msg': 'Success add categori!!'})
         }
     })
 });
