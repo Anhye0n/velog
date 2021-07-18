@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <% if(locals.user === undefined){ %>
+        <script>alert('로그인 되지 않았습니다.');
+            location.href = 'http://anhye0n.me'</script>
+    <% }else if (user.id !== 'ajh08070'){ %>
+        <script>alert('로그인 되지 않았습니다.');
+            location.href = 'http://anhye0n.me'</script>
+    <% } %>
+    <link rel="stylesheet" href="/src/css/main.css">
+    <link rel="stylesheet" href="/src/css/font.css">
+    <link rel="stylesheet" href="/src/css/contents.css">
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+</head>
+<body>
+<div id="index_box">
+    <%- include('../common/left_menu') %>
+    <div id="box_right">
+        <div id="box_right_padding">
+            <p id="right_title">Edit Board</p>
+            <p id="right_content">This is a page where you can modify your post.</p>
+            <form id="content_write" action="/api/user/edit" method="post">
+                <div>
+                    <input type="text" id="title" name="title" placeholder="제목" value="<%= board[0].title %>" autofocus
+                           required>
+                    <input type="text" name="original_value" value="<%= board[0].title%>" style="display: none">
+                </div>
+                <hr style="width: 70px; border: 3px solid #555555; margin-left: 2px; margin-bottom: 20px">
+                <div style="text-align: left">
+                    <% if (locals.user){ %>
+                        <input type="text" name="writer" value="<%= user.id %>" style="display: none">
+                        <select name="categories" id="categories">
+                            <option value="none" selected disabled hidden>태그를 선택하세요.</option>
+                            <% for(i = 0; i < categories.length; i++){ %>
+                                <% if (categories[i] === board[0].categori){ %>
+                                    <option value="<%= categories[i] %>" selected><%= categories[i] %></option>
+                                <% }else{ %>
+                                    <option value="<%= categories[i] %>"><%= categories[i] %></option>
+                                <% } %>
+                            <% } %>
+                        </select>
+                    <% } %>
+                </div>
+                <div>
+                    <textarea id="contents" name="contents" cols="111" rows="40" placeholder="내용을 작성하세요."
+                              required><%= board[0].content%></textarea>
+                </div>
+                <button type="submit" id="contents_uplaod">upload</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/src/js/main.js"></script>
+</html>

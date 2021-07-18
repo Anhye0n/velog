@@ -81,7 +81,6 @@ router.get('/contents/edit_categori', (req, res) => {
 })
 
 
-
 router.get('/contents/site_info', (req, res) => {
     let user = req.user;
     res.render('./contents/site_info', {'user': user});
@@ -108,6 +107,24 @@ router.get('/contents/view', (req, res) => {
 
     conn.query(sql, [req_title], function (err, rows) {
         res.render('./contents/content_view', {'user': user, 'board': rows});
+    })
+})
+
+router.get('/contents/edit', (req, res) => {
+    let user = req.user;
+    let req_title = req.query.title
+    let sql = "SELECT * FROM board WHERE title=?"
+
+    let categori_sql = "SELECT * FROM categories"
+    let categories = []
+    conn.query(categori_sql, function (err, rows) {
+        for (i = 0; i < rows.length; i++) {
+            // console.log(rows[i].categories)
+            categories[i] = rows[i].categories
+        }
+        conn.query(sql, [req_title], function (err, rows) {
+            res.render('./contents/edit_board', {'user': user, 'board': rows, 'categories': categories});
+        })
     })
 })
 

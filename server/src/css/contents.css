@@ -86,6 +86,10 @@
     font-family: NanumSquareB, serif;
 }
 
+option {
+    padding-top: 5px !important;
+}
+
 #title:focus {
     outline: none;
 }

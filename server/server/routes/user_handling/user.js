@@ -109,6 +109,18 @@ router.post('/user/board_write', function (req, res, next) {
 
 });
 
+router.get('/user/edit', (req, res) => {
+    let edit_title = req.body.title
+    let original_value = req.body.original_value
+    let edit_categori = req.body.categori
+    let edit_contents = req.body.contents
+    let edit_sql = "UPDATE board SET title=?, categori=?, content=? WHERE title=?"
+
+    conn.query(edit_sql, [edit_title, edit_categori, edit_contents, original_value], function (err, rows) {
+        res.redirect('http://anhye0n.me/user/all_article')
+    })
+});
+
 router.get('/user/del_categori', (req, res) => {
     let req_categories = req.query.categori_name
     let sql = "DELETE FROM categories WHERE categories=?"
