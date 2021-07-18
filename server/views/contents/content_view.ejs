@@ -24,11 +24,7 @@
                 <div id="board_view_content_box">
                     <p id="board_view_content"><%- board[0].content.replace(/\n/g, '<br/>') %></p>
                 </div>
-                <a>수정</a>
-                <button type="button" id="contents_uplaod"
-                        onclick="location.href='http://anhye0n.me/contents/edit?title=<%= board[0].title %>&writer=<%= board[0].writer %>'">
-                    수정
-                </button>
+                <a href="http://anhye0n.me/contents/edit?title=<%= board[0].title %>&writer=<%=board[0].writer%>" style="color: #0000EE !important;">수정</a>
             </div>
         </div>
     </div>
