@@ -166,6 +166,10 @@ input:-webkit-autofill:focus {
     padding-left: 15px;
 }
 
+#search:focus {
+    outline: none;
+}
+
 #search_icon {
     margin-bottom: -14px;
     padding-right: 10px;
