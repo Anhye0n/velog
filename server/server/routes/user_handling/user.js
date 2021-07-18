@@ -109,7 +109,7 @@ router.post('/user/board_write', function (req, res, next) {
 
 });
 
-router.get('/user/edit', (req, res) => {
+router.post('/user/edit', (req, res) => {
     let edit_title = req.body.title
     let original_value = req.body.original_value
     let edit_categori = req.body.categori
