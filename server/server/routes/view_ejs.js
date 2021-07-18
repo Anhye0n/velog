@@ -113,6 +113,7 @@ router.get('/contents/view', (req, res) => {
 router.get('/contents/edit', (req, res) => {
     let user = req.user;
     let req_title = req.query.title
+    let req_writer = req.query.writer
     let sql = "SELECT * FROM board WHERE title=?"
 
     let categori_sql = "SELECT * FROM categories"
@@ -123,7 +124,12 @@ router.get('/contents/edit', (req, res) => {
             categories[i] = rows[i].categories
         }
         conn.query(sql, [req_title], function (err, rows) {
-            res.render('./contents/edit_board', {'user': user, 'board': rows, 'categories': categories});
+            res.render('./contents/edit_board', {
+                'user': user,
+                'board': rows,
+                'categories': categories,
+                'writer': req_writer
+            });
         })
     })
 })
