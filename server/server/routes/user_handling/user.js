@@ -12,7 +12,7 @@ const crypto = require('crypto')
 const passport = require('passport')
 
 //fs
-const fs = require('fs')
+const fs = require('fs'), path = require('path')
 
 //multer
 const multer = require('multer')
@@ -115,7 +115,7 @@ router.get('/user/del_categori', (req, res) => {
     let select_sql = "SELECT * FROM categories WHERE categories=?"
 
     conn.query(select_sql, [req_categories], function (err, rows) {
-        fs.unlink(__dirname + '../../../../src/img/list/' + rows[0].thumbnail, function (err) {
+        fs.unlink(path.join(__dirname, '../../../../src/img/list/', rows[0].thumbnail), function (err) {
             if (err) throw err;
             console.log(rows[0].categories + 'has been deleted!')
         })
