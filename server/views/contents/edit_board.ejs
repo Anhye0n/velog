@@ -9,10 +9,7 @@
     <% }else if (user.id !== locals.writer){ %>
         <script>alert('이 글의 작성자가 아닙니다.');
             location.href = 'http://anhye0n.me/contents/view?title=<%= board[0].title %>'</script>
-    <% }else{ %>
-        <script>alert('잘못된 접근입니다.');
-            location.href = 'http://anhye0n.me'</script>
-    <% } %>
+    <% }%>
     <link rel="stylesheet" href="/src/css/main.css">
     <link rel="stylesheet" href="/src/css/font.css">
     <link rel="stylesheet" href="/src/css/contents.css">
