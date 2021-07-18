@@ -112,7 +112,7 @@ router.post('/user/board_write', function (req, res, next) {
 router.post('/user/edit', (req, res) => {
     let edit_title = req.body.title
     let original_value = req.body.original_value
-    let edit_categori = req.body.categori
+    let edit_categori = req.body.categories
     let edit_contents = req.body.contents
     let edit_sql = "UPDATE board SET title=?, categori=?, content=? WHERE title=?"
 
