@@ -68,6 +68,19 @@ router.get('/contents/all_categories', (req, res) => {
     });
 })
 
+router.get('/contents/categori_page', (req, res) => {
+    let user = req.user;
+    let req_categori_name = req.query.categori_name
+
+    let sql = "SELECT * FROM board WHERE categori=?"
+
+
+    conn.query(sql, [req_categori_name],function (err, rows) {
+
+        res.render('./contents/categori_page', {'user': user, 'board': rows})
+    });
+})
+
 router.get('/contents/edit_categori', (req, res) => {
     let user = req.user;
 

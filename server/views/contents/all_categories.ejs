@@ -21,7 +21,7 @@
                 <% for (i = 0; i < categories.length; i++){ %>
                     <div class="categories_box"
                          style="background: url('/src/img/list/<%= categories[i].thumbnail %>') no-repeat center center; background-size: cover; color: #ffffff;"
-                         onclick="location.href = 'http://anhye0n.me/contents/whoami'">
+                         onclick="location.href = 'http://anhye0n.me/contents/categori_page?categori_name=<%= categories[i].categories %>'">
                         <p><%= categories[i].categories %></p>
                     </div>
                 <% } %>
