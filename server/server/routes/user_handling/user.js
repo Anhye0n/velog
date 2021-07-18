@@ -112,13 +112,17 @@ router.post('/user/board_write', function (req, res, next) {
 router.get('/user/del_categori', (req, res) => {
     let req_categories = req.query.categori_name
     let sql = "DELETE FROM categories WHERE categories=?"
+    let select_sql = "SELECT * FROM categories WHERE categories=?"
 
-    conn.query(sql, [req_categories], function (err, rows) {
-        fs.unlink(rows[0].thumbnail, function (err){
-            if(err) throw err;
+    conn.query(select_sql, [req_categories], function (err, rows) {
+        fs.unlink(rows[0].thumbnail, function (err) {
+            if (err) throw err;
             console.log(rows[0].categories + 'has been deleted!')
         })
-        res.redirect('http://anhye0n.me/contents/edit_categori')
+        conn.query(sql, [req_categories], function (err, rows) {
+
+            res.redirect('http://anhye0n.me/contents/edit_categori')
+        })
     })
 });
 
