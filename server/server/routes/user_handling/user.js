@@ -163,7 +163,7 @@ router.post('/user/add_categori', upload.single('categori_thumbnail'), (req, res
                 res.render('./contents/edit_categori', {
                     'user': user,
                     'categories': rows,
-                    'add_msg': 'Success add categori!!
+                    'add_msg': 'Success add categori!!'
                 })
             });
         }
