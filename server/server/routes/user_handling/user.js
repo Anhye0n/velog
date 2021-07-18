@@ -117,7 +117,7 @@ router.post('/user/edit', (req, res) => {
     let edit_sql = "UPDATE board SET title=?, categori=?, content=? WHERE title=?"
 
     conn.query(edit_sql, [edit_title, edit_categori, edit_contents, original_value], function (err, rows) {
-        res.redirect('http://anhye0n.me/user/all_article')
+        res.redirect('http://anhye0n.me/contents/all_article')
     })
 });
 
