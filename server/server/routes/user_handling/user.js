@@ -101,13 +101,13 @@ router.get('/user/del_categori', (req, res) => {
     let sql = "DELETE FROM categories WHERE categories=?"
 
     conn.query(sql, [req_categories], function (err, rows) {
-
+        res.redirect('http://anhye0n.me/contents/edit_categori')
     })
-    res.redirect('http://anhye0n.me/contents/edit_categori')
 });
 
 router.post('/user/add_categori', upload.single('categori_thumbnail'), (req, res) => {
-    let filename = req.file.originalname
+    console.log(req.file)
+    let filename = req.file[0].originalname
     let categori = req.body.categori_name
 
     let sql = "INSERT INTO categories(categories, thumbnail) VALUES (?,?)"
