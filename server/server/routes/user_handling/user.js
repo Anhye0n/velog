@@ -13,7 +13,15 @@ const passport = require('passport')
 
 //multer
 const multer = require('multer')
-let upload = multer({dest: '/scr/img/list'})
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, '/src/img/list')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+})
+const upload = multer({storage: storage})
 
 // /api/user/register가 아닌 /user/register로 하기.
 router.post('/user/register', function (req, res, next) {
@@ -106,8 +114,8 @@ router.get('/user/del_categori', (req, res) => {
 });
 
 router.post('/user/add_categori', upload.single('categori_thumbnail'), (req, res) => {
-    console.log(req.file)
-    let filename = req.file[0].originalname
+    console.log(JSON.stringify(req.file))
+    let filename = req.file.originalname
     let categori = req.body.categori_name
 
     let sql = "INSERT INTO categories(categories, thumbnail) VALUES (?,?)"
