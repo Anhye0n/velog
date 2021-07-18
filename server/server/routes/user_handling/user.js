@@ -15,7 +15,7 @@ const passport = require('passport')
 const multer = require('multer')
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, __dirname + '../../../src/img/list')
+        cb(null, __dirname + '../../../../src/img/list')
     },
     filename: function (req, file, cb) {
         cb(null, new Date().valueOf() + '_' + file.originalname)
