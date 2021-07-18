@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>로그인</title>
-    <!--<% if (locals.user === undefined){ %>
+    <% if (locals.user === undefined){ %>
 
     <% }else{ %>
-    <script>alert('로그인 되었습니다.');
-    location.href = 'http://anhye0n.me/';</script>
-    <% } %>-->
+        <script>alert('로그인 되었습니다.');
+            location.href = 'http://anhye0n.me/';</script>
+    <% } %>
     <link rel="stylesheet" href="/src/css/main.css">
     <link rel="stylesheet" href="/src/css/register.css">
     <link rel="stylesheet" href="/src/css/font.css">
@@ -27,7 +27,7 @@
         }
     </script>
     <style>
-        input:focus{
+        input:focus {
             outline: none;
         }
     </style>
@@ -59,7 +59,8 @@
                         <td class="regi_error"><%= locals.err_id %></td>
                     </tr>
                     <tr>
-                        <td><input type="password" id="pass_check_1" name="password" placeholder="Password" autocomplete="off"></td>
+                        <td><input type="password" id="pass_check_1" name="password" placeholder="Password"
+                                   autocomplete="off"></td>
                     </tr>
                     <tr>
                         <td><input type="password" id="pass_check_2" placeholder="Password 확인" autocomplete="off"></td>
@@ -68,7 +69,9 @@
                 <button class="regi_button" type="button" onclick="pass_check()">S U B M I T</button>
             </form>
             <hr style="width: 80%">
-            <button class="regiser_button" type="button" onclick="location.href = 'http://anhye0n.me/user/login'">L O G I N</button>
+            <button class="regiser_button" type="button" onclick="location.href = 'http://anhye0n.me/user/login'">L O G
+                I N
+            </button>
         </div>
     </div>
 </div>
