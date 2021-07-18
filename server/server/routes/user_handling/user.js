@@ -98,6 +98,7 @@ router.post('/user/board_write', function (req, res, next) {
             console.log(writer + 'posting an article!')
             console.log('##################')
             console.log('')
+            res.redirect('http://anhye0n.me/contents/all_article')
         }
     })
     // 암호화
