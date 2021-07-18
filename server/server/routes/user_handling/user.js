@@ -141,7 +141,7 @@ router.get('/user/del_categori', (req, res) => {
                 res.render('./contents/edit_categori', {
                     'user': user,
                     'categories': rows,
-                    'del_msg': 'Success delete categori!!'
+                    'del_msg': 'Success Delete categori!!'
                 })
             });
         })
@@ -167,7 +167,7 @@ router.post('/user/add_categori', upload.single('categori_thumbnail'), (req, res
                 res.render('./contents/edit_categori', {
                     'user': user,
                     'categories': rows,
-                    'add_msg': 'Success add categori!!'
+                    'add_msg': 'Success Add categori !!'
                 })
             });
         }
