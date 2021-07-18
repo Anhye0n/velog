@@ -72,7 +72,7 @@ router.get('/contents/categori_page', (req, res) => {
     let user = req.user;
     let req_categori_name = req.query.categori_name
 
-    let sql = "SELECT * FROM board WHERE categori=?"
+    let sql = "SELECT * FROM board WHERE categories=?"
 
 
     conn.query(sql, [req_categori_name],function (err, rows) {
