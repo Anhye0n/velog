@@ -11,8 +11,12 @@ const crypto = require('crypto')
 //passport
 const passport = require('passport')
 
+//fs
+const fs = require('fs')
+
 //multer
 const multer = require('multer')
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, __dirname + '../../../../src/img/list')
@@ -110,6 +114,10 @@ router.get('/user/del_categori', (req, res) => {
     let sql = "DELETE FROM categories WHERE categories=?"
 
     conn.query(sql, [req_categories], function (err, rows) {
+        fs.unlink(rows[0].thumbnail, function (err){
+            if(err) throw err;
+            console.log(rows[0].categories + 'has been deleted!')
+        })
         res.redirect('http://anhye0n.me/contents/edit_categori')
     })
 });
