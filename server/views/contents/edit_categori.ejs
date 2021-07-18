@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/src/css/main.css">
+    <link rel="stylesheet" href="/src/css/font.css">
+    <link rel="stylesheet" href="/src/css/contents.css">
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+</head>
+<body>
+<div id="index_box">
+    <%- include('../common/left_menu') %>
+    <div id="box_right">
+        <div id="box_right_padding">
+            <p id="right_title">Edit Categori</p>
+            <p id="right_content">This page can you to add and delete categories.</p>
+            <div id="edit_categori_box">
+                <div id="edit_categori_left">
+                    <p id="edit_categori_left_titile"># 카테고리 제거</p>
+                    <hr style="width: 70px; border: 3px solid #555555; margin-left: 2px; margin-top: 0;margin-bottom: 20px">
+                    <ul>
+                        <% for (i = 0; i < categories.length; i++){ %>
+                            <li>
+                                <button onclick="location.href='http://anhye0n.me/api/user/del_categori?categori_name=<%= categories[i].categories %>'">
+                                    x
+                                </button>
+                                <p><%= categories[i].categories %></p>
+                            </li>
+                        <% } %>
+                    </ul>
+                </div>
+                <div id="edit_categori_right">
+                    <form id="add_categori" action="/api/user/add_categori" method="post">
+                        <input type="text" id="edit_categori_right_title" name="title" placeholder="# 카테고리 추가" autofocus
+                               required>
+                        <hr style="width: 70px; border: 3px solid #555555; margin-left: 2px; margin-bottom: 20px">
+
+                        <div>
+                            <input placeholder="대표 이미지" type="file" id="edit_categori_right_contents" name="edit_categori_right_contents">
+                        </div>
+                        <button type="button" id="edit_categori_right_uplaod">upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/src/js/main.js"></script>
+</html>

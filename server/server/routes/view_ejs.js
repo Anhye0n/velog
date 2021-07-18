@@ -68,6 +68,20 @@ router.get('/contents/all_categories', (req, res) => {
     });
 })
 
+router.get('/contents/edit_categori', (req, res) => {
+    let user = req.user;
+
+    let sql = "SELECT * FROM categories"
+
+
+    conn.query(sql, function (err, rows) {
+
+        res.render('./contents/edit_categori', {'user': user, 'categories': rows})
+    });
+})
+
+
+
 router.get('/contents/site_info', (req, res) => {
     let user = req.user;
     res.render('./contents/site_info', {'user': user});
