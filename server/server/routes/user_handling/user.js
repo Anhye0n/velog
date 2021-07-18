@@ -11,6 +11,10 @@ const crypto = require('crypto')
 //passport
 const passport = require('passport')
 
+//multer
+const multer = require('multer')
+let upload = multer({dest: '/scr/img/list'})
+
 // /api/user/register가 아닌 /user/register로 하기.
 router.post('/user/register', function (req, res, next) {
 
@@ -83,13 +87,38 @@ router.post('/user/board_write', function (req, res, next) {
         } else {
             console.log('')
             console.log('##################')
-            console.log(writer+'posting an article!')
+            console.log(writer + 'posting an article!')
             console.log('##################')
             console.log('')
         }
     })
     // 암호화
 
+});
+
+router.get('/user/del_categori', (req, res) => {
+    let req_categories = req.query.categori_name
+    let sql = "DELETE FROM categories WHERE categories=?"
+
+    conn.query(sql, [req_categories], function (err, rows) {
+
+    })
+    res.redirect('http://anhye0n.me/contents/edit_categori')
+});
+
+router.get('/user/add_categori', upload.single('categori_thumbnail'), (req, res) => {
+    let filename = req.file.originalname
+    let categori = req.body.categori_name
+
+    let sql = "INSERT INTO categories(categories, thumbnail) VALUES (?,?)"
+
+    conn.query(sql, [categori, filename], function (err, rows) {
+        if (err) {
+            console.log(err)
+        } else {
+            res.redirect('http://anhye0n.me/contents/edit_categori')
+        }
+    })
 });
 
 router.post('/user/login', passport.authenticate('local-login', {
