@@ -106,7 +106,7 @@ router.get('/user/del_categori', (req, res) => {
     res.redirect('http://anhye0n.me/contents/edit_categori')
 });
 
-router.get('/user/add_categori', upload.single('categori_thumbnail'), (req, res) => {
+router.post('/user/add_categori', upload.single('categori_thumbnail'), (req, res) => {
     let filename = req.file.originalname
     let categori = req.body.categori_name
 
