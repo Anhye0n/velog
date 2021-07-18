@@ -126,14 +126,22 @@ router.get('/user/del_categori', (req, res) => {
     let sql = "DELETE FROM categories WHERE categories=?"
     let select_sql = "SELECT * FROM categories WHERE categories=?"
 
+    let all_sql = "SELECT * FROM categories"
+
     conn.query(select_sql, [req_categories], function (err, rows) {
         fs.unlink(path.join(__dirname, '../../../src/img/list/', rows[0].thumbnail), function (err) {
             if (err) throw err;
             console.log(rows[0].categories + 'has been deleted!')
         })
         conn.query(sql, [req_categories], function (err, rows) {
+            conn.query(all_sql, function (err, rows) {
 
-            res.render('./contents/edit_categori', {'del_msg': 'Success delete categori!!'})
+                res.render('./contents/edit_categori', {
+                    'user': user,
+                    'categories': rows,
+                    'del_msg': 'Success delete categori!!'
+                })
+            });
         })
     })
 });
@@ -144,11 +152,20 @@ router.post('/user/add_categori', upload.single('categori_thumbnail'), (req, res
 
     let sql = "INSERT INTO categories(categories, thumbnail) VALUES (?,?)"
 
+    let all_sql = "SELECT * FROM categories"
+
     conn.query(sql, [categori, filename], function (err, rows) {
         if (err) {
             console.log(err)
         } else {
-            res.render('./contents/edit_categori',{'add_msg': 'Success add categori!!'})
+            conn.query(all_sql, function (err, rows) {
+
+                res.render('./contents/edit_categori', {
+                    'user': user,
+                    'categories': rows,
+                    'add_msg': 'Success add categori!!
+                })
+            });
         }
     })
 });
