@@ -122,6 +122,8 @@ router.post('/user/edit', (req, res) => {
 });
 
 router.get('/user/del_categori', (req, res) => {
+    let user = req.user;
+
     let req_categories = req.query.categori_name
     let sql = "DELETE FROM categories WHERE categories=?"
     let select_sql = "SELECT * FROM categories WHERE categories=?"
@@ -147,6 +149,8 @@ router.get('/user/del_categori', (req, res) => {
 });
 
 router.post('/user/add_categori', upload.single('categori_thumbnail'), (req, res) => {
+    let user = req.user;
+
     let filename = req.file.filename
     let categori = req.body.categori_name
 
