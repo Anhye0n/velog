@@ -156,6 +156,10 @@ input:focus {
     box-shadow: 0 0 30px #b4bbe7;
 }
 
+#pass_check_1, #pass_check_2{
+    font-family: Roboto, serif;
+}
+
 .regi_button {
     position: relative;
     display: inline-block;
