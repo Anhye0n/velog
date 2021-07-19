@@ -17,11 +17,10 @@ router.get('/user/register', (req, res) => {
 })
 
 router.get('/user/login', (req, res) => {
-    let fail_id = req.flash('fail_id')
-    let fail_password = req.flash('fail_password')
+    let err = req.flash('error')
     let user = req.user
 
-    res.render('./user/login', {'fail_id': fail_id, 'fail_password': fail_password, 'user': user});
+    res.render('./user/login', {'errMsg': err, 'user': user});
 })
 
 router.get('/user/regi_success', (req, res) => {

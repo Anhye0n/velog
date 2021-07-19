@@ -37,7 +37,7 @@ module.exports = (passport) => {
             if (err) {
                 return done(err);
             } else if (id === 0) {
-                return done(null, false, {'fail_id': 'Incorrect ID.'});
+                return done(null, false, {message: 'Incorrect ID.'});
             } else if (id === 1) {
                 let in_sql = "SELECT user_salt FROM user_info WHERE id=?;" +
                     "SELECT password FROM user_info WHERE id=?;" +
@@ -63,7 +63,7 @@ module.exports = (passport) => {
                             }
                             return done(null, user);
                         } else { // 비밀번호 안 맞을 때
-                            return done(null, false, {'fail_password': 'Incorrect password.'});
+                            return done(null, false, {message: 'Incorrect password.'});
                         }
                     });
                 })
