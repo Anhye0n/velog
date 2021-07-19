@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>로그인</title>
-    <!--<% if (locals.user === undefined){ %>
+    <% if (locals.user === undefined){ %>
 
     <% }else{ %>
-    <script>alert('로그인 되었습니다.');
-    location.href = 'http://anhye0n.me/';</script>
-    <% } %>-->
+        <script>alert('로그인 되었습니다.');
+            location.href = 'http://anhye0n.me/';</script>
+    <% } %>
     <link rel="stylesheet" href="/src/css/main.css">
     <link rel="stylesheet" href="/src/css/font.css">
     <link rel="stylesheet" href="/src/css/login.css">
@@ -35,8 +35,10 @@
                     </tr>
                     <tr>
                         <td class="login_error">
-                            <% if (locals.errMsg === 'Incorrect ID.') { %>-->
-                            <%= errMsg %>
+                            <% if (locals.errMsg) { %>-->
+                            <% if(errMsg === 'Incorrect ID.') { %>
+                                <%= errMsg %>
+                            <% } %>
                             <% } %>
                         </td>
                     </tr>
@@ -46,8 +48,10 @@
                     </tr>
                     <tr>
                         <td class="login_error">
-                            <% if (locals.errMsg === 'Incorrect password.') { %>-->
-                            <%= errMsg %>
+                            <% if (locals.errMsg) { %>-->
+                            <% if(errMsg === 'Incorrect password.') { %>
+                                <%= errMsg %>
+                            <% } %>
                             <% } %>
                         </td>
                     </tr>
