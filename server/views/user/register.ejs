@@ -17,7 +17,6 @@
             var register_form = document.getElementById('register_form');
             var p1 = document.getElementById('pass_check_1').value
             var p2 = document.getElementById('pass_check_2').value
-            var btn = document.getElementById('btn')
             if (p1 === p2) {
                 // alert('비밀번호가 일치합니다.')
                 register_form.submit()
@@ -43,7 +42,7 @@
             <p>Enter your information.</p>
         </div>
         <div class="regi_form_container">
-            <form action="/api/user/register" method="post">
+            <form id="register_form" action="/api/user/register" method="post">
                 <table id="regi_form_table">
                     <tr>
                         <td><input type="text" name="user_name" placeholder="Name" autocomplete="off"></td>
