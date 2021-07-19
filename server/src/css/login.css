@@ -155,3 +155,24 @@ input:focus {
     border-radius: 10px;
     box-shadow: 0 0 30px #b4bbe7;
 }
+
+.regi_button {
+    position: relative;
+    display: inline-block;
+    width: 82%;
+    border: none;
+    background: #5281ff;
+    color: #ffffff;
+    font-size: 20px;
+    margin-top: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.regi_button:hover {
+    background: #e2995b;
+    transition: 0.3s;
+}
