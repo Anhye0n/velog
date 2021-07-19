@@ -183,4 +183,5 @@ input:focus {
 
 #logo_container img{
     cursor: pointer;
+    width: 100px;
 }
