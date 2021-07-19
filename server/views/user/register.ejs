@@ -10,7 +10,7 @@
             location.href = 'http://anhye0n.me/';</script>
     <% } %>
     <link rel="stylesheet" href="/src/css/main.css">
-    <link rel="stylesheet" href="/src/css/previous/register.css">
+    <link rel="stylesheet" href="/src/css/login.css">
     <link rel="stylesheet" href="/src/css/font.css">
     <script type="text/javascript">
         function pass_check() {
@@ -33,15 +33,17 @@
     </style>
 </head>
 <body>
-<div id="regi_container">
-    <div id="regi_box">
-        <div class="item">
-            <p id="item_welcome">W e l c o m e</p>
-            <p class="round-font">A n H y e 0 n . m e</p>
+<div id="login_container">
+    <div id="login_box">
+        <div id="logo_container">
+            <img src="/src/img/favicon.png" alt="">
         </div>
-        <div class="item">
-            <p id="regi_title">R E G I S T E R</p>
-            <form id="register_form" action="/api/user/register" method="post">
+        <div id="welcome_message">
+            <p>Welcome!</p>
+            <p>Enter your information.</p>
+        </div>
+        <div class="form_container">
+            <form action="/api/user/register" method="post">
                 <table id="form_table">
                     <tr>
                         <td><input type="text" name="user_name" placeholder="Name" autocomplete="off"></td>
@@ -66,12 +68,12 @@
                         <td><input type="password" id="pass_check_2" placeholder="Password 확인" autocomplete="off"></td>
                     </tr>
                 </table>
-                <button class="regi_button" type="button" onclick="pass_check()">S U B M I T</button>
+                <button class="login_button" type="button" onclick="pass_check()">S U B M I T</button>
             </form>
-            <hr style="width: 80%">
-            <button class="regiser_button" type="button" onclick="location.href = 'http://anhye0n.me/user/login'">L O G
-                I N
-            </button>
+            <br>
+        </div>
+        <div id="go_to_register">
+            <p>Do you already have an account? <a href="http://anhye0n.me/user/login">Go to the Login</a></p>
         </div>
     </div>
 </div>
