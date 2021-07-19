@@ -31,7 +31,7 @@
             <form action="/api/user/login" method="post">
                 <table id="form_table">
                     <tr>
-                        <td><input type="text" name="id" autocomplete="on" placeholder="Enter your ID" autofocus></td>
+                        <td><input type="text" name="id" autocomplete="on" placeholder="Enter your ID" autofocus required></td>
                     </tr>
                     <tr>
                         <td class="login_error">
@@ -40,7 +40,7 @@
                     </tr>
                     <tr>
                         <td><input id="login_password" type="password" name="password" autocomplete="on"
-                                   placeholder="Enter your Password"></td>
+                                   placeholder="Enter your Password" required></td>
                     </tr>
                     <tr>
                         <td class="login_error">
