@@ -35,10 +35,8 @@
                     </tr>
                     <tr>
                         <td class="login_error">
-                            <% if (locals.errMsg) { %>-->
-                            <% if(errMsg === 'Incorrect ID.') { %>
-                                <%= errMsg %>
-                            <% } %>
+                            <% if (locals.fail_id) { %>
+                                <%= fail_id %>
                             <% } %>
                         </td>
                     </tr>
@@ -48,10 +46,8 @@
                     </tr>
                     <tr>
                         <td class="login_error">
-                            <% if (locals.errMsg) { %>-->
-                            <% if(errMsg === 'Incorrect password.') { %>
-                                <%= errMsg %>
-                            <% } %>
+                            <% if (locals.fail_password) { %>
+                                <%= fail_password %>
                             <% } %>
                         </td>
                     </tr>
