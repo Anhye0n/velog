@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>로그인</title>
-    <!--<% if (locals.user === undefined){ %>
+    <% if (locals.user === undefined){ %>
 
     <% }else{ %>
-    <script>alert('로그인 되었습니다.');
-    location.href = 'http://anhye0n.me/';</script>
-    <% } %>-->
-    <link rel="stylesheet" href="../../../src/css/main.css">
-    <link rel="stylesheet" href="../../../src/css/previous/login.css">
-    <link rel="stylesheet" href="../../../src/css/font.css">
+        <script>alert('로그인 되었습니다.');
+            location.href = 'http://anhye0n.me/';</script>
+    <% } %>
+    <link rel="stylesheet" href="/src/css/main.css">
+    <link rel="stylesheet" href="/src/css/previous/login.css">
+    <link rel="stylesheet" href="/src/css/font.css">
+    <style>
+        input:focus {
+            outline: none;
+        }
+    </style>
 </head>
 <body>
 <div id="login_container">
@@ -28,25 +33,24 @@
                         <td><input type="text" name="id" autocomplete="on" placeholder="ID"></td>
                     </tr>
                     <tr>
-                        <td class="login_error">Incorrect id</td>
-                    </tr>
-                    <tr>
                         <td><input type="password" name="password" autocomplete="on" placeholder="Password"></td>
                     </tr>
                     <tr>
-                        <td class="login_error">Incorrect Password</td>
+                        <td class="login_error"><%= locals.errMsg %></td>
                     </tr>
                 </table>
                 <button class="login_button" type="submit">L O G I N</button>
-<!--                <section class="message">-->
-<!--                    <% if (locals.errMsg) { %>-->
-<!--                    <h2><%= errMsg %></h2>-->
-<!--                    <% } %>-->
-<!--                </section>-->
+                <!--                <section class="message">-->
+                <!--                    <% if (locals.errMsg) { %>-->
+                <!--                    <h2><%= errMsg %></h2>-->
+                <!--                    <% } %>-->
+                <!--                </section>-->
             </form>
             <br>
             <hr style="width: 80%">
-            <button class="regiser_button" type="button" onclick="location.href = 'http://anhye0n.me/register'">R E G I S T E R</button>
+            <button class="regiser_button" type="button" onclick="location.href = 'http://anhye0n.me/user/register'">R E
+                G I S T E R
+            </button>
         </div>
     </div>
 </div>

@@ -9,9 +9,9 @@
     <script>alert('로그인 되었습니다.');
     location.href = 'http://anhye0n.me/';</script>
     <% } %>-->
-    <link rel="stylesheet" href="/src/css/main.css">
-    <link rel="stylesheet" href="/src/css/font.css">
-    <link rel="stylesheet" href="/src/css/login.css">
+    <link rel="stylesheet" href="../../../src/css/main.css">
+    <link rel="stylesheet" href="../../../src/css/font.css">
+    <link rel="stylesheet" href="../../../src/css/login.css">
     <style>
 
     </style>
@@ -21,7 +21,7 @@
 <div id="login_container">
     <div id="login_box">
         <div id="logo_container">
-            <img src="/src/img/favicon.png" alt="">
+            <img src="../../../src/img/favicon.png" alt="">
         </div>
         <div id="welcome_message">
             <p>Welcome!</p>
@@ -34,28 +34,21 @@
                         <td><input type="text" name="id" autocomplete="on" placeholder="Enter your ID" autofocus></td>
                     </tr>
                     <tr>
-                        <td class="login_error">
-                            <% if (locals.errMsg === 'Incorrect ID.') { %>-->
-                            <%= errMsg %>
-                            <% } %>
-                        </td>
+                        <td class="login_error">Incorrect ID.</td>
                     </tr>
                     <tr>
                         <td><input id="login_password" type="password" name="password" autocomplete="on"
                                    placeholder="Enter your Password"></td>
                     </tr>
                     <tr>
-                        <td class="login_error">
-                            <% if (locals.errMsg === 'Incorrect Password.') { %>-->
-                            <%= errMsg %>
-                            <% } %>
-                        </td>
+                        <td class="login_error">Incorrect Password.</td>
                     </tr>
                 </table>
                 <button class="login_button" type="submit">L O G I N</button>
             </form>
             <br>
         </div>
+        <!--    <button class="regiser_button" type="button" onclick="location.href = 'http://anhye0n.me/register'">R E G I S T E R</button>-->
         <div id="go_to_register">
             <p>Don't you have an account? <a href="http://anhye0n.me/register">Go to the Register</a></p>
         </div>
