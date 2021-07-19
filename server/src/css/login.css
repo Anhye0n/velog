@@ -138,8 +138,8 @@ input:focus {
     height: 100%;
 }
 
-#regi_form_table > tr > td > ipnut {
-    margin-top: 10px;
+#regi_form_table > tr > td {
+    padding-bottom: 10px;
 }
 
 .regi_form_container {

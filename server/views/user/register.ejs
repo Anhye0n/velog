@@ -50,16 +50,20 @@
                     </tr>
                     <tr>
                         <td><input type="email" name="email" placeholder="E-mail" autocomplete="off"></td>
-                    <tr>
-                        <td class="regi_error"><%= locals.err_email %></td>
                     </tr>
-                    </tr>
+                    <% if(locals.err_email){ %>
+                        <tr>
+                            <td class="regi_error"><%= locals.err_email %></td>
+                        </tr>
+                    <% } %>
                     <tr>
                         <td><input type="text" name="id" placeholder="ID" autocomplete="off"></td>
                     </tr>
-                    <tr>
-                        <td class="regi_error"><%= locals.err_id %></td>
-                    </tr>
+                    <% if(locals.err_id){ %>
+                        <tr>
+                            <td class="regi_error"><%= locals.err_id %></td>
+                        </tr>
+                    <% } %>
                     <tr>
                         <td><input type="password" id="pass_check_1" name="password" placeholder="Password"
                                    autocomplete="off"></td>
