@@ -131,10 +131,9 @@ input:focus {
     padding-left: 60px;
     text-align: left;
     color: #ff0000;
-    height: 20px;
 }
 
-#form_table > tr > td{
+#regi_form_table tr td{
     margin-top: 10px;
 }
 
