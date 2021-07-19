@@ -180,3 +180,7 @@ input:focus {
     background: #e2995b;
     transition: 0.3s;
 }
+
+#logo_container img{
+    cursor: pointer;
+}
