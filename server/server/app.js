@@ -41,6 +41,21 @@ app.use('/src', express.static(path.join(__dirname, '../src')))
 app.set('views', path.join(__dirname, '../views'))
 app.set('view engine', 'ejs') //ejs 사용
 
+app.get("*", (req, res, next) => {
+    console.log("req.secure == " + req.secure);
+
+    if(req.secure){
+        // --- https
+        next();
+    }else{
+        // -- http
+        let to = "https://" + req.headers.host + req.url;
+        console.log("to ==> " + to);
+
+        return res.redirect("https://" + req.headers.host + req.url);
+    }
+})
+
 //user handling 라우터
 const user_info = require('./routes/user_handling/user')
 app.use('/api', user_info)
@@ -81,20 +96,5 @@ httpServer.listen(80, () => {
 httpsServer.listen(443, () => {
     console.log('HTTPS Server running on port 443');
 });
-
-app.get("*", (req, res, next) => {
-    console.log("req.secure == " + req.secure);
-
-    if(req.secure){
-        // --- https
-        next();
-    }else{
-        // -- http
-        let to = "https://" + req.headers.host + req.url;
-        console.log("to ==> " + to);
-
-        return res.redirect("https://" + req.headers.host + req.url);
-    }
-})
 
 module.exports = app
