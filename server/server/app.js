@@ -83,18 +83,18 @@ httpsServer.listen(443, () => {
 });
 
 app.get("*", (req, res, next) => {
-    console.log("middleware sercure app2 ==> " + req.headers['X-Forwarded-Proto']);
-    console.log("req.protocol == " + req.protocol);
+    console.log("req.secure == " + req.secure);
 
-    let protocol = req.headers['X-Forwarded-Proto'] || req.protocol;
-    console.log("protocol == " + protocol);
-
-    if(protocol == 'http'){
+    if(req.secure){
+        // --- https
+        next();
+    }else{
+        // -- http
         let to = "https://" + req.headers.host + req.url;
         console.log("to ==> " + to);
 
-        return res.redirect(to);
+        return res.redirect("https://" + req.headers.host + req.url);
     }
-    next();
 })
+
 module.exports = app
