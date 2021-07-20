@@ -7,7 +7,6 @@ const db_info = require('../conf/db_info')
 //모듈
 const bodyParser = require('body-parser'), path = require('path'), favicon = require('serve-favicon')
 const passport = require('passport')
-const https = require('https');
 
 //session
 const session = require('express-session')
@@ -62,21 +61,16 @@ app.use('/admin', admin_view)
 //     console.log(`Example app listening at http://anhye0n.me`)
 // })
 
-const fs = require('fs');
-const prod = process.env.NODE_ENV === 'production';
+const http = require("http")
+const https = require("https")
+const fs = require("fs")
 
-if (prod) {
-    const options = {
-        ca: fs.readFileSync('/etc/letsencrypt/live/anhye0n.me/fullchain.pem'),
-        key: fs.readFileSync('/etc/letsencrypt/live/anhye0n.me/privkey.pem'),
-        cert: fs.readFileSync('/etc/letsencrypt/live/anhye0n.me/cert.pem'),
-    };
-    https.createServer(options, app).listen(443, () => {
-        console.log('Example app listening at https://anhye0n.me');
-    });
-} else {
-    app.listen(80, () => {
-        console.log(`Example app listening at http://anhye0n.me`)
-    })
-}
+let privateKey = fs.readFileSync("/etc/letsencrypt/live/anhye0n.me/privkey.pem")
+let certificate = fs.readFileSync("/etc/letsencrypt/live/anhye0n.me/cert.pem")
+let ca = fs.readFileSync("/etc/letsencrypt/live/anhye0n.me/chain.pem")
+const credentials = {key: privateKey, cert: certificate, ca: ca}
+
+
+http.createServer(app).listen(80)
+https.createServer(credentials, app).listen(443)
 module.exports = app
