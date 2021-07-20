@@ -58,9 +58,9 @@ app.use('/api/admin', db_test)
 const admin_view = require('./routes/admin/admin_view')
 app.use('/admin', admin_view)
 
-app.listen(80, () => {
-    console.log(`Example app listening at http://anhye0n.me`)
-})
+// app.listen(80, () => {
+//     console.log(`Example app listening at http://anhye0n.me`)
+// })
 
 const fs = require('fs');
 const prod = process.env.NODE_ENV === 'production';
