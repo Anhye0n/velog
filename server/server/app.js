@@ -7,6 +7,7 @@ const db_info = require('../conf/db_info')
 //모듈
 const bodyParser = require('body-parser'), path = require('path'), favicon = require('serve-favicon')
 const passport = require('passport')
+const https = require('https');
 
 //session
 const session = require('express-session')
@@ -61,4 +62,21 @@ app.listen(80, () => {
     console.log(`Example app listening at http://anhye0n.me`)
 })
 
+const fs = require('fs');
+const prod = process.env.NODE_ENV === 'production';
+
+if (prod) {
+    const options = {
+        ca: fs.readFileSync('/etc/letsencrypt/live/anhye0n.me/fullchain.pem'),
+        key: fs.readFileSync('/etc/letsencrypt/live/anhye0n.me/privkey.pem'),
+        cert: fs.readFileSync('/etc/letsencrypt/live/anhye0n.me/cert.pem'),
+    };
+    https.createServer(options, app).listen(443, () => {
+        console.log('Example app listening at https://anhye0n.me');
+    });
+} else {
+    app.listen(80, () => {
+        console.log(`Example app listening at http://anhye0n.me`)
+    })
+}
 module.exports = app
