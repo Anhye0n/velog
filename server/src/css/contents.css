@@ -292,6 +292,7 @@ option {
     border: none;
     background: #ff4c4c;
     padding: 5px 15px 5px 15px;
+    cursor: pointer;
 }
 
 #edit_categori_right_title {
