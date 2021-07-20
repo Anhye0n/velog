@@ -61,22 +61,6 @@ app.use('/admin', admin_view)
 //     console.log(`Example app listening at http://anhye0n.me`)
 // })
 
-app.get("*", (req, res, next) => {
-    console.log("middleware sercure app2 ==> " + req.headers['X-Forwarded-Proto']);
-    console.log("req.protocol == " + req.protocol);
-
-    let protocol = req.headers['X-Forwarded-Proto'] || req.protocol;
-    console.log("protocol == " + protocol);
-
-    if(protocol == 'http'){
-        let to = "https://" + req.headers.host + req.url;
-        console.log("to ==> " + to);
-
-        return res.redirect(to);
-    }
-    next();
-})
-
 const http = require("http")
 const https = require("https")
 const fs = require("fs")
@@ -97,4 +81,20 @@ httpServer.listen(80, () => {
 httpsServer.listen(443, () => {
     console.log('HTTPS Server running on port 443');
 });
+
+app.get("*", (req, res, next) => {
+    console.log("middleware sercure app2 ==> " + req.headers['X-Forwarded-Proto']);
+    console.log("req.protocol == " + req.protocol);
+
+    let protocol = req.headers['X-Forwarded-Proto'] || req.protocol;
+    console.log("protocol == " + protocol);
+
+    if(protocol == 'http'){
+        let to = "https://" + req.headers.host + req.url;
+        console.log("to ==> " + to);
+
+        return res.redirect(to);
+    }
+    next();
+})
 module.exports = app
