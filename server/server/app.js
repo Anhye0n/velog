@@ -61,6 +61,22 @@ app.use('/admin', admin_view)
 //     console.log(`Example app listening at http://anhye0n.me`)
 // })
 
+app.get("*", (req, res, next) => {
+    console.log("middleware sercure app2 ==> " + req.headers['X-Forwarded-Proto']);
+    console.log("req.protocol == " + req.protocol);
+
+    let protocol = req.headers['X-Forwarded-Proto'] || req.protocol;
+    console.log("protocol == " + protocol);
+
+    if(protocol == 'http'){
+        let to = "https://" + req.headers.host + req.url;
+        console.log("to ==> " + to);
+
+        return res.redirect(to);
+    }
+    next();
+})
+
 const http = require("http")
 const https = require("https")
 const fs = require("fs")
@@ -70,7 +86,15 @@ let certificate = fs.readFileSync("/etc/letsencrypt/live/anhye0n.me/cert.pem")
 let ca = fs.readFileSync("/etc/letsencrypt/live/anhye0n.me/chain.pem")
 const credentials = {key: privateKey, cert: certificate, ca: ca}
 
+// Starting both http & https servers
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(credentials, app);
 
-http.createServer(app).listen(80)
-https.createServer(credentials, app).listen(443)
+httpServer.listen(80, () => {
+    console.log('HTTP Server running on port 80');
+});
+
+httpsServer.listen(443, () => {
+    console.log('HTTPS Server running on port 443');
+});
 module.exports = app
