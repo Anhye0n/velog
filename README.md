@@ -7,7 +7,7 @@ Release:	20.04<br>
 - Node.js
 - ejs
 - ajax
-- 
+
 last-update 2021-07-24
 
 ```bash
