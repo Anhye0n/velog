@@ -87,7 +87,8 @@ dateStrings: 'date'
 2. Portfolio
 3. Site info.
 4. My info.
-페이지 개발할 예정 및 기존 페이지 디자인 다시 구축 예정.
+
+React 학습 후 페이지 개발할 예정, 기존 페이지 디자인 다시 구축 예정.
 
 2021-07-21일까지의 version.
 
