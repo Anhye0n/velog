@@ -80,3 +80,15 @@ dateStrings: 'date'
 - categories table을 추가로 만든 이유는 카테고리의 관리를 편하게 하기 위함(ex. 카테고리 수정, 전용 페이지)
 - Form태그의 multipart/form-data와 multer 모듈을 활용하여 이미지 업로드
   - 서버에 날짜+originalname의 이름으로 저장 및 thumbnail에 합친 이름 업로드됨.
+
+
+# 기타 페이지
+1. Who am I
+2. Portfolio
+3. Site info.
+4. My info.
+페이지 개발할 예정 및 기존 페이지 디자인 다시 구축 예정.
+
+2021-07-21일까지의 version.
+
+https://blog.anhye0n.me/20?category=961817
