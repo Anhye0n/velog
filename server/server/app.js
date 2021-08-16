@@ -43,7 +43,7 @@ app.use('/src', express.static(path.join(__dirname, '../src')))
 app.set('views', path.join(__dirname, '../views'))
 app.set('view engine', 'ejs') //ejs 사용
 
-app.get("*", (req, res, next) => {
+/*app.get("*", (req, res, next) => {
     console.log("req.secure == " + req.secure);
 
     if (req.secure) {
@@ -56,7 +56,7 @@ app.get("*", (req, res, next) => {
 
         return res.redirect("https://" + req.headers.host + req.url);
     }
-})
+})*/
 
 //user handling 라우터
 const user_info = require('./routes/user_handling/user')
