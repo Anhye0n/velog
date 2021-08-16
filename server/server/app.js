@@ -9,15 +9,6 @@ const bodyParser = require('body-parser'), path = require('path'), favicon = req
 const passport = require('passport')
 const vhost = require('vhost')
 
-//서브도메인
-const ycsi = express();
-app.use(vhost(`ycsi.anhye0n.me`, ycsi));
-
-ycsi.get("/", (req, res) => {
-    res.send("here is the cats subdomain");
-    console.log("here is the cats subdomain");
-})
-
 //session
 const session = require('express-session')
 const mysqlStore = require('express-mysql-session')(session)
@@ -65,6 +56,14 @@ app.get("*", (req, res, next) => {
         return res.redirect("https://" + req.headers.host + req.url);
     }
 })
+
+//서브도메인
+app.use(vhost(`ycsi.anhye0n.me`, require('../../../ycsi/app').app));
+
+/*ycsi.get("/", (req, res) => {
+    res.send("here is the cats subdomain");
+    console.log("here is the cats subdomain");
+})*/
 
 //user handling 라우터
 const user_info = require('./routes/user_handling/user')
