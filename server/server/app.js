@@ -7,7 +7,7 @@ const db_info = require('../conf/db_info')
 //모듈
 const bodyParser = require('body-parser'), path = require('path'), favicon = require('serve-favicon')
 const passport = require('passport')
-const vhost = require('vhost')
+// const vhost = require('vhost')
 
 //session
 const session = require('express-session')
@@ -58,7 +58,7 @@ app.get("*", (req, res, next) => {
 })
 
 //서브도메인
-app.use(vhost(`ycsi.anhye0n.me`, require('../../../ycsi/app').app));
+// app.use(vhost(`ycsi.anhye0n.me`, require('../../../ycsi/app').app));
 
 /*ycsi.get("/", (req, res) => {
     res.send("here is the cats subdomain");
