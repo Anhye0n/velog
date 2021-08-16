@@ -80,7 +80,6 @@ app.use('/admin', admin_view)
 
 const http = require("http")
 const https = require("https")
-const fs = require("fs")
 
 let privateKey = fs.readFileSync("/etc/letsencrypt/live/anhye0n.me/privkey.pem")
 let certificate = fs.readFileSync("/etc/letsencrypt/live/anhye0n.me/cert.pem")
