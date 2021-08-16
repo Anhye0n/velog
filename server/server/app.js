@@ -5,10 +5,9 @@ const app = express()
 const db_info = require('../conf/db_info')
 
 //모듈
-const bodyParser = require('body-parser'), path = require('path'), favicon = require('serve-favicon'), fs = require('fs')
+const bodyParser = require('body-parser'), path = require('path'), favicon = require('serve-favicon')
 const passport = require('passport')
 const vhost = require('vhost')
-const vhttps = require('vhttps')
 
 //session
 const session = require('express-session')
@@ -43,7 +42,7 @@ app.use('/src', express.static(path.join(__dirname, '../src')))
 app.set('views', path.join(__dirname, '../views'))
 app.set('view engine', 'ejs') //ejs 사용
 
-/*app.get("*", (req, res, next) => {
+app.get("*", (req, res, next) => {
     console.log("req.secure == " + req.secure);
 
     if (req.secure) {
@@ -56,7 +55,7 @@ app.set('view engine', 'ejs') //ejs 사용
 
         return res.redirect("https://" + req.headers.host + req.url);
     }
-})*/
+})
 
 //user handling 라우터
 const user_info = require('./routes/user_handling/user')
@@ -80,6 +79,7 @@ app.use('/admin', admin_view)
 
 const http = require("http")
 const https = require("https")
+const fs = require("fs")
 
 let privateKey = fs.readFileSync("/etc/letsencrypt/live/anhye0n.me/privkey.pem")
 let certificate = fs.readFileSync("/etc/letsencrypt/live/anhye0n.me/cert.pem")
@@ -89,49 +89,6 @@ const credentials = {key: privateKey, cert: certificate, ca: ca}
 // Starting both http & https servers
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
-
-
-//서브도메인
-// app.use(vhost(`ycsi.anhye0n.me`, require('../../../ycsi/app').app));
-
-/*ycsi.get("/", (req, res) => {
-    res.send("here is the cats subdomain");
-    console.log("here is the cats subdomain");
-})*/
-
-const appList = [
-// https app 설정
-    {
-// app 의 도메인
-        domain: "anhye0n.com",
-// app 의 TLS key,cert
-        cred: {
-            key: fs.readFileSync("/etc/letsencrypt/live/anhye0n.me/privkey.pem"),
-            cert: fs.readFileSync("/etc/letsencrypt/live/anhye0n.me/cert.pem"),
-        },
-// app 의 구성 파일
-        app: require("./app")
-    },
-// http app 설정
-    {
-        domain: "ycsi.anhye0n.com",
-        app: require("../../../ycsi/app")
-    }
-];
-const server = vhttps.init();
-
-appList.forEach((val) => {
-// app list 를 순회하며 TLS 정보를 기반으로 http, https 를 구분하여 설정합니다.
-    if(val.cred){
-        app.use(vhost(val.domain, (req, res) => {
-            res.writeHead(301, {"Location" : "https://" + req.header["host"] + req.url});
-            res.end();
-        }));
-        server.use(val.domain, val.cred, val.app);
-    }else{
-        app.use(vhost(val.domain, val.app));
-    }
-});
 
 httpServer.listen(80, () => {
     console.log('HTTP Server running on port 80');
