@@ -7,6 +7,16 @@ const db_info = require('../conf/db_info')
 //모듈
 const bodyParser = require('body-parser'), path = require('path'), favicon = require('serve-favicon')
 const passport = require('passport')
+const vhost = require('vhost')
+
+//서브도메인
+const ycsi = express();
+app.use(vhost(`ycsi.anhye0n.me`, ycsi));
+
+ycsi.get("/", (req, res) => {
+    res.send("here is the cats subdomain");
+    console.log("here is the cats subdomain");
+})
 
 //session
 const session = require('express-session')
@@ -44,10 +54,10 @@ app.set('view engine', 'ejs') //ejs 사용
 app.get("*", (req, res, next) => {
     console.log("req.secure == " + req.secure);
 
-    if(req.secure){
+    if (req.secure) {
         // --- https
         next();
-    }else{
+    } else {
         // -- http
         let to = "https://" + req.headers.host + req.url;
         console.log("to ==> " + to);
