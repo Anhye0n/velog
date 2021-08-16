@@ -58,7 +58,7 @@ app.get("*", (req, res, next) => {
 })
 
 //서브도메인
-app.use(vhost(`ycsi.anhye0n.me`, require('../../../ycsi/app')));
+app.use(vhost(`ycsi.anhye0n.me`, require('../../../ycsi/app').app));
 
 /*ycsi.get("/", (req, res) => {
     res.send("here is the cats subdomain");
