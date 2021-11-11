@@ -65,6 +65,10 @@ router.get('/contents/all_categories', (req, res) => {
     conn.query(sql, function (err, rows) {
 
         res.render('./contents/all_categories', {'user': user, 'categories': rows})
+
+        console.log('------------------')
+        console.log(rows)
+        console.log('------------------')
     });
 })
 
