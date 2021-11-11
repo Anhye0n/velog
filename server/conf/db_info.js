@@ -2,7 +2,7 @@ let mysql = require('mysql');
 let db_info = {
     host: 'localhost',
     user: 'user',
-    password: 'user_password',
+    password: 'xhdka2256',
     database: 'velog',
     multipleStatements: true,
     dateStrings: 'date'
