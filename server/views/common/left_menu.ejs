@@ -15,17 +15,17 @@
         <div id="user_logout_edit">
             <% if (locals.user){ %>
                 <button id="user_edit" class="log_button" type="button"
-                        onclick="location.href='http://anhye0n.me/user/my_info'">MY INFO
+                        onclick="location.href='http://velog.anhye0n.com/user/my_info'">MY INFO
                 </button>
                 <button id="user_logout" class="log_button" type="button"
-                        onclick="location.href='http://anhye0n.me/api/user/logout'">LOGOUT
+                        onclick="location.href='http://velog.anhye0n.com/api/user/logout'">LOGOUT
                 </button>
             <% } else{ %>
                 <button id="user_edit" class="log_button" type="button"
-                        onclick="location.href='http://anhye0n.me/user/register'">REGISTER
+                        onclick="location.href='http://velog.anhye0n.com/user/register'">REGISTER
                 </button>
                 <button id="user_logout" class="log_button" type="button"
-                        onclick="location.href='http://anhye0n.me/user/login'">LOGIN
+                        onclick="location.href='http://velog.anhye0n.com/user/login'">LOGIN
                 </button>
             <% } %>
             <!--버튼 길이 조정-->
@@ -42,13 +42,13 @@
         </div>
         <div id="left_div">
             <ul>
-                <li class="left_menu"><a href="http://anhye0n.me/contents/whoami"><p>Who am <strong>I</strong></p></a>
+                <li class="left_menu"><a href="http://velog.anhye0n.com/contents/whoami"><p>Who am <strong>I</strong></p></a>
                 </li>
-                <li class="left_menu"><a href="http://anhye0n.me/contents/portfolio">Portfolio</a></li>
-                <li class="left_menu"><a href="http://anhye0n.me/contents/all_article">All Ariticle</a></li>
-                <li class="left_menu"><a href="http://anhye0n.me/contents/all_categories">All Categories</a></li>
-                <li class="left_menu"><a href="http://anhye0n.me/contents/site_info">Site Info.</a></li>
-                <li class="left_menu"><a href="http://anhye0n.me:8070">다른 링크(쇼핑몰)</a></li>
+                <li class="left_menu"><a href="http://velog.anhye0n.com/contents/portfolio">Portfolio</a></li>
+                <li class="left_menu"><a href="http://velog.anhye0n.com/contents/all_article">All Ariticle</a></li>
+                <li class="left_menu"><a href="http://velog.anhye0n.com/contents/all_categories">All Categories</a></li>
+                <li class="left_menu"><a href="http://velog.anhye0n.com/contents/site_info">Site Info.</a></li>
+                <li class="left_menu"><a href="http://velog.anhye0n.com:8070">다른 링크(쇼핑몰)</a></li>
             </ul>
         </div>
         <hr style="width: 60%; height:0; border:0; border-top:1px solid #c2c2c2;">
@@ -61,19 +61,19 @@
                 <hr style="width: 60%; height:0; border:0; border-top:1px solid #c2c2c2;">
                 <ul>
                     <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
-                                             href="http://anhye0n.me/contents/board_write">글 작성하기</a></li>
+                                             href="http://velog.anhye0n.com/contents/board_write">글 작성하기</a></li>
                     <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
-                                             href="http://anhye0n.me/contents/edit_categori">카테고리 수정</a></li>
+                                             href="http://velog.anhye0n.com/contents/edit_categori">카테고리 수정</a></li>
                 </ul>
             <% }else if (user.id === 'ajh08070'){ %>
                 <hr style="width: 60%; height:0; border:0; border-top:1px solid #c2c2c2;">
                 <ul>
                     <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
-                                             href="http://anhye0n.me/admin/">Admin Page</a></li>
+                                             href="http://velog.anhye0n.com/admin/">Admin Page</a></li>
                     <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
-                                             href="http://anhye0n.me/contents/board_write">글 작성하기</a></li>
+                                             href="http://velog.anhye0n.com/contents/board_write">글 작성하기</a></li>
                     <li class="left_menu"><a style="font-family: 'nanumround', serif; font-weight: bold;"
-                                             href="http://anhye0n.me/contents/edit_categori">카테고리 수정</a></li>
+                                             href="http://velog.anhye0n.com/contents/edit_categori">카테고리 수정</a></li>
                 </ul>
             <% } %>
         <% } %>

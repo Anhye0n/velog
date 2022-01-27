@@ -102,7 +102,7 @@ router.post('/user/board_write', function (req, res, next) {
             console.log(writer + 'posting an article!')
             console.log('##################')
             console.log('')
-            res.redirect('http://anhye0n.me/contents/all_article')
+            res.redirect('http://velog.anhye0n.com/contents/all_article')
         }
     })
     // 암호화
@@ -117,7 +117,7 @@ router.post('/user/edit', (req, res) => {
     let edit_sql = "UPDATE board SET title=?, categori=?, content=? WHERE title=?"
 
     conn.query(edit_sql, [edit_title, edit_categori, edit_contents, original_value], function (err, rows) {
-        res.redirect('http://anhye0n.me/contents/all_article')
+        res.redirect('http://velog.anhye0n.com/contents/all_article')
     })
 });
 

@@ -1,7 +1,7 @@
 const contents_title = document.getElementsByClassName('article_box_title')
 const contents_text = document.getElementsByClassName('article_box_content')
 
-document.getElementById('left_top_title').setAttribute('onclick', "location.href='http://anhye0n.me/'")
+document.getElementById('left_top_title').setAttribute('onclick', "location.href='http://velog.anhye0n.com/'")
 
 const contents_title_length = contents_title.length
 const contents_text_length = contents_text.length

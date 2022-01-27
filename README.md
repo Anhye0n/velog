@@ -92,4 +92,4 @@ React 학습 후 페이지 개발할 예정, 기존 페이지 디자인 다시 �
 
 2021-07-21일까지의 version.
 
-https://blog.anhye0n.me/20?category=961817
+https://blog.velog.anhye0n.com/20?category=961817

@@ -5,10 +5,10 @@
     <title>Title</title>
     <% if(locals.user === undefined){ %>
         <script>alert('로그인 되지 않았습니다.');
-            location.href = 'http://anhye0n.me'</script>
+            location.href = 'http://velog.anhye0n.com'</script>
     <% }else if (user.id !== 'ajh08070'){ %>
         <script>alert('관리자가 아닙니다.');
-            location.href = 'http://anhye0n.me'</script>
+            location.href = 'http://velog.anhye0n.com'</script>
     <% } %>
     <link rel="stylesheet" href="/src/css/main.css">
     <link rel="stylesheet" href="/src/css/font.css">
@@ -37,7 +37,7 @@
                     <ul>
                         <% for (i = 0; i < categories.length; i++){ %>
                             <li>
-                                <button onclick="location.href='http://anhye0n.me/api/user/del_categori?categori_name=<%= categories[i].categories %>'">
+                                <button onclick="location.href='http://velog.anhye0n.com/api/user/del_categori?categori_name=<%= categories[i].categories %>'">
                                     x
                                 </button>
                                 <p><%= categories[i].categories %></p>

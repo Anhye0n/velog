@@ -5,10 +5,10 @@
     <title>Title</title>
     <% if(locals.user === undefined){ %>
         <script>alert('로그인 되지 않았습니다.');
-            location.href = 'http://anhye0n.me'</script>
+            location.href = 'http://velog.anhye0n.com'</script>
     <% }else if (user.id !== locals.writer){ %>
         <script>alert('이 글의 작성자가 아닙니다.');
-            location.href = 'http://anhye0n.me/contents/view?title=<%= board[0].title %>'</script>
+            location.href = 'http://velog.anhye0n.com/contents/view?title=<%= board[0].title %>'</script>
     <% }%>
     <link rel="stylesheet" href="/src/css/main.css">
     <link rel="stylesheet" href="/src/css/font.css">

@@ -74,16 +74,16 @@ const admin_view = require('./routes/admin/admin_view')
 app.use('/admin', admin_view)
 
 app.listen(3001, () => {
-    console.log(`Example app listening at http://anhye0n.me`)
+    console.log(`Example app listening at http://velog.anhye0n.com`)
 })
 
 /*const http = require("http")
 const https = require("https")
 const fs = require("fs")
 
-let privateKey = fs.readFileSync("/etc/letsencrypt/live/anhye0n.me/privkey.pem")
-let certificate = fs.readFileSync("/etc/letsencrypt/live/anhye0n.me/cert.pem")
-let ca = fs.readFileSync("/etc/letsencrypt/live/anhye0n.me/chain.pem")
+let privateKey = fs.readFileSync("/etc/letsencrypt/live/velog.anhye0n.com/privkey.pem")
+let certificate = fs.readFileSync("/etc/letsencrypt/live/velog.anhye0n.com/cert.pem")
+let ca = fs.readFileSync("/etc/letsencrypt/live/velog.anhye0n.com/chain.pem")
 const credentials = {key: privateKey, cert: certificate, ca: ca}
 
 // Starting both http & https servers
