@@ -23,3 +23,21 @@ for (i = 0; i < contents_text_length; i++) {
     }
 }
 
+const menu_box = document.getElementById('box_left');
+
+function menu_open(){
+    menu_box.style.display  = 'block'
+}
+
+function menu_close(){
+    menu_box.style.display = 'none'
+}
+
+window.onresize = function (){
+    let innerWidth = window.innerWidth;
+    if (innerWidth > 1200){
+        menu_box.style.display  = 'block'
+    }else {
+        menu_box.style.display  = 'none'
+    }
+}
