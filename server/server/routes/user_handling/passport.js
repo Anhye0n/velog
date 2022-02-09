@@ -53,6 +53,8 @@ module.exports = (passport) => {
                     crypto.pbkdf2(password, salt, 100, 64, 'sha512', (err, key) => {
                         let de_password = key.toString("base64")
                         // 비밀번호 맞을 때
+                        console.log("de : ", de_password)
+                        console.log("db : ", db_password)
                         if (de_password === db_password) {
                             // req.session.user_id = username
                             // req.session.save()
